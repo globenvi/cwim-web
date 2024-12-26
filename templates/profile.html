@@ -7,21 +7,23 @@
     <div class="card p-3 mb-3">
         <h5 class="mb-3">Безопасность</h5>
     
-        <!-- Уведомления в Telegram -->
-        <div class="form-check form-switch form-switch-lg mb-3">
-            <input class="form-check-input" type="checkbox" id="notifications" name="telegram_notifications">
-            <label class="form-check-label" for="notifications_signin">Уведомления о входе</label>
-        </div>
     
         <!-- Коды подтверждения в Telegram -->
         <div class="form-check form-switch form-switch-lg mb-3">
-            {% if user.telegram_id %}
-            <input class="form-check-input" type="checkbox" id="telegramCodes" name="telegram_2fa">
-            <label class="form-check-label" for="telegramCodes">Коды подтверждения в Telegram</label>
+            {% if user.telegram_id != ""%}
+            <form method="POST", action="/profile/t_notify">
+            <!-- Уведомления в Telegram -->
+        <div class="form-check form-switch form-switch-lg mb-3">
+            <input class="form-check-input" type="checkbox" id="notifications" name="telegram_notifications" {% if user.telegram_notifications %}checked{% endif %}>
+            <label class="form-check-label" for="notifications">Уведомления о входе</label>
+
+            <button class="btn btn-sm btn-primary pt-2" type="submit">Сохранить</button>
+        </div>
+            </form>
             {% else %}
-            <div class="d-flex justify-content-between align-items-center">
-                <label class="form-label mb-0">Коды подтверждения в Telegram</label>
-                <button class="btn btn-primary btn-sm">Привязать Telegram</button>
+            <span>Для подключения уведомлений в телеграм,
+                укажите его в настройках профиля! <div class="badge bg-warning text-dark">Нажмите на свое имя в шапке</div>
+            </span>
             </div>
             {% endif %}
         </div>
@@ -30,16 +32,6 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <label class="form-label mb-0">Сменить пароль</label>
             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Изменить</button>
-        </div>
-    </div>
-    
-
-    <!-- Notifications Section -->
-    <div class="card p-3 mb-3">
-        <h5 class="mb-3">Уведомления</h5>
-        <div class="form-check form-switch form-switch-lg">
-            <input class="form-check-input" type="checkbox" id="notifications" name="telegram_notifications">
-            <label class="form-check-label" for="notifications">Уведомления в телеграм</label>
         </div>
     </div>
 
@@ -63,7 +55,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal для смены пароля -->
 <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -72,18 +64,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" action="/profile/change_password">
                     <div class="mb-3">
                         <label for="current-password" class="form-label">Старый пароль</label>
-                        <input type="password" class="form-control" id="current-password" placeholder="Введите старый пароль">
+                        <input type="password" class="form-control" id="current-password" name="current_password" placeholder="Введите старый пароль">
                     </div>
                     <div class="mb-3">
                         <label for="new-password" class="form-label">Новый пароль</label>
-                        <input type="password" class="form-control" id="new-password" placeholder="Введите новый пароль">
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirm-password" class="form-label">Подтвердите новый пароль</label>
-                        <input type="password" class="form-control" id="confirm-password" placeholder="Подтвердите новый пароль">
+                        <input type="password" class="form-control" id="new-password" name="new_password" placeholder="Введите новый пароль">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Сохранить</button>
                 </form>
@@ -91,7 +79,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Modal для редактирования пользователя -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
@@ -102,7 +89,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <form method="POST">
+                <form method="POST" action="/profile/edit">
                     <div class="mb-3">
                         <label for="userName" class="form-label">Имя</label>
                         <input type="text" class="form-control" id="userName" name="user_name" value="{{ user.username }}">
@@ -119,7 +106,7 @@
                         <label for="userTelegram" class="form-label">TelegramID</label>
                         <input type="text" class="form-control" id="userTelegramId" name="user_telegram_id" value="{{ user.telegram_id if user.telegram_id else '' }}" placeholder="TelegramID (732917321)">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100" name="save_changes">Сохранить изменения</button>
+                    <button type="submit" class="btn btn-primary w-100">Сохранить изменения</button>
                 </form>
             </div>
         </div>

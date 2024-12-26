@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import Users, db, Products
+from models import Users, db
 import os
 
 WEBHOOK_LISTEN = "0.0.0.0"
@@ -60,42 +60,6 @@ def install():
 
     return render_template('install.html')
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
-@login_required
-def index_page():
-    if request.method == "POST":
-        product_name = request.form.get('product_name')
-        product_description = request.form.get('product_description')
-        product_price = request.form.get('product_price')
-        product_category = request.form.get('product_category')
-        product_tags = request.form.get('product_tags')
-        product_images = request.files.getlist('product_photos')  # List of uploaded images
-
-        # Save product to the database
-        image_filenames = []
-        for image in product_images:
-            if image:
-                image_filename = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-                image.save(image_filename)
-                image_filenames.append(image.filename)  # Add the image filename to the list
-
-        new_product = Products(
-            name=product_name,
-            description=product_description,
-            price=float(product_price),
-            category=product_category,
-            tags=product_tags,  # Tags can be stored as a comma-separated string
-            images=",".join(image_filenames)  # List of image filenames
-        )
-
-        # Add product to the session and commit to the database
-        db.session.add(new_product)
-        db.session.commit()
-
-        flash("Product added successfully!", category="success")
-        return redirect(url_for('index_page'))
-
     products = Products.query.all()
     return render_template('index.html', user=current_user, products=products)
 
@@ -150,33 +114,64 @@ def login():
 @login_required
 def profile():
     user = Users.query.filter_by(username=current_user.username).first()
-
-    if request.method == "POST":
-        username = request.form.get('user_name')
-        email = request.form.get('user_email')
-        phone = request.form.get('user_phone')
-        telegram_id = request.form.get('user_telegram_id')
-        telegram_notifications = request.form.get('telegram_notifications')
-
-        # Обновление данных пользователя
-        if username and email and phone:
-            user.username = username
-            user.email = email
-            user.phone = phone
-            user.telegram_id = telegram_id
-            telegram_notifications = telegram_notifications
-
-            try:
-                db.session.commit()
-                flash("Данные успешно изменены!", "success")
-            except Exception as e:
-                db.session.rollback()
-                flash(f"Ошибка при обновлении данных: {e}", "danger")
-
-        return redirect(url_for('profile'))
-
     return render_template('profile.html', user=user)
 
+@app.route('/profile/edit', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    user = Users.query.filter_by(username=current_user.username).first()
+
+    if request.method == "POST":
+        new_username = request.form.get('user_name')
+        new_email = request.form.get('user_email')
+        new_phone = request.form.get('user_phone')
+        new_telegram_id = request.form.get('user_telegram_id')
+
+        if new_username:
+            user.username = new_username
+        if new_email:
+            user.email = new_email
+        if new_phone:
+            user.phone = new_phone
+        if new_telegram_id:
+            user.telegram_id = new_telegram_id
+
+        db.session.commit()
+        flash("Профиль успешно обновлен!", "success")
+        return redirect(url_for('profile'))
+
+    return render_template('edit_profile.html', user=user)
+
+@app.route('/profile/t_notify', methods=['POST'])
+def telegram_notifications():
+    user = Users.query.filter_by(username=current_user.username).first()
+    user.telegram_notifications = not user.telegram_notifications
+    db.session.commit()
+    return redirect(url_for('profile'))
+
+@app.route('/profile/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    user = Users.query.filter_by(username=current_user.username).first()
+
+    if request.method == "POST":
+        current_password = request.form.get('current_password')
+        new_password = request.form.get('new_password')
+
+        if check_password_hash(user.password, current_password):
+            hashed_new_password = generate_password_hash(new_password, method='pbkdf2:sha256')
+            user.password = hashed_new_password
+            db.session.commit()
+            flash("Пароль успешно изменен!", "success")
+            return redirect(url_for('profile'))
+        else:
+            flash("Неверный текущий пароль!", "danger")
+
+    return render_template('change_password.html', user=user)
+
+@app.route('/')
+def index():
+    return redirect(url_for('profile'))
 
 @app.route('/logout')
 def logout():
