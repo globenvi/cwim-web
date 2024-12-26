@@ -40,11 +40,13 @@
 
 
     <div class="container mb-5 mt-2">
+        {% if current_user.username%}
         <nav class="navbar bg-white rounded-2 border shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#"></a>
             </div>
         </nav>
+        {%endif%}
         {% block body %}{% endblock %}
 
         {% if current_user.username %}
