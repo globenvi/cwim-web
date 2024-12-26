@@ -1,8 +1,9 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_migrate import Migrate, upgrade
 from models import Users, Products, db
-import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cwim_db.db'
@@ -10,13 +11,10 @@ app.config['SECRET_KEY'] = "kljdklsahiopduy1y298e319hdskajh"
 app.config['UPLOAD_FOLDER'] = 'static/product_images'  # Папка для загрузки изображений
 
 db.init_app(app)
+migrate = Migrate(app, db)
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
-
-# Создание таблиц в базе данных при запуске приложения
-with app.app_context():
-    db.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -138,4 +136,10 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == "__main__":
+    # Выполняем автоматическую миграцию перед запуском приложения
+    with app.app_context():
+        if not os.path.exists("migrations"):
+            os.system("flask db init")
+            os.system("flask db migrate -m 'Initial migration'")
+        os.system("flask db upgrade")
     app.run(debug=True)
