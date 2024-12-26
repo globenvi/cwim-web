@@ -17,11 +17,8 @@ class Users(db.Model, UserMixin):
 class Products(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    category = db.Column(db.String(50), nullable=False)
-    tags = db.Column(db.String(200), nullable=True)  # Tags stored as comma-separated values
-    images = db.Column(db.String(500), nullable=False)  # List of image filenames
-    availability = db.Column(db.String(50), nullable=False, default='in_stock')  # Default value for availability
-    discount = db.Column(db.Float, nullable=False, default=0)  # Default value for discount
-    created_at = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())  # Automatically set creation timestamp
+    category = db.Column(db.String(100), nullable=False)
+    tags = db.Column(db.Text, nullable=True)
+    images = db.Column(db.Text, nullable=True)
