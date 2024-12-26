@@ -12,7 +12,7 @@
 </head>
 <style>
     body {
-        transition: background-color 0.3s, color 0.3s;
+        transition: background-color 0.2s, color 0.2s;
     }
     .theme-toggle {
         cursor: pointer;
@@ -25,14 +25,26 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #eee;
+        background-color: rgba(255,255,255,0.8);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 9999;
     }
+
+    /* Стили для нижнего меню */
+    .bottom-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #ddd;
+        box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
 </style>
-<body class="bg-light">
+<body class="bg-light pb-3">
 
     <!-- Preloader -->
     <div class="preloader" id="preloader">
@@ -65,26 +77,27 @@
         </nav>
         {% endif %}
         {% block body %}{% endblock %}
+    </div>
 
-        {% if current_user.username %}
-        <div class="bottom-menu d-flex justify-content-around align-items-center p-3 m-2">
-            <a href="/index" class="text-center">
-                <i class="fa-solid fa-house"></i>
-            </a>
-            <a href="#" class="text-center">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
-            <a href="/profile" class="text-center">
-                <i class="fa-solid fa-user"></i>
-            </a>
-        </div>
-        {% endif %}
+    {% if current_user.username %}
+    <!-- Нижнее меню фиксированное внизу -->
+    <div class="bottom-menu d-flex justify-content-around align-items-center p-3">
+        <a href="/index" class="text-center">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <a href="#" class="text-center">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+        <a href="/profile" class="text-center">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </div>
+    {% endif %}
 
-        <!-- Toast Notifications -->
-        <div aria-live="polite" aria-atomic="true" class="position-relative">
-            <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3">
-                <!-- Toast messages will appear here -->
-            </div>
+    <!-- Toast Notifications -->
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3">
+            <!-- Toast messages will appear here -->
         </div>
     </div>
 
