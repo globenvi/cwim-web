@@ -47,15 +47,19 @@
 
     /* Добавление отступа снизу для контейнера */
     .content-container {
-        padding-bottom: 70px; /* Учитываем высоту нижнего меню */
+        padding-bottom: 20px; /* Учитываем высоту нижнего меню */
     }
 
-    /* Скругление только нижних углов для карточки */
-    .card.rounded-bottom {
-        border-radius: 0 0 15px 15px; /* Скругление только нижних углов */
+    .user-card{
+        border-radius: 0px 0px 15px 15px;
+        position: fixed; /* Закрепить элемент */
+        top: 0; /* Расположить в верхней части экрана */
+        left: 0; /* Растянуть по горизонтали */
+        width: 100%; /* Полная ширина */
+        z-index: 1000; /* Превышение над другими элементами */
     }
 </style>
-<body class="bg-light">
+<body class="bg-light pb-5">
 
     <!-- Preloader -->
     <div class="preloader" id="preloader">
@@ -67,13 +71,13 @@
     <!-- Header меню с скругленными углами -->
     {% if current_user.username %}
     <!-- User Info Card -->
-    <div class="card p-3 mb-3 rounded-bottom shadow-sm">
+    <div class="user-card card p-3 mb-3 shadow-sm">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <i class="fas fa-user-circle fa-2x me-3"></i>
                 <span class="user-name" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#editUserModal">{{ user.username }}</span>
             </div>
-            <a href="/logout" class="btn btn-primary btn-sm decoration-none">Выйти</a>
+            <a href="/logout" class="btn decoration-none"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </div>
     {% endif %}
