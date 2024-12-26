@@ -107,26 +107,26 @@ def register():
         password = request.form.get('password')
 
         if not username or not email or not password:
-            flash("Все поля обязательны для заполнения!", "danger")
             return redirect(url_for('register'))
+            flash("Все поля обязательны для заполнения!", "danger")
 
         existing_user = Users.query.filter_by(username=username).first()
         if existing_user:
-            flash("Пользователь с таким именем уже зарегистрирован!", "danger")
             return redirect(url_for('register'))
+            flash("Пользователь с таким именем уже зарегистрирован!", "danger")
 
         existing_email = Users.query.filter_by(email=email).first()
         if existing_email:
-            flash("Пользователь с таким email уже зарегистрирован!", "danger")
             return redirect(url_for('register'))
+            flash("Пользователь с таким email уже зарегистрирован!", "danger")
 
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
         user = Users(username=username, email=email, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash("Вы успешно зарегистрировались!", "success")
         return redirect(url_for('login'))
+        flash("Вы успешно зарегистрировались!", "success")  
 
     return render_template('register.html')
 

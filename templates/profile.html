@@ -13,6 +13,37 @@
         </div>
     </div>
 
+    <!-- Безопасность Section -->
+    <div class="card p-3 mb-3">
+        <h5 class="mb-3">Безопасность</h5>
+    
+        <!-- Уведомления в Telegram -->
+        <div class="form-check form-switch form-switch-lg mb-3">
+            <input class="form-check-input" type="checkbox" id="notifications" name="telegram_notifications">
+            <label class="form-check-label" for="notifications_signin">Уведомления о входе</label>
+        </div>
+    
+        <!-- Коды подтверждения в Telegram -->
+        <div class="form-check form-switch form-switch-lg mb-3">
+            {% if user.telegram_id %}
+            <input class="form-check-input" type="checkbox" id="telegramCodes" name="telegram_2fa">
+            <label class="form-check-label" for="telegramCodes">Коды подтверждения в Telegram</label>
+            {% else %}
+            <div class="d-flex justify-content-between align-items-center">
+                <label class="form-label mb-0">Коды подтверждения в Telegram</label>
+                <button class="btn btn-primary btn-sm">Привязать Telegram</button>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Сменить пароль -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <label class="form-label mb-0">Сменить пароль</label>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Изменить</button>
+        </div>
+    </div>
+    
+
     <!-- Notifications Section -->
     <div class="card p-3 mb-3">
         <h5 class="mb-3">Уведомления</h5>
@@ -41,6 +72,36 @@
         </a>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordModalLabel">Сменить пароль</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="current-password" class="form-label">Старый пароль</label>
+                        <input type="password" class="form-control" id="current-password" placeholder="Введите старый пароль">
+                    </div>
+                    <div class="mb-3">
+                        <label for="new-password" class="form-label">Новый пароль</label>
+                        <input type="password" class="form-control" id="new-password" placeholder="Введите новый пароль">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm-password" class="form-label">Подтвердите новый пароль</label>
+                        <input type="password" class="form-control" id="confirm-password" placeholder="Подтвердите новый пароль">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Modal для редактирования пользователя -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
