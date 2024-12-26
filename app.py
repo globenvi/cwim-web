@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_migrate import Migrate
 from models import Users, Products, db
 import os
 
@@ -11,16 +10,13 @@ app.config['SECRET_KEY'] = "kljdklsahiopduy1y298e319hdskajh"
 app.config['UPLOAD_FOLDER'] = 'static/product_images'  # Папка для загрузки изображений
 
 db.init_app(app)
-migrate = Migrate(app, db)
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # Создание таблиц в базе данных при запуске приложения
 with app.app_context():
-    if not os.path.exists("cwim_db.db"):
-        db.create_all()
-        print("База данных создана!")
+    db.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
