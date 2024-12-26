@@ -1,70 +1,71 @@
 {% extends "base.html" %}
 {% block page_title %}Настройки{% endblock %}
 {% block body %}
+
 <div class="container my-3 pt-5 mt-5 px-2">
 
     <!-- About App Section -->
-<div class="card p-3 mb-3">
-    <h5 class="mb-3">Безопасность</h5>
+    <div class="container mb-3">
+        <div class="card p-3">
+            <h5 class="mb-3">Безопасность</h5>
 
-
-        <!-- Коды подтверждения в Telegram -->
-        <div class="form-check form-switch form-switch-lg mb-3">
-            {% if user.telegram_id != ""%}
-            <form method="POST" , action="/profile/t_notify">
-                <!-- Уведомления в Telegram -->
-                <div class="form-check form-switch form-switch-lg mb-3">
-                    <input class="form-check-input" type="checkbox" id="notifications" name="telegram_notifications" {%
-                        if user.telegram_notifications %}checked{% endif %}>
-                    <label class="form-check-label" for="notifications">Уведомления о входе</label>
-
-                    <button class="btn btn-sm btn-primary pt-2" type="submit">Сохранить</button>
-                </div>
-            </form>
-            {% else %}
-            <span>Для подключения уведомлений в телеграм,
-                укажите его в настройках профиля! <div class="badge bg-warning text-dark">Нажмите на свое имя в шапке
-                </div>
-            </span>
-        </div>
-        {% endif %}
-        <div class="mt-2">
-            <!-- Сменить пароль -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <label class="form-label mb-0">Сменить пароль</label>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#changePasswordModal">Изменить</button>
+            <!-- Коды подтверждения в Telegram -->
+            <div class="form-check form-switch form-switch-lg mb-3">
+                {% if user.telegram_id != "" %}
+                <form method="POST" action="/profile/t_notify">
+                    <!-- Уведомления в Telegram -->
+                    <div class="form-check form-switch form-switch-lg mb-3">
+                        <input class="form-check-input" type="checkbox" id="notifications" name="telegram_notifications" {% if user.telegram_notifications %}checked{% endif %}>
+                        <label class="form-check-label" for="notifications">Уведомления о входе</label>
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">Сохранить</button>
+                </form>
+                {% else %}
+                <span>Для подключения уведомлений в телеграм,
+                    укажите его в настройках профиля! <div class="badge bg-warning text-dark">Нажмите на свое имя в шапке</div>
+                </span>
+                {% endif %}
             </div>
+
+            <div class="mt-2">
+                <!-- Сменить пароль -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <label class="form-label mb-0">Сменить пароль</label>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Изменить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About App Section -->
+    <div class="container mb-3">
+        <div class="card p-3">
+            <h5 class="mb-3">О приложении</h5>
+            <p class="mb-1">Версия приложения: <span class="badge bg-danger">DEV</span></p>
+            <p>Версия сборки: #</p>
+        </div>
+    </div>
+
+    <!-- Links Section -->
+    <div class="container mb-3">
+        <div class="card p-3">
+            <a href="https://t.me/dottenv" class="btn btn-link text-decoration-none d-flex align-items-center" name="open_app_page">
+                <i class="fas fa-external-link-alt me-2"></i> Связаться с разработчиком
+            </a>
+        </div>
+    </div>
+
+    <div class="container mb-3">
+        <div class="card p-3">
+            <a href="https://t.me/dottenv" class="btn btn-link text-decoration-none d-flex align-items-center" name="help">
+                <i class="fas fa-question-circle me-2"></i> Помощь
+            </a>
         </div>
     </div>
 </div>
 
-
-
-<!-- About App Section -->
-<div class="card p-3 mb-3">
-    <h5 class="mb-3">О приложении</h5>
-    <p class="mb-1">Версия приложения: <span class="badge bg-danger">DEV</span></p>
-    <p>Версия сборки: #</p>
-</div>
-
-<!-- Links Section -->
-<div class="card p-3 mb-3">
-    <a href="https://t.me/dottenv" class="btn btn-link text-decoration-none d-flex align-items-center"
-        name="open_app_page">
-        <i class="fas fa-external-link-alt me-2"></i> Связаться с разработчиком
-    </a>
-</div>
-<div class="card p-3">
-    <a href="https://t.me/dottenv" class="btn btn-link text-decoration-none d-flex align-items-center" name="help">
-        <i class="fas fa-question-circle me-2"></i> Помощь
-    </a>
-</div>
-</div>
-
 <!-- Modal для смены пароля -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -75,13 +76,11 @@
                 <form method="POST" action="/profile/change_password">
                     <div class="mb-3">
                         <label for="current-password" class="form-label">Старый пароль</label>
-                        <input type="password" class="form-control" id="current-password" name="current_password"
-                            placeholder="Введите старый пароль">
+                        <input type="password" class="form-control" id="current-password" name="current_password" placeholder="Введите старый пароль">
                     </div>
                     <div class="mb-3">
                         <label for="new-password" class="form-label">Новый пароль</label>
-                        <input type="password" class="form-control" id="new-password" name="new_password"
-                            placeholder="Введите новый пароль">
+                        <input type="password" class="form-control" id="new-password" name="new_password" placeholder="Введите новый пароль">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Сохранить</button>
                 </form>
@@ -91,36 +90,30 @@
 </div>
 
 <!-- Modal для редактирования пользователя -->
-<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="editUser Modal" tabindex="-1" aria-labelledby="editUser ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Редактировать профиль</h5>
+                <h5 class="modal-title" id="editUser ModalLabel">Редактировать профиль</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="/profile/edit">
                     <div class="mb-3">
                         <label for="userName" class="form-label">Имя</label>
-                        <input type="text" class="form-control" id="userName" name="user_name"
-                            value="{{ user.username }}">
+                        <input type="text" class="form-control" id="userName" name="user_name" value="{{ user.username }}">
                     </div>
                     <div class="mb-3">
                         <label for="userEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="userEmail" name="user_email"
-                            value="{{ user.email }}">
+                        <input type="email" class="form-control" id="userEmail" name="user_email" value="{{ user.email }}">
                     </div>
                     <div class="mb-3">
                         <label for="userPhone" class="form-label">Номер телефона</label>
-                        <input type="tel" class="form-control" id="userPhone" name="user_phone"
-                            value="{{ user.phone if user.phone else '' }}"
-                            placeholder="10 значный формат! 923 123 11 22">
+                        <input type="tel" class="form-control" id="userPhone" name="user_phone" value="{{ user.phone if user.phone else '' }}" placeholder="10 значный формат! 923 123 11 22">
                     </div>
                     <div class="mb-3">
                         <label for="userTelegram" class="form-label">TelegramID</label>
-                        <input type="text" class="form-control" id="userTelegramId" name="user_telegram_id"
-                            value="{{ user.telegram_id if user.telegram_id else '' }}"
-                            placeholder="TelegramID (732917321)">
+                        <input type="text" class="form-control" id="userTelegramId" name="user_telegram_id" value="{{ user.telegram_id if user.telegram_id else '' }}" placeholder="TelegramID (732917321)">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Сохранить изменения</button>
                 </form>
@@ -128,4 +121,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
