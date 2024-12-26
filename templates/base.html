@@ -25,7 +25,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: #eee;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -91,19 +91,11 @@
     {% block scripts %}{% endblock %}
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Проверяем, был ли уже показан прелоадер
-            if (!localStorage.getItem('preloaderShown')) {
-                // Показываем прелоадер и скрываем его через 3 секунды
-                setTimeout(() => {
-                    const preloader = document.getElementById('preloader');
-                    preloader.style.display = 'none';
-                    localStorage.setItem('preloaderShown', 'true'); // Сохраняем флаг
-                }, 3000);
-            } else {
-                // Если прелоадер уже был показан, сразу скрываем его
+            // Скрыть прелоадер через 2-3 секунды
+            setTimeout(() => {
                 const preloader = document.getElementById('preloader');
                 preloader.style.display = 'none';
-            }
+            }, 3000); // Задержка 3 секунды
 
             // Найти все формы на странице
             const forms = document.querySelectorAll("form");
