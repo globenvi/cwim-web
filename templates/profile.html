@@ -2,16 +2,6 @@
 {% block page_title %}Настройки{% endblock %}
 {% block body %}
 <div class="container my-3">
-    <!-- User Info Card -->
-    <div class="card p-3 mb-3">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-user-circle fa-2x me-3"></i>
-                <span class="user-name" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#editUserModal">{{ user.username }}</span>
-            </div>
-            <a href="/logout" class="btn btn-primary btn-sm decoration-none">Выйти</a>
-        </div>
-    </div>
 
     <!-- Безопасность Section -->
     <div class="card p-3 mb-3">
