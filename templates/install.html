@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block page_title %}Установка{% endblock %}
+
+{% block content %}
+<!-- Контент страницы установки -->
+<div class="content container">
+    <section class="vh-100 p-2 py-5">
+        <div class="container">
+            <h2 class="text-center">Установка</h2>
+
+            <div class="row mt-2">
+                <!-- Форма для имени пользователя -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <h5 class="card-title">Настройки админа</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Имя пользователя</label>
+                                    <input type="text" class="form-control" id="username"
+                                        placeholder="Введите имя пользователя" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body p-3">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Электронная почта</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Введите ваш email"
+                                        required>
+                                </div>
+                            </form>
+                        </div>
+    
+    
+                        <div class="card-body p-3">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Пароль</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Введите пароль"
+                                        required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    </div>
+                                   <!-- Форма для настроек базы данных -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <h5 class="card-title">Настройки базы данных</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="db_host" class="form-label">DB_HOST</label>
+                                    <input type="text" class="form-control" id="db_host"
+                                        placeholder="Введите хост базы данных" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="db_port" class="form-label">DB_PORT</label>
+                                    <input type="number" class="form-control" id="db_port" value="3306" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="db_user" class="form-label">DB_USER</label>
+                                    <input type="text" class="form-control" id="db_user"
+                                        placeholder="Введите имя пользователя базы данных" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="db_password" class="form-label">DB_PASSWORD</label>
+                                    <input type="password" class="form-control" id="db_password"
+                                        placeholder="Введите пароль для базы данных" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="db_name" class="form-label">DB_NAME</label>
+                                    <input type="text" class="form-control" id="db_name"
+                                        placeholder="Введите название базы данных" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Форма для секретного ключа -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <h5 class="card-title">SecretKey</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="secret_key" class="form-label">Секретный ключ</label>
+                                    <input type="text" class="form-control" id="secret_key"
+                                        placeholder="Придумайте секретный ключ для приложения" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Кнопка отправки формы -->
+            <div class="text-center mt-4">
+                <button class="btn btn-primary">Завершить установку</button>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

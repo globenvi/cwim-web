@@ -3,72 +3,131 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
-from dotenv import load_dotenv
+from environs import Env
 from models import Users, db  # Ensure your `models.py` defines Users and initializes db
 
+def generate_env_file():
+    """Generate .env file with default values if it doesn't exist."""
+    if not os.path.exists('.env'):
+        with open('.env', 'w') as f:
+            f.write(
+                """
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=root
+MYSQL_PASSWORD=
+MYSQL_DBNAME=test_db
+SECRET_KEY=default_secret
+                """.strip()
+            )
+        print(".env file has been created with default values.")
+
+def is_database_connection_successful(db_url):
+    """Check if the database connection is successful."""
+    from sqlalchemy import create_engine
+    try:
+        engine = create_engine(db_url)
+        connection = engine.connect()
+        connection.close()
+        return True
+    except Exception as e:
+        print(f"Database connection failed: {e}")
+        return False
+
+# Generate .env file if it doesn't exist
+generate_env_file()
+
 # Load environment variables from .env file
-load_dotenv()
+env = Env()
+env.read_env()
 
-# Generate DATABASE URI from .env variables
-MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
-MYSQL_PORT = os.getenv('MYSQL_PORT', '3306')
-MYSQL_USER = os.getenv('MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')
-MYSQL_DBNAME = os.getenv('MYSQL_DBNAME', 'test_db')
-
+# Generate DATABASE URI from environment variables
+MYSQL_HOST = env("MYSQL_HOST", "localhost")
+MYSQL_PORT = env("MYSQL_PORT", "3306")
+MYSQL_USER = env("MYSQL_USER", "root")
+MYSQL_PASSWORD = env("MYSQL_PASSWORD", "")
+MYSQL_DBNAME = env("MYSQL_DBNAME", "test_db")
 DB_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DBNAME}"
 
 WEBHOOK_LISTEN = "0.0.0.0"
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret')
+app.config['SECRET_KEY'] = env("SECRET_KEY", "default_secret")
 app.config['UPLOAD_FOLDER'] = 'static/product_images'  # Define upload folder for product images
-
-
-db.init_app(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 migrate = Migrate(app, db)
 
-# Create all tables on startup if they do not exist
-with app.app_context():
-    db.create_all()
-
-def check_database():
-    if is_database_empty():
-        return redirect(url_for('install'))
-
-# Check if the database is empty or has no users
-def is_database_empty():
-    return not db.session.query(Users).first()
+from flask import jsonify
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return Users.query.get(int(user_id))
+@app.route('/check_db_connection', methods=['POST'])
+def check_db_connection():
+    """Check database connection and return JSON response."""
+    host = request.json.get('mysql_host')
+    port = request.json.get('mysql_port')
+    user = request.json.get('mysql_user')
+    password = request.json.get('mysql_password')
+    dbname = request.json.get('mysql_dbname')
+
+    if not all([host, port, user, password, dbname]):
+        return jsonify({"success": False, "message": "Не все параметры переданы."}), 400
+
+    db_url = f"mysql://{user}:{password}@{host}:{port}/{dbname}"
+
+    if is_database_connection_successful(db_url):
+        return jsonify({"success": True, "message": "Подключение успешно."}), 200
+    else:
+        return jsonify({"success": False, "message": "Не удалось подключиться к базе данных."}), 400
+    
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    # Check if the database is set up properly
+    if not is_database_connection_successful(DB_URL):
+        return redirect(url_for('install'))  # Redirect to install page if DB is not connected
+
+    # If everything is fine, proceed to the main page
+    return redirect(url_for('login'))
 
 @app.route('/install', methods=['GET', 'POST'])
 def install():
     if request.method == "POST":
-        # Create the first admin user
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
+        # Collect database and admin information from the user
+        host = request.form.get('mysql_host')
+        port = request.form.get('mysql_port')
+        user = request.form.get('mysql_user')
+        password = request.form.get('mysql_password')
+        dbname = request.form.get('mysql_dbname')
+        username = request.form.get('admin_username')
+        email = request.form.get('admin_email')
+        admin_password = request.form.get('admin_password')
 
-        if not username or not email or not password:
+        if not all([host, port, user, password, dbname, username, email, admin_password]):
             flash("Все поля обязательны для заполнения!", "danger")
             return redirect(url_for('install'))
 
-        existing_user = Users.query.filter_by(username=username).first()
-        if existing_user:
-            flash("Пользователь с таким именем уже зарегистрирован!", "danger")
+        new_db_url = f"mysql://{user}:{password}@{host}:{port}/{dbname}"
+
+        if not is_database_connection_successful(new_db_url):
+            flash("Не удалось подключиться к базе данных. Проверьте данные и попробуйте снова.", "danger")
             return redirect(url_for('install'))
 
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+        # Update .env file with new database settings
+        with open('.env', 'w') as f:
+            f.write(
+                f"MYSQL_HOST={host}\nMYSQL_PORT={port}\nMYSQL_USER={user}\nMYSQL_PASSWORD={password}\nMYSQL_DBNAME={dbname}\nSECRET_KEY={env('SECRET_KEY')}\n"
+            )
 
+        # Initialize database
+        app.config['SQLALCHEMY_DATABASE_URI'] = new_db_url
+        db.init_app(app)
+        with app.app_context():
+            db.create_all()
+
+        # Create the first admin user
+        hashed_password = generate_password_hash(admin_password, method='pbkdf2:sha256')
         admin_user = Users(username=username, email=email, password=hashed_password, role='admin')
         db.session.add(admin_user)
         db.session.commit()
@@ -78,39 +137,9 @@ def install():
 
     return render_template('install.html')
 
-    products = Products.query.all()
-    return render_template('index.html', user=current_user, products=products)
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == "POST":
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
-
-        if not username or not email or not password:
-            return redirect(url_for('register'))
-            flash("Все поля обязательны для заполнения!", "danger")
-
-        existing_user = Users.query.filter_by(username=username).first()
-        if existing_user:
-            return redirect(url_for('register'))
-            flash("Пользователь с таким именем уже зарегистрирован!", "danger")
-
-        existing_email = Users.query.filter_by(email=email).first()
-        if existing_email:
-            return redirect(url_for('register'))
-            flash("Пользователь с таким email уже зарегистрирован!", "danger")
-
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-
-        user = Users(username=username, email=email, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for('login'))
-        flash("Вы успешно зарегистрировались!", "success")
-
-    return render_template('register.html')
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.query.get(int(user_id))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -122,7 +151,6 @@ def login():
         if user and check_password_hash(user.password, password):
             login_user(user)
             flash("Успешная авторизация!", "success")
-            print('login success')
             return redirect(url_for('profile'))  # После входа перенаправляем на профиль
         else:
             flash("Неверный логин или пароль!", "danger")
@@ -135,63 +163,6 @@ def profile():
     user = Users.query.filter_by(username=current_user.username).first()
     return render_template('profile.html', user=user)
 
-@app.route('/profile/edit', methods=['GET', 'POST'])
-@login_required
-def edit_profile():
-    user = Users.query.filter_by(username=current_user.username).first()
-
-    if request.method == "POST":
-        new_username = request.form.get('user_name')
-        new_email = request.form.get('user_email')
-        new_phone = request.form.get('user_phone')
-        new_telegram_id = request.form.get('user_telegram_id')
-
-        if new_username:
-            user.username = new_username
-        if new_email:
-            user.email = new_email
-        if new_phone:
-            user.phone = new_phone
-        if new_telegram_id:
-            user.telegram_id = new_telegram_id
-
-        db.session.commit()
-        flash("Профиль успешно обновлен!", "success")
-        return redirect(url_for('profile'))
-
-    return render_template('edit_profile.html', user=user)
-
-@app.route('/profile/t_notify', methods=['POST'])
-def telegram_notifications():
-    user = Users.query.filter_by(username=current_user.username).first()
-    user.telegram_notifications = not user.telegram_notifications
-    db.session.commit()
-    return redirect(url_for('profile'))
-
-@app.route('/profile/change_password', methods=['GET', 'POST'])
-@login_required
-def change_password():
-    user = Users.query.filter_by(username=current_user.username).first()
-
-    if request.method == "POST":
-        current_password = request.form.get('current_password')
-        new_password = request.form.get('new_password')
-
-        if check_password_hash(user.password, current_password):
-            hashed_new_password = generate_password_hash(new_password, method='pbkdf2:sha256')
-            user.password = hashed_new_password
-            db.session.commit()
-            flash("Пароль успешно изменен!", "success")
-            return redirect(url_for('profile'))
-        else:
-            flash("Неверный текущий пароль!", "danger")
-
-    return render_template('change_password.html', user=user)
-
-@app.route('/')
-def index():
-    return redirect(url_for('profile'))
-
 @app.route('/logout')
 def logout():
     logout_user()
@@ -199,4 +170,12 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
+    if is_database_connection_successful(DB_URL):
+        app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+        db.init_app(app)
+        with app.app_context():
+            db.create_all()
+    else:
+        print("Database connection failed. Redirecting to install page.")
+
     app.run(debug=False, host=WEBHOOK_LISTEN)
