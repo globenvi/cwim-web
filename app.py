@@ -25,6 +25,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret')
 app.config['UPLOAD_FOLDER'] = 'static/product_images'  # Define upload folder for product images
 
+
 db.init_app(app)
 
 login_manager = LoginManager(app)
