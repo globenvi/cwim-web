@@ -19,6 +19,6 @@ function showAlert(message, type = 'info') {
     // Remove after 3 seconds
     setTimeout(() => {
         alert.classList.add('fade');
-        setTimeout(() => alert.remove(), 1000); // Wait for fade-out animation
+        setTimeout(() => alert.remove(), 4000); // Wait for fade-out animation
     }, 6000);
 }
