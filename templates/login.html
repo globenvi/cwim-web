@@ -14,14 +14,17 @@
                 <h3 class="mb-5">Авторизация</h3>
 
                 <form id="login-form" method="post">
-                  <div class="form-outline mb-4">
-                    <input type="email" id="email" name="username" class="form-control form-control-lg" required />
-                    <label class="form-label" for="email">Имя пользователя</label>
+                  
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="email" id="email" name="email" class="form-control form-control-lg" required />
+                    <label class="form-label" for="email">Email</label>
                   </div>
-                  <div class="form-outline mb-4">
+
+                  <div data-mdb-input-init class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control form-control-lg" required />
                     <label class="form-label" for="password">Пароль</label>
                   </div>
+
                   <button id="login-btn" class="btn btn-primary btn-lg btn-block" type="submit">Войти</button>
                   <a href="/register" class="d-flex justify-content-center navbar-brand mt-2 mt-lg-0">Нет аккаунта? Регистрация</a>
                 </form>
