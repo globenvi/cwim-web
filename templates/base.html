@@ -1,170 +1,42 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-mdb-theme="dark">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/style.css">
-    <script src="static/js/btn_spinner.js"></script>
-    <script src="https://kit.fontawesome.com/9666c3f955.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
+    <!-- MDB -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="{{ url_for('static', filename='preloader.js') }}"></script>
+
     <title>{% block page_title %}{% endblock %}</title>
 </head>
-<style>
-    body {
-        transition: background-color 0.3s, color 0.3s;
-        background-color: #f8f9fa;
-    }
-    .theme-toggle {
-        cursor: pointer;
-    }
+<body>
 
-    /* Preloader style */
-    .preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
 
-    /* Стили для нижнего меню */
-    .bottom-menu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        border-top: 1px solid #ddd;
-        box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        padding: 10px 0;
-    }
-    .card{
-        border-radius: 15px;
-    }
 
-    /* Добавление отступа снизу для контейнера */
-    .content-container {
-        padding-bottom: 150px; /* Учитываем высоту нижнего меню */
-    }
-
-    .user-card{
-        border-radius: 0px 0px 15px 15px;
-        position: fixed; /* Закрепить элемент */
-        top: 0; /* Расположить в верхней части экрана */
-        left: 0; /* Растянуть по горизонтали */
-        width: 100%; /* Полная ширина */
-        z-index: 1000; /* Превышение над другими элементами */
-    }
-</style>
-<body class="bg-light pb-5">
-
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Загрузка...</span>
+    <div id="preloader">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
-    </div>
+      </div>
 
-    <!-- Header меню с скругленными углами -->
-    {% if current_user.username %}
-    <!-- User Info Card -->
-    <div class="user-card card p-3 mb-3 shadow-sm">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-user-circle fa-2x me-3"></i>
-                <span class="user-name" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#editUserModal">{{ user.username }}</span><i class="fa-xs fa-solid fa-chevron-right mx-1 text-bold"></i>
-            </div>
-            <a href="/logout" class="btn decoration-none"><i class="fa-solid fa-right-from-bracket"></i></a>
-        </div>
-    </div>
-    {% endif %}
 
-    <!--<div class="container mt-3 content-container d-flex">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div>
-                {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-        {% endwith %}
-    </div>-->
 
-    <div class="container">
-        {% block body %}{% endblock %}
-    </div>
+    {% block content %}{% endblock %}
 
-    {% if current_user.username %}
-    <!-- Нижнее меню фиксированное внизу -->
-    <div class="bottom-menu d-flex justify-content-around align-items-center p-3">
-        <a href="/profile" class="text-center">
-            <i class="fa-solid fa-user"></i>
-        </a>
-    </div>
-    {% endif %}
 
-    <!-- Toast Notifications -->
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3">
-            <!-- Toast messages will appear here -->
-        </div>
-    </div>
-
-    {% block scripts %}{% endblock %}
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Скрыть прелоадер через 2-3 секунды
-            setTimeout(() => {
-                const preloader = document.getElementById('preloader');
-                preloader.style.display = 'none';
-            }, 3000); // Задержка 3 секунды
-
-            // Найти все формы на странице
-            const forms = document.querySelectorAll("form");
-            forms.forEach((form) => {
-                const submitButton = form.querySelector('button[type="submit"]');
-                if (submitButton) {
-                    form.addEventListener("submit", (event) => {
-                        event.preventDefault();
-                        const originalText = submitButton.innerHTML;
-                        submitButton.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>`;
-                        submitButton.classList.add("btn-primary");
-                        submitButton.setAttribute("disabled", "true");
-                        setTimeout(() => form.submit(), 2000);
-                    });
-                }
-            });
-
-            // Функция для отображения уведомлений
-            function showToast(message, type = 'primary') {
-                const toastContainer = document.getElementById('toast-container');
-                const toastElement = document.createElement('div');
-                toastElement.className = `toast align-items-center text-bg-${type} border-0`;
-                toastElement.role = "alert";
-                toastElement.ariaLive = "assertive";
-                toastElement.ariaAtomic = "true";
-                toastElement.innerHTML = `
-                    <div class="d-flex">
-                        <div class="toast-body">${message}</div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                `;
-                toastContainer.appendChild(toastElement);
-                const toast = new bootstrap.Toast(toastElement);
-                toast.show();
-            }
-        });
-    </script>
 </body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="{{ url_for('static', filename='service_worker.js') }}"></script>
+<script src="{{ url_for('static', filename='btn_sbmt_spin.js') }}"></script>
+<script src="{{ url_for('static', filename='ajax/login.js') }}"></script>
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
@@ -9,7 +9,7 @@ WEBHOOK_LISTEN = "0.0.0.0"
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cwim_db.db'
-app.config['SECRET_KEY'] = "kljdklsahiopduy1y298e319hdskajh"
+app.config['SECRET_KEY'] = "dsadsa"
 app.config['UPLOAD_FOLDER'] = 'static/product_images'  # Define upload folder for product images
 
 db.init_app(app)
@@ -94,7 +94,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))
-        flash("Вы успешно зарегистрировались!", "success")  
+        flash("Вы успешно зарегистрировались!", "success")
 
     return render_template('register.html')
 
@@ -108,6 +108,7 @@ def login():
         if user and check_password_hash(user.password, password):
             login_user(user)
             flash("Успешная авторизация!", "success")
+            print('login success')
             return redirect(url_for('profile'))  # После входа перенаправляем на профиль
         else:
             flash("Неверный логин или пароль!", "danger")
