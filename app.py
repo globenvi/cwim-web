@@ -1,10 +1,11 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
 from environs import Env
 from models import Users, db  # Ensure your `models.py` defines Users and initializes db
+from sqlalchemy import create_engine
 
 def generate_env_file():
     """Generate .env file with default values if it doesn't exist."""
@@ -24,7 +25,6 @@ SECRET_KEY=default_secret
 
 def is_database_connection_successful(db_url):
     """Check if the database connection is successful."""
-    from sqlalchemy import create_engine
     try:
         engine = create_engine(db_url)
         connection = engine.connect()
@@ -47,7 +47,7 @@ MYSQL_PORT = env("MYSQL_PORT", "3306")
 MYSQL_USER = env("MYSQL_USER", "root")
 MYSQL_PASSWORD = env("MYSQL_PASSWORD", "")
 MYSQL_DBNAME = env("MYSQL_DBNAME", "test_db")
-DB_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DBNAME}"
+DB_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DBNAME}"
 
 WEBHOOK_LISTEN = "0.0.0.0"
 
@@ -60,28 +60,26 @@ login_manager.login_view = "login"
 
 migrate = Migrate(app, db)
 
-from flask import jsonify
-
-
 @app.route('/check_db_connection', methods=['POST'])
 def check_db_connection():
     """Check database connection and return JSON response."""
-    host = request.json.get('mysql_host')
-    port = request.json.get('mysql_port')
-    user = request.json.get('mysql_user')
-    password = request.json.get('mysql_password')
-    dbname = request.json.get('mysql_dbname')
+    host = request.json.get('db_host')
+    port = request.json.get('db_port')
+    user = request.json.get('db_user')
+    password = request.json.get('db_password')
+    dbname = request.json.get('db_name')
 
     if not all([host, port, user, password, dbname]):
         return jsonify({"success": False, "message": "Не все параметры переданы."}), 400
 
-    db_url = f"mysql://{user}:{password}@{host}:{port}/{dbname}"
+    db_url = f"mysql+pymysql://{user}:{password}@{host}:{port}/{dbname}"
 
     if is_database_connection_successful(db_url):
         return jsonify({"success": True, "message": "Подключение успешно."}), 200
     else:
         return jsonify({"success": False, "message": "Не удалось подключиться к базе данных."}), 400
-    
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # Check if the database is set up properly
@@ -108,7 +106,7 @@ def install():
             flash("Все поля обязательны для заполнения!", "danger")
             return redirect(url_for('install'))
 
-        new_db_url = f"mysql://{user}:{password}@{host}:{port}/{dbname}"
+        new_db_url = f"mysql+pymysql://{user}:{password}@{host}:{port}/{dbname}"
 
         if not is_database_connection_successful(new_db_url):
             flash("Не удалось подключиться к базе данных. Проверьте данные и попробуйте снова.", "danger")
