@@ -53,10 +53,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.card:hover {
-  transform: scale(1.05);
-}
-.card-body {
+.card-body-menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
