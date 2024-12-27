@@ -1,15 +1,28 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import os
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
-from models import Users, db
-import os
+from dotenv import load_dotenv
+from models import Users, db  # Ensure your `models.py` defines Users and initializes db
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Generate DATABASE URI from .env variables
+MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
+MYSQL_PORT = os.getenv('MYSQL_PORT', '3306')
+MYSQL_USER = os.getenv('MYSQL_USER', 'root')
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')
+MYSQL_DBNAME = os.getenv('MYSQL_DBNAME', 'test_db')
+
+DB_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DBNAME}"
 
 WEBHOOK_LISTEN = "0.0.0.0"
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cwim_db.db'
-app.config['SECRET_KEY'] = "dsadsa"
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret')
 app.config['UPLOAD_FOLDER'] = 'static/product_images'  # Define upload folder for product images
 
 db.init_app(app)
