@@ -10,6 +10,9 @@
     --tg-border-color: #dddddd;
     /* Цвет границ (светло-серый) */
 
+    --tg-theme-bg-color-light: 255, 255, 255; /* Белый для светлой темы */
+    --tg-theme-bg-color-dark: 30, 30, 30; /* Темный для темной темы */
+
 
     --tg-header-color: #000000;
     /* Заголовки (черный) */
@@ -636,7 +639,7 @@ body {
 
 .telegram-card {
     /* Фон карты будет изменяться в зависимости от темы */
-    background-color: rgba(var(--tg-theme-bg-color-light), 0.3); /* По умолчанию для светлой темы */
+    background-color: var(--tg-theme-bg-color-light); /* По умолчанию для светлой темы */
     padding: 16px;
     border-radius: 8px;
     /* border: solid 1px var(--tg-border-color); */
@@ -646,7 +649,7 @@ body {
 /* Медиазапрос для темной темы */
 @media (prefers-color-scheme: dark) {
     .telegram-card {
-        background-color: rgba(var(--tg-theme-bg-color-dark), 0.3); /* Темный фон для темной темы */
+        background-color: var(--tg-theme-bg-color-light); /* Темный фон для темной темы */
     }
 }
 
