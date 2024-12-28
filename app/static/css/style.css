@@ -422,7 +422,7 @@ body {
     white-space: nowrap;
     /* Запрещаем перенос строк */
     box-sizing: border-box;
-    background-color: var(--tg-secondary-bg-color-rgb);
+    background-color: var(--tg-secondary-color);
     /* Чуть темнее или светлее фона */
     color: var(--tg-text-color);
     /* Цвет текста адаптируется под тему */
@@ -541,7 +541,7 @@ body {
 .footer {
     text-align: center;
     padding: 8px;
-    background-color: var(--tg-secondary-bg-color-rgb);
+    background-color: var(--tg-secondary-color);
     /* Чуть темнее или светлее фона */
     color: var(--tg-text-color);
     /* Цвет текста адаптируется под тему */
@@ -640,7 +640,7 @@ body {
 
 
 .telegram-card {
-    background-color: var(--tg-secondary-bg-color-rgb);
+    background-color: var(--tg-secondary-color);
     /* Цвет фона карты из Telegram темы */
     padding: 16px;
     border-radius: 8px;
