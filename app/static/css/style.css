@@ -649,7 +649,6 @@ footer {
     /* Цвет фона карты из Telegram темы */
     padding: 16px;
     border-radius: 8px;
-    box-shadow: 0 0px 5px var(--tg-border-color);
     border: solid 1px var(--tg-border-color);
     /* Легкая тень */
 }
@@ -726,6 +725,7 @@ a:focus {
     height: 100%;
     overflow: auto;
     background-color: rgba(var(--tg-theme-bg-color-rgb), 0.85);
+    border: solid 1px var(--tg-border-color);
     /* Полупрозрачный фон */
     justify-content: center;
     align-items: center;
