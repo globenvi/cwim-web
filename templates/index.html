@@ -14,33 +14,75 @@
     <!-- MDB -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.umd.min.js"></script>
-    <title>WebApp</title>
-</head>
-<style>
-    * {
-        font-family: 'Monserrat', sans-serif;
-        font-weight: 200;
-    }
-
-    body {
-        color: var(--tg-theme-text-color);
-        background: var(--tg-theme-bg-color);
-    }
-
-    button {
-        background-color: var(--tg-theme-button-color);
-        color: var(--tg-theme-text-color);
-    }
-</style>
-
-<body>
-    <div class="wrapper border border-danger p-2 h-100 d-flex justify-content-center align-items-center">
-        <button class="btn btn-md-w-100 btn-primary rounded rounded-5 w-100 ">Купить</button>
-    </div>
-    <script>
-        let tg = window.Telegram.WepApp;
-        document.getElementsByTagName('h1').value = initDataUnsafe.username
-    </script>
-</body>
-
+        <title>Telegram WebApp</title>
+        <style>
+            /* Контейнер для шапки */
+            .header-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 60px; /* Высота шапки */
+                padding: 16px;
+                background-color: #f8f9fa;
+                display: flex;
+                align-items: center; /* Центрирование текста по вертикали */
+                justify-content: center; /* Центрирование текста по горизонтали */
+                border-bottom: 1px solid #ddd; /* Разделительная линия */
+                z-index: 1000; /* Чтобы шапка всегда была поверх */
+            }
+    
+            /* Контейнер для основного контента */
+            .content-container {
+                margin-top: 76px; /* Отступ, чтобы не перекрывало шапку (60px высота + 16px отступ) */
+                height: calc(100vh - 152px); /* Высота окна минус шапка и кнопки */
+                overflow-y: auto; /* Прокрутка при необходимости */
+                padding: 16px;
+            }
+    
+            /* Контейнер для кнопок */
+            .button-container {
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 16px;
+                background-color: #f8f9fa;
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                border-top: 1px solid #ddd; /* Разделительная линия */
+            }
+    
+            .btn {
+                flex: 1; /* Кнопки занимают равное пространство */
+            }
+        </style>
+    </head>
+    <body class="bg-light">
+    
+        <!-- Шапка -->
+        <div class="header-container">
+            <h5 class="m-0">Заголовок</h5>
+        </div>
+    
+        <!-- Контейнер для основного контента -->
+        <div class="content-container">
+            <h1>Основной контент</h1>
+            <p>Этот текст демонстрирует, как можно размещать контент на странице. При добавлении большого количества текста включается прокрутка.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget sem id nunc consectetur pharetra.</p>
+            <p>Добавьте больше текста для проверки работы прокрутки основного контента.</p>
+        </div>
+    
+        <!-- Контейнер для кнопок -->
+        <div class="button-container">
+            <button class="btn btn-primary btn-lg w-100">Купить</button>
+            <!-- <button class="btn btn-secondary btn-lg w-100">Продать</button> -->
+        </div>
+         <!-- Контейнер для кнопок -->
+         <div class="button-container">
+            <!-- <button class="btn btn-primary btn-lg w-100">Купить</button> -->
+            <button class="btn btn-secondary btn-lg w-100">Продать</button>
+        </div>
+    
+    </body>
 </html>
