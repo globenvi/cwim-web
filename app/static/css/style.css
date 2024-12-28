@@ -524,8 +524,8 @@ a:focus {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 8px;
-    color: var(--tg-theme-button-text-color); /* Цвет текста кнопки */
-    background-color: var(--tg-theme-button-color); /* Основной цвет кнопки */
+    background-color: var(--tg-main-color); /* Основной цвет кнопки из Telegram темы */
+    color: var(--tg-text-color); /* Текст кнопки из Telegram темы */
     border: none;
     cursor: pointer;
     overflow: hidden;
