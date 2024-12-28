@@ -739,6 +739,7 @@ a:focus {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(var(--tg-theme-bg-color-rgb), 0.5);
+    border: solid 1px var(--tg-border-color);
     /* Легкая тень */
     color: var(--tg-theme-text-color);
     /* Основной текст */
