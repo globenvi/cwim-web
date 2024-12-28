@@ -1,0 +1,473 @@
+:root {
+    --tg-main-color: #0088cc;
+    --tg-background-color: #ffffff;
+    --tg-secondary-color: #f0f0f0;
+    --tg-text-color: #333333;
+    --tg-border-color: #dddddd;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--tg-background-color);
+    color: var(--tg-text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--tg-border-color);
+    background-color: var(--tg-secondary-color);
+}
+
+.header .username {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.header .settings-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--tg-main-color);
+}
+
+.content {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.balance {
+    text-align: center;
+}
+
+.balance h1 {
+    margin: 0;
+    color: var(--tg-main-color);
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons button {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.buttons .income {
+    background-color: #4caf50;
+}
+
+.buttons .expense {
+    background-color: #f44336;
+}
+
+.history {
+    border: 1px solid var(--tg-border-color);
+    border-radius: 8px;
+    padding: 16px;
+    background-color: var(--tg-secondary-color);
+}
+
+.history h5 {
+    margin-top: 0;
+}
+
+.history ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--tg-border-color);
+}
+
+.history ul li:last-child {
+    border-bottom: none;
+}
+
+.show-all {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.show-all a {
+    text-decoration: none;
+    color: var(--tg-main-color);
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 8px;
+    background-color: var(--tg-secondary-color);
+    border-top: 1px solid var(--tg-border-color);
+    font-size: 14px;
+}
+
+/* Font Awesome Icons */
+.settings-button::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f013";
+    font-weight: 900;
+}
+
+.buttons .income::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f155";
+    font-weight: 900;
+}
+
+.buttons .expense::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f153";
+    font-weight: 900;
+}
+
+/* Button Styles */
+.btn-success {
+    background-color: #4caf50; /* Green */
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-danger {
+    background-color: #f44336; /* Red */
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-secondary {
+    background-color: #dddddd; /* Grey */
+    color: var(--tg-text-color);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-tg-theme {
+    background-color: var(--tg-main-color);
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.3s ease; /* Плавное изменение фона */
+}
+
+.btn-tg-theme:hover {
+    background-color: #007bb5; /* Темный синий для состояния при наведении */
+}
+
+.btn-tg-theme:active {
+    background-color: #005f7f; /* Более темный синий при нажатии */
+}
+
+.btn-tg-theme:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 139, 204, 0.5); /* Тень при фокусе */
+}
+
+/* Button with icons */
+.btn-success::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c"; /* Check icon */
+    font-weight: 900;
+}
+
+.btn-danger::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00d"; /* Times icon */
+    font-weight: 900;
+}
+
+.btn-secondary::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0c8"; /* Circle icon */
+    font-weight: 900;
+}
+
+.btn-tg-theme::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f2b9"; /* Telegram icon */
+    font-weight: 900;
+}
+
+/* Additional elements with Telegram theme */
+.telegram-header {
+    background-color: var(--tg-main-color);
+    color: white;
+    padding: 16px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.telegram-card {
+    background-color: var(--tg-secondary-color);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.telegram-card-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.telegram-card-content {
+    font-size: 14px;
+    color: var(--tg-text-color);
+}
+
+.telegram-footer {
+    text-align: center;
+    padding: 8px;
+    background-color: var(--tg-main-color);
+    color: white;
+    font-size: 14px;
+}
+
+a, button {
+    pointer-events: auto;
+    text-decoration: none;
+}
+
+/* Основные стили для модального окна */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Черный фон с прозрачностью */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Стили для контента модального окна */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для модальных заголовков */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.modal-header .modal-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modal-header .close {
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #333;
+}
+
+/* Стили для тела модального окна */
+.modal-body {
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+/* Стили для кнопок */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+
+.modal-footer button {
+    padding: 8px 16px;
+    background-color: var(--tg-main-color);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-footer button:hover {
+    background-color: #007bb5;
+}
+
+/* Анимация появления модального окна */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Основной стиль для всех toasts */
+.toast {
+    position: absolute;
+    z-index: 1050;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 250px;
+    max-width: 90%; /* Ограничиваем ширину до 90% экрана */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Уведомление при успехе */
+.toast.success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Уведомление при ошибке */
+.toast.error {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Уведомление при информационном сообщении */
+.toast.info {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Варианты по размерам */
+
+/* Маленький toast */
+.toast.small {
+    width: 200px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Средний toast (по умолчанию) */
+.toast.medium {
+    width: 300px;
+    padding: 15px;
+    font-size: 16px;
+}
+
+/* Большой toast */
+.toast.large {
+    width: 400px;
+    padding: 20px;
+    font-size: 18px;
+}
+
+/* Анимация появления */
+@keyframes toastIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация исчезновения */
+@keyframes toastOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Появление toasts */
+.toast.show {
+    opacity: 1;
+    animation: toastIn 0.5s forwards;
+}
+
+/* Исчезновение toasts */
+.toast.hide {
+    animation: toastOut 0.5s forwards;
+}
+
+/* Контейнер для уведомлений (чтобы они не выходили за пределы экрана) */
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 80vh; /* Ограничиваем по высоте */
+    overflow-y: auto;
+    width: 100%; /* Обеспечиваем, что контейнер будет занимать всю ширину */
+    pointer-events: none;
+}

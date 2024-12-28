@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script src="https://kit.fontawesome.com/9666c3f955.js" crossorigin="anonymous"></script>
+    <title>Coin Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/webApp.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modals.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toasts.js') }}"></script>
 </head>
+
 <body>
-    <h1>Welcome to Flask!</h1>
+
+    {% block body %}
+
+    {% endblock body %}
+
+    <footer>
+        &copy; 2024 Финансовое приложение. Все права защищены.
+    </footer>
 </body>
+
 </html>
