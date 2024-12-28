@@ -1,14 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "893728917hiudkajsh9812"
 
-
+@app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
-@app.route('/', methods=['GET', 'POST'])
 def index():
-    return "flask app" 
-
+    return "flask app"
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='0.0.0.0', port=8000, debug=False)
