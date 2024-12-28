@@ -5,7 +5,7 @@
     /* Фон страницы */
     --tg-secondary-color: #f0f0f0;
     /* Цвет фона для секций */
-    --tg-text-color: #333333;
+    --tg-theme-text-color: #333333;
     /* Цвет текста */
     --tg-border-color: #dddddd;
     /* Цвет границ */
@@ -387,7 +387,7 @@
 
 
 * {
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
 }
 
 /* Стиль страницы */
@@ -396,7 +396,7 @@ body {
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: var(--tg-background-color);
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -419,7 +419,7 @@ body {
     padding: 10px 16px;
     background-color: rgba(var(--tg-secondary-bg-color-rgb), 0.95);
     /* Чуть темнее или светлее фона */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста адаптируется под тему */
     overflow: hidden;
     /* Убираем скролл */
@@ -548,7 +548,7 @@ footer {
     padding: 8px;
     background-color: rgba(var(--tg-secondary-bg-color-rgb), 0.95);
     /* Чуть темнее или светлее фона */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста адаптируется под тему */
     font-size: 14px;
 }
@@ -579,7 +579,7 @@ footer {
 .btn-secondary {
     background-color: #dddddd;
     /* Grey */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     border-radius: 8px;
     padding: 12px;
     font-size: 16px;
@@ -593,7 +593,7 @@ footer {
 .btn-tg-theme {
     background-color: var(--tg-main-color);
     /* Основной цвет кнопки из Telegram темы */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Текст кнопки из Telegram темы */
     border-radius: 8px;
     padding: 12px;
@@ -627,7 +627,7 @@ footer {
 .telegram-header {
     background-color: var(--tg-main-color);
     /* Основной цвет для фона заголовка */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста в заголовке */
     padding: 16px;
     text-align: center;
@@ -657,13 +657,13 @@ footer {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста заголовка из Telegram темы */
 }
 
 .telegram-card-content {
     font-size: 14px;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста контента из Telegram темы */
 }
 
@@ -671,7 +671,7 @@ footer {
     text-align: center;
     padding: 8px;
     /* Цвет фона футера из Telegram темы */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста футера из Telegram темы */
     font-size: 14px;
 }
@@ -689,7 +689,7 @@ a {
     /* Жирный шрифт */
     text-decoration: none;
     /* Без подчеркивания */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста как в Telegram WebApp */
     padding: 0;
     /* Без отступов */
@@ -699,7 +699,7 @@ a {
 a:hover {
     text-decoration: none;
     /* Без подчеркивания при ховере */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет остается неизменным при ховере */
 }
 
@@ -709,7 +709,7 @@ a:focus {
     /* Убираем рамку при фокусе */
     text-decoration: none;
     /* Без подчеркивания при фокусе */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет остается неизменным при фокусе */
 }
 
@@ -858,7 +858,7 @@ a:focus {
     border-radius: 8px;
     background-color: var(--tg-main-color);
     /* Цвет кнопки из Telegram WebApp API */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста */
     border: none;
     cursor: pointer;
@@ -888,7 +888,7 @@ a:focus {
     top: 50%;
     transform: translate(-50%, -50%);
     border: 3px solid rgba(var(--tg-theme-bg-color-rgb), 0.3); /* Полупрозрачный фон */
-    border-top: 3px solid var(--tg-text-color); /* Основной цвет спиннера */
+    border-top: 3px solid var(--tg-theme-text-color); /* Основной цвет спиннера */
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -939,7 +939,7 @@ a:focus {
     top: 50%;
     transform: translate(-50%, -50%);
     font-size: 18px; /* Размер галочки */
-    color: var(--tg-text-color); /* Цвет галочки */
+    color: var(--tg-theme-text-color); /* Цвет галочки */
 }
 
 /* Анимация спиннера */
@@ -976,7 +976,7 @@ a:focus {
     display: inline-block;
     /* Показать галочку */
     font-size: 18px;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -1089,4 +1089,47 @@ a:focus {
     border-radius: 5px;
     font-size: 16px;
     cursor: not-allowed;
+}
+
+.telegram-card-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--tg-main-color);
+}
+
+.telegram-card-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.telegram-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--tg-secondary-color);
+}
+
+.telegram-card-row:last-child {
+    border-bottom: none;
+}
+
+.telegram-card-info {
+    max-width: 70%;
+}
+
+.telegram-card-info strong {
+    font-size: 16px;
+    color: var(--tg-theme-text-color);
+}
+
+.telegram-card-date {
+    font-size: 12px;
+    color: var(--tg-secondary-color);
+}
+
+.telegram-card-amount {
+    font-size: 16px;
+    font-weight: bold;
 }
