@@ -657,7 +657,7 @@ footer {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: var(--tg-theme-text-color);
+    color: var(--tg-text-color);
     /* Цвет текста заголовка из Telegram темы */
 }
 
