@@ -533,50 +533,6 @@ body {
 }
 
 
-.history {
-    border: 1px solid var(--tg-border-color);
-    /* Цвет границы */
-    border-radius: 8px;
-    padding: 16px;
-    background-color: var(--tg-secondary-color);
-    /* Цвет фона */
-}
-
-.history h5 {
-    margin-top: 0;
-}
-
-.history ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.history ul li {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--tg-border-color);
-    /* Цвет разделителя */
-}
-
-.history ul li:last-child {
-    border-bottom: none;
-}
-
-.show-all {
-    text-align: center;
-    margin-top: 16px;
-}
-
-.show-all a {
-    text-decoration: none;
-    color: var(--tg-main-color);
-    /* Цвет ссылки */
-    font-weight: bold;
-}
-
-
 .footer {
     text-align: center;
     padding: 8px;
@@ -679,12 +635,19 @@ body {
 
 
 .telegram-card {
-    background-color: rgba(var(--tg-theme-bg-color-rgb), 0.3);
-    /* Цвет фона карты из Telegram темы */
+    /* Фон карты будет изменяться в зависимости от темы */
+    background-color: rgba(var(--tg-theme-bg-color-light), 0.3); /* По умолчанию для светлой темы */
     padding: 16px;
     border-radius: 8px;
-    border: solid 1px var(--tg-border-color);
+    /* border: solid 1px var(--tg-border-color); */
     /* Легкая тень */
+}
+
+/* Медиазапрос для темной темы */
+@media (prefers-color-scheme: dark) {
+    .telegram-card {
+        background-color: rgba(var(--tg-theme-bg-color-dark), 0.3); /* Темный фон для темной темы */
+    }
 }
 
 .telegram-card-header {
