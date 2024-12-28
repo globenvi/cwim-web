@@ -262,7 +262,8 @@ body {
 footer {
     text-align: center;
     padding: 8px;
-    background-color: var(--tg-secondary-color); /* Цвет фона */
+    background-color: rgba(var(--tg-secondary-bg-color-rgb), 0.95); /* Чуть темнее или светлее фона */
+    color: var(--tg-text-color); /* Цвет текста адаптируется под тему */
     font-size: 14px;
 }
 
