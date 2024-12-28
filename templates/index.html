@@ -9,9 +9,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.1.0/mdb.umd.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Telegram WebApp</title>
     <style>
         /* Контейнер для шапки */
@@ -33,7 +32,7 @@
         /* Контейнер для основного контента */
         .content-container {
             margin-top: 76px;
-            height: calc(100vh - 196px);
+            height: calc(100vh - 124px);
             overflow-y: auto;
             padding: 16px;
         }
@@ -62,9 +61,10 @@
         /* Футер */
         .footer-container {
             text-align: center;
-            padding: 12px;
+            padding: 6px;
             background-color: #f8f9fa;
             border-top: 1px solid #ddd;
+            font-size: 0.875rem;
         }
 
         .username {
@@ -102,6 +102,56 @@
         <div class="button-container">
             <button class="btn btn-primary btn-lg">Пополнить</button>
             <button class="btn btn-danger btn-lg">Вывести</button>
+        </div>
+
+        <!-- Фильтры -->
+        <div class="d-flex justify-content-end my-3">
+            <button class="btn btn-warning btn-lg" data-mdb-toggle="modal" data-mdb-target="#filterModal">Фильтры</button>
+        </div>
+
+        <!-- Модальное окно для фильтров -->
+        <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="filterModalLabel">Фильтры</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="filter-type" class="form-label">Тип операции</label>
+                                <select class="form-select" id="filter-type">
+                                    <option value="all" selected>Все</option>
+                                    <option value="income">Пополнение</option>
+                                    <option value="expense">Расход</option>
+                                    <option value="withdrawal">Вывод средств</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="filter-amount-min" class="form-label">Минимальная сумма</label>
+                                <input type="number" class="form-control" id="filter-amount-min" placeholder="0">
+                            </div>
+                            <div class="mb-3">
+                                <label for="filter-amount-max" class="form-label">Максимальная сумма</label>
+                                <input type="number" class="form-control" id="filter-amount-max" placeholder="0">
+                            </div>
+                            <div class="mb-3">
+                                <label for="filter-date-from" class="form-label">Дата от</label>
+                                <input type="date" class="form-control" id="filter-date-from">
+                            </div>
+                            <div class="mb-3">
+                                <label for="filter-date-to" class="form-label">Дата до</label>
+                                <input type="date" class="form-control" id="filter-date-to">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary">Применить</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- История операций -->
