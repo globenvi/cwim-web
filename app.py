@@ -34,7 +34,7 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def index_page():
-    return render_template('landing.html')
+    return render_template('index.html')
 
 
 
