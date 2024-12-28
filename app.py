@@ -4,7 +4,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
 from environs import Env
-from models import Users, db  # Ensure your `models.py` defines Users and initializes db
+# from models import Users, db  # Ensure your `models.py` defines Users and initializes db
 
 # Load environment variables from .env file
 env = Env()
@@ -26,10 +26,10 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # Initialize the database with app context
-db.init_app(app)
+# db.init_app(app)
 
 # Initialize Migrate
-migrate = Migrate(app, db)
+# migrate = Migrate(app, db)
 
 
 @app.route('/')
