@@ -730,7 +730,7 @@ a:focus {
 
 /* Стили для контента модального окна */
 .modal-content {
-    background-color: var(--tg-theme-bg-color);
+    background-color: var(--tg-secondary-color);
     /* Основной фон */
     padding: 20px;
     border-radius: 8px;
