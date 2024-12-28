@@ -141,17 +141,21 @@ body {
     top: 0; /* Прижимаем к верхней части окна */
     left: 0;
     width: 100%; /* Растягиваем на всю ширину */
-    z-index: 1000; /* Устанавливаем высокий z-index, чтобы шапка была поверх других элементов */
+    z-index: 1000; /* Высокий z-index для верхнего слоя */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 16px;
-    border-bottom: 1px solid var(--tg-border-color);
-    background-color: var(--tg-secondary-color);
+    border-bottom: 1px solid var(--tg-border-color); /* Линия разделения */
+    background-color: rgba(var(--tg-secondary-bg-color-rgb), 0.95); /* Чуть темнее или светлее фона */
+    color: var(--tg-text-color); /* Цвет текста адаптируется под тему */
     overflow: hidden; /* Убираем скролл */
     white-space: nowrap; /* Запрещаем перенос строк */
     box-sizing: border-box; /* Учитываем padding и border внутри размера элемента */
+    box-shadow: 0 2px 5px rgba(var(--tg-secondary-bg-color-rgb), 0.2); /* Легкая тень для визуального эффекта */
+    backdrop-filter: blur(5px); /* Добавляем размытие для улучшения внешнего вида */
 }
+
 
 /* Стили для имени пользователя */
 .header .username {
