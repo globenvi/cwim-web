@@ -1,15 +1,31 @@
+
 :root {
-    --tg-main-color: #0088cc;
-    /* Основной цвет кнопок и акцентов */
-    --tg-background-color: #ffffff;
-    /* Фон страницы */
-    --tg-secondary-color: #f0f0f0;
-    /* Цвет фона для секций */
-    --tg-text-color: #333333;
-    /* Цвет текста */
-    --tg-border-color: #dddddd;
-    /* Цвет границ */
+    --tg-main-color: #0088cc; /* Основной цвет (синий) */
+    --tg-background-color: #ffffff; /* Фон страницы (белый) */
+    --tg-secondary-color: #f0f0f0; /* Вторичный фон (светло-серый) */
+    --tg-text-color: #333333; /* Основной цвет текста (темно-серый) */
+    --tg-border-color: #dddddd; /* Цвет границ (светло-серый) */
+
+    --tg-header-color: #000000; /* Заголовки (черный) */
+    --tg-button-color: #0088cc; /* Цвет кнопок (синий) */
+    --tg-button-text-color: #ffffff; /* Цвет текста на кнопках (белый) */
+    --tg-link-color: #1a73e8; /* Цвет ссылок (синий) */
+    --tg-link-hover-color: #0077cc; /* Цвет ссылок при наведении (темно-синий) */
+    --tg-link-active-color: #005f99; /* Цвет активных ссылок */
+    --tg-success-color: #4CAF50; /* Цвет для успешных сообщений (зеленый) */
+    --tg-warning-color: #ff9800; /* Цвет для предупреждений (оранжевый) */
+    --tg-error-color: #f44336; /* Цвет для ошибок (красный) */
+    --tg-muted-color: #b0b0b0; /* Цвет для менее важного текста (серый) */
+    --tg-input-background-color: #f7f7f7; /* Фон полей ввода (очень светлый серый) */
+    --tg-input-border-color: #cccccc; /* Цвет границы для полей ввода (светло-серый) */
+    --tg-avatar-background-color: #e1e1e1; /* Цвет фона для аватаров */
+    --tg-avatar-border-color: #ffffff; /* Цвет границы аватаров */
+    --tg-header-background-color: #f7f7f7; /* Фон для шапки (светло-серый) */
+    --tg-card-background-color: #ffffff; /* Фон карточек (белый) */
+    --tg-card-border-color: #eeeeee; /* Цвет границ для карточек */
 }
+
+
 
 /* Padding */
 .p-0 {
@@ -422,7 +438,7 @@ body {
     white-space: nowrap;
     /* Запрещаем перенос строк */
     box-sizing: border-box;
-    background-color: var(--tg-secondary-color);
+    background-color: var(--tg-header-background-color);
     /* Чуть темнее или светлее фона */
     color: var(--tg-text-color);
     /* Цвет текста адаптируется под тему */
@@ -541,7 +557,7 @@ body {
 .footer {
     text-align: center;
     padding: 8px;
-    background-color: var(--tg-secondary-color);
+    background-color: var(--tg-header-background-color);
     /* Чуть темнее или светлее фона */
     color: var(--tg-text-color);
     /* Цвет текста адаптируется под тему */
@@ -640,11 +656,11 @@ body {
 
 
 .telegram-card {
-    background-color: var(--tg-secondary-color);
+    background-color: var(--tg-card-background-color);
     /* Цвет фона карты из Telegram темы */
     padding: 16px;
     border-radius: 8px;
-    border: solid 1px var(--tg-border-color);
+    border: solid 1px var(--tg-card-border-color);
     /* Легкая тень */
 }
 
@@ -684,7 +700,7 @@ a {
     /* Жирный шрифт */
     text-decoration: none;
     /* Без подчеркивания */
-    color: var(--tg-text-color);
+    color: var(--tg-link-color);
     /* Цвет текста как в Telegram WebApp */
     padding: 0;
     /* Без отступов */
@@ -719,7 +735,7 @@ a:focus {
     width: 100%;
     height: 100%;
     overflow: auto;
-    border: solid 1px var(--tg-border-color);
+    border: solid 1px var(--tg-card-border-color);
     /* Полупрозрачный фон */
     justify-content: center;
     align-items: center;
@@ -732,7 +748,7 @@ a:focus {
     /* Основной фон */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(var(--tg-theme-bg-color-rgb), 0.5);
+    box-shadow: 0 4px 6px rgba(var(--tg-card-background-color), 0.5);
     border: solid 1px var(--tg-border-color);
     /* Легкая тень */
     color: var(--tg-theme-text-color);
