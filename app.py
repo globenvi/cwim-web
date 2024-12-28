@@ -7,7 +7,7 @@ app.config['SECRET_KEY'] = "893728917hiudkajsh9812"
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html') 
+    return "flask app" 
 
 
 if __name__ == '__main__':
