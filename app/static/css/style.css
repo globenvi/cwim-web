@@ -1129,8 +1129,10 @@ a:focus {
 
 .telegram-card-date {
     font-size: 12px;
-    color: var(--tg-secondary-color);
+    color: rgba(var(--tg-text-color), 1);
+    font-weight: 200;
 }
+
 
 .telegram-card-amount {
     font-size: 16px;
