@@ -146,7 +146,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 16px;
-    border-bottom: 1px solid var(--tg-border-color); /* Линия разделения */
     background-color: rgba(var(--tg-secondary-bg-color-rgb), 0.95); /* Чуть темнее или светлее фона */
     color: var(--tg-text-color); /* Цвет текста адаптируется под тему */
     overflow: hidden; /* Убираем скролл */
@@ -264,7 +263,6 @@ footer {
     text-align: center;
     padding: 8px;
     background-color: var(--tg-secondary-color); /* Цвет фона */
-    border-top: 1px solid var(--tg-border-color); /* Цвет границы */
     font-size: 14px;
 }
 
