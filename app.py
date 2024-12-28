@@ -22,8 +22,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 app.config['UPLOAD_FOLDER'] = 'static/product_images'  # Define upload folder for product images
 
-login_manager = LoginManager(app)
-login_manager.login_view = "login"
+# login_manager = LoginManager(app)
+# login_manager.login_view = "login"
 
 # Initialize the database with app context
 # db.init_app(app)
@@ -40,7 +40,7 @@ def index_page():
 
 if __name__ == '__main__':
     # Initialize the database tables if they don't exist
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+        # db.create_all()
 
     app.run(debug=True, host=WEBHOOK_LISTEN)
