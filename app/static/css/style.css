@@ -403,7 +403,7 @@ a:focus {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Темный фон с меньшей прозрачностью */
+    background-color: rgba(var(--tg-theme-bg-color-rgb), 0.85); /* Полупрозрачный фон */
     justify-content: center;
     align-items: center;
     animation: fadeIn 0.3s ease;
@@ -411,11 +411,11 @@ a:focus {
 
 /* Стили для контента модального окна */
 .modal-content {
-    background-color: #202c33; /* Темный фон для контента, близкий к Telegram */
+    background-color: var(--tg-theme-bg-color); /* Основной фон */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Легкая тень */
-    color: #e5e5e5; /* Светло-серый цвет текста */
+    box-shadow: 0 4px 6px rgba(var(--tg-theme-bg-color-rgb), 0.5); /* Легкая тень */
+    color: var(--tg-theme-text-color); /* Основной текст */
 }
 
 /* Анимации */
@@ -428,25 +428,6 @@ a:focus {
     }
 }
 
-
-@keyframes slideInFromTop {
-    from {
-        transform: translateY(-100%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInFromBottom {
-    from {
-        transform: translateY(100%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
 @keyframes scaleIn {
     from {
         transform: scale(0.8);
@@ -454,29 +435,6 @@ a:focus {
     }
     to {
         transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes bounceIn {
-    0% {
-        transform: scale(0.3);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes rotateIn {
-    from {
-        transform: rotate(-200deg);
-        opacity: 0;
-    }
-    to {
-        transform: rotate(0);
         opacity: 1;
     }
 }
@@ -503,45 +461,19 @@ a:focus {
     animation: scaleIn 0.3s ease;
 }
 
-/* 3. Анимации для разных модальных окон */
-.modal.fadeIn .modal-content {
-    animation: fadeIn 0.3s ease;
-}
-
-.modal.slideInFromTop .modal-content {
-    animation: slideInFromTop 0.5s ease;
-}
-
-.modal.slideInFromBottom .modal-content {
-    animation: slideInFromBottom 0.5s ease;
-}
-
-.modal.scaleIn .modal-content {
-    animation: scaleIn 0.5s ease;
-}
-
-.modal.bounceIn .modal-content {
-    animation: bounceIn 0.6s ease;
-}
-
-.modal.rotateIn .modal-content {
-    animation: rotateIn 0.6s ease;
-}
-
-
 /* Стили для модальных заголовков */
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #444; /* Темный градиент для разделителя */
+    border-bottom: 1px solid rgba(var(--tg-theme-text-color-rgb), 0.1); /* Разделитель */
     padding-bottom: 10px;
 }
 
 .modal-header .modal-title {
     font-size: 18px;
     font-weight: bold;
-    color: #e3e3e3; /* Светло-серый для заголовка */
+    color: var(--tg-theme-text-color); /* Текст заголовка */
 }
 
 .modal-header .close {
@@ -549,14 +481,14 @@ a:focus {
     cursor: pointer;
     background: none;
     border: none;
-    color: #e3e3e3; /* Белый для кнопки закрытия */
+    color: var(--tg-theme-hint-color); /* Цвет кнопки закрытия */
 }
 
 /* Стили для тела модального окна */
 .modal-body {
     padding: 10px 0;
     font-size: 16px;
-    color: #d1d1d1; /* Светло-серый текст для содержимого */
+    color: var(--tg-theme-secondary-text-color); /* Второстепенный текст */
 }
 
 /* Стили для кнопок */
@@ -568,18 +500,19 @@ a:focus {
 
 .modal-footer button {
     padding: 8px 16px;
-    background-color: #0078d4; /* Telegram-синий */
+    background-color: var(--tg-theme-button-color); /* Основной цвет кнопки */
     border: none;
     border-radius: 4px;
-    color: white;
+    color: var(--tg-theme-button-text-color); /* Текст на кнопке */
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .modal-footer button:hover {
-    background-color: #006bb3; /* Темный синий при наведении */
+    background-color: var(--tg-theme-button-color-hover); /* Цвет кнопки при наведении */
 }
+
 
 /* Общий стиль кнопки */
 .btn-submit {
@@ -588,12 +521,18 @@ a:focus {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 8px;
-    color: var(--tg-text-color);
-    background-color: #0078d4; /* Telegram-синий */
+    color: var(--tg-theme-button-text-color); /* Цвет текста кнопки */
+    background-color: var(--tg-theme-button-color); /* Основной цвет кнопки */
     border: none;
     cursor: pointer;
     overflow: hidden;
-    transition: background-color 0.5s;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+/* Ховер эффект */
+.btn-submit:hover {
+    background-color: var(--tg-theme-button-color-hover); /* Цвет при наведении */
+    transform: translateY(-2px); /* Легкий эффект поднятия */
 }
 
 /* Изначальное состояние текста */
@@ -610,13 +549,33 @@ a:focus {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid #ffffff; /* Белый спиннер */
+    border: 4px solid rgba(var(--tg-theme-bg-color-rgb), 0.3); /* Полупрозрачный фон */
+    border-top: 4px solid var(--tg-theme-text-color); /* Цвет спиннера */
     border-radius: 50%;
     width: 20px;
     height: 20px;
     animation: spin 1s linear infinite;
 }
+
+/* Анимация вращения спиннера */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Активное состояние кнопки (показывает спиннер) */
+.btn-submit.loading::before {
+    opacity: 0; /* Скрыть текст */
+}
+
+.btn-submit.loading .spinner {
+    display: block; /* Показать спиннер */
+}
+
 
 /* Галочка (скрыта по умолчанию) */
 .btn-submit .checkmark {
