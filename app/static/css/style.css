@@ -6,6 +6,123 @@
     --tg-border-color: #dddddd; /* Цвет границ */
 }
 
+/* Padding */
+.p-0 { padding: 0 !important; }
+.p-1 { padding: 4px !important; }
+.p-2 { padding: 8px !important; }
+.p-3 { padding: 16px !important; }
+.p-4 { padding: 24px !important; }
+.p-5 { padding: 32px !important; }
+
+/* Padding top */
+.pt-0 { padding-top: 0 !important; }
+.pt-1 { padding-top: 4px !important; }
+.pt-2 { padding-top: 8px !important; }
+.pt-3 { padding-top: 16px !important; }
+.pt-4 { padding-top: 24px !important; }
+.pt-5 { padding-top: 32px !important; }
+
+/* Padding bottom */
+.pb-0 { padding-bottom: 0 !important; }
+.pb-1 { padding-bottom: 4px !important; }
+.pb-2 { padding-bottom: 8px !important; }
+.pb-3 { padding-bottom: 16px !important; }
+.pb-4 { padding-bottom: 24px !important; }
+.pb-5 { padding-bottom: 32px !important; }
+
+/* Padding left */
+.pl-0 { padding-left: 0 !important; }
+.pl-1 { padding-left: 4px !important; }
+.pl-2 { padding-left: 8px !important; }
+.pl-3 { padding-left: 16px !important; }
+.pl-4 { padding-left: 24px !important; }
+.pl-5 { padding-left: 32px !important; }
+
+/* Padding right */
+.pr-0 { padding-right: 0 !important; }
+.pr-1 { padding-right: 4px !important; }
+.pr-2 { padding-right: 8px !important; }
+.pr-3 { padding-right: 16px !important; }
+.pr-4 { padding-right: 24px !important; }
+.pr-5 { padding-right: 32px !important; }
+
+/* Padding x-axis (left and right) */
+.px-0 { padding-left: 0 !important; padding-right: 0 !important; }
+.px-1 { padding-left: 4px !important; padding-right: 4px !important; }
+.px-2 { padding-left: 8px !important; padding-right: 8px !important; }
+.px-3 { padding-left: 16px !important; padding-right: 16px !important; }
+.px-4 { padding-left: 24px !important; padding-right: 24px !important; }
+.px-5 { padding-left: 32px !important; padding-right: 32px !important; }
+
+/* Padding y-axis (top and bottom) */
+.py-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+.py-1 { padding-top: 4px !important; padding-bottom: 4px !important; }
+.py-2 { padding-top: 8px !important; padding-bottom: 8px !important; }
+.py-3 { padding-top: 16px !important; padding-bottom: 16px !important; }
+.py-4 { padding-top: 24px !important; padding-bottom: 24px !important; }
+.py-5 { padding-top: 32px !important; padding-bottom: 32px !important; }
+
+/* Margin */
+.m-0 { margin: 0 !important; }
+.m-1 { margin: 4px !important; }
+.m-2 { margin: 8px !important; }
+.m-3 { margin: 16px !important; }
+.m-4 { margin: 24px !important; }
+.m-5 { margin: 32px !important; }
+
+/* Margin top */
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: 4px !important; }
+.mt-2 { margin-top: 8px !important; }
+.mt-3 { margin-top: 16px !important; }
+.mt-4 { margin-top: 24px !important; }
+.mt-5 { margin-top: 32px !important; }
+
+/* Margin bottom */
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: 4px !important; }
+.mb-2 { margin-bottom: 8px !important; }
+.mb-3 { margin-bottom: 16px !important; }
+.mb-4 { margin-bottom: 24px !important; }
+.mb-5 { margin-bottom: 32px !important; }
+
+/* Margin left */
+.ml-0 { margin-left: 0 !important; }
+.ml-1 { margin-left: 4px !important; }
+.ml-2 { margin-left: 8px !important; }
+.ml-3 { margin-left: 16px !important; }
+.ml-4 { margin-left: 24px !important; }
+.ml-5 { margin-left: 32px !important; }
+
+/* Margin right */
+.mr-0 { margin-right: 0 !important; }
+.mr-1 { margin-right: 4px !important; }
+.mr-2 { margin-right: 8px !important; }
+.mr-3 { margin-right: 16px !important; }
+.mr-4 { margin-right: 24px !important; }
+.mr-5 { margin-right: 32px !important; }
+
+/* Margin x-axis (left and right) */
+.mx-0 { margin-left: 0 !important; margin-right: 0 !important; }
+.mx-1 { margin-left: 4px !important; margin-right: 4px !important; }
+.mx-2 { margin-left: 8px !important; margin-right: 8px !important; }
+.mx-3 { margin-left: 16px !important; margin-right: 16px !important; }
+.mx-4 { margin-left: 24px !important; margin-right: 24px !important; }
+.mx-5 { margin-left: 32px !important; margin-right: 32px !important; }
+
+/* Margin y-axis (top and bottom) */
+.my-0 { margin-top: 0 !important; margin-bottom: 0 !important; }
+.my-1 { margin-top: 4px !important; margin-bottom: 4px !important; }
+.my-2 { margin-top: 8px !important; margin-bottom: 8px !important; }
+.my-3 { margin-top: 16px !important; margin-bottom: 16px !important; }
+.my-4 { margin-top: 24px !important; margin-bottom: 24px !important; }
+.my-5 { margin-top: 32px !important; margin-bottom: 32px !important; }
+
+
+* {
+    color: var(--tg-text-color);
+}
+
 /* Стиль страницы */
 body {
     margin: 0;
@@ -18,27 +135,38 @@ body {
     min-height: 100vh;
 }
 
-/* Стиль шапки */
+/* Стиль шапки, закрепленной в верхней части */
 .header {
+    position: fixed; /* Закрепляем шапку */
+    top: 0; /* Прижимаем к верхней части окна */
+    left: 0;
+    width: 100%; /* Растягиваем на всю ширину */
+    z-index: 1000; /* Устанавливаем высокий z-index, чтобы шапка была поверх других элементов */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 16px;
     border-bottom: 1px solid var(--tg-border-color);
     background-color: var(--tg-secondary-color);
+    overflow: hidden; /* Убираем скролл */
+    white-space: nowrap; /* Запрещаем перенос строк */
+    box-sizing: border-box; /* Учитываем padding и border внутри размера элемента */
 }
 
+/* Стили для имени пользователя */
 .header .username {
     font-weight: bold;
     font-size: 18px;
 }
 
+/* Стили для кнопки настроек */
 .header .settings-button {
     background: none;
     border: none;
     font-size: 20px;
     color: var(--tg-main-color);
 }
+
 
 /* Контент страницы */
 .content {
@@ -234,8 +362,7 @@ footer {
 
 .telegram-footer {
     text-align: center;
-    padding: 8px;
-    background-color: var(--tg-main-color); /* Цвет фона футера из Telegram темы */
+    padding: 8px; /* Цвет фона футера из Telegram темы */
     color: var(--tg-text-color); /* Цвет текста футера из Telegram темы */
     font-size: 14px;
 }
@@ -243,6 +370,27 @@ footer {
 a, button {
     pointer-events: auto;
     text-decoration: none;
+}
+
+/* Стиль для ссылок, как для обычного текста */
+a {
+    font-weight: bold; /* Жирный шрифт */
+    text-decoration: none; /* Без подчеркивания */
+    color: var(--tg-text-color); /* Цвет текста как в Telegram WebApp */
+    padding: 0; /* Без отступов */
+}
+
+/* Убираем стиль при наведении */
+a:hover {
+    text-decoration: none; /* Без подчеркивания при ховере */
+    color: var(--tg-text-color); /* Цвет остается неизменным при ховере */
+}
+
+/* Убираем выделение при клике */
+a:focus {
+    outline: none; /* Убираем рамку при фокусе */
+    text-decoration: none; /* Без подчеркивания при фокусе */
+    color: var(--tg-text-color); /* Цвет остается неизменным при фокусе */
 }
 
 /* Общие стили для всех модальных окон */
@@ -521,4 +669,78 @@ a, button {
     0% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
+}
+
+/* КАСТОМНЫЕ ЦВЕТА */
+
+/* Текстовые классы */
+.text-primary {
+    color: var(--tg-main-color); /* Основной цвет текста */
+}
+
+.text-secondary {
+    color: var(--tg-secondary-color); /* Вторичный цвет текста */
+}
+
+.text-success {
+    color: #4CAF50; /* Успешный зеленый цвет */
+}
+
+.text-danger {
+    color: #F44336; /* Красный цвет для ошибок */
+}
+
+.text-muted {
+    color: #B0B0B0; /* Серый цвет для менее важного текста */
+}
+
+/* Классы для кнопок */
+.btn-primary {
+    background-color: var(--tg-main-color);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: var(--tg-secondary-color);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #4CAF50; /* Зеленый для успешных действий */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #F44336; /* Красный для ошибок */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-muted {
+    background-color: #B0B0B0; /* Серый для менее важных действий */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: not-allowed;
 }
