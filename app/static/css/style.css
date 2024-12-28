@@ -639,19 +639,14 @@ body {
 
 .telegram-card {
     /* Фон карты будет изменяться в зависимости от темы */
-    background-color: var(--tg-theme-bg-color-light); /* По умолчанию для светлой темы */
+    background-color: var(--tg-b); /* По умолчанию для светлой темы */
     padding: 16px;
     border-radius: 8px;
-    /* border: solid 1px var(--tg-border-color); */
-    /* Легкая тень */
+    background-color: var(--tg-secondary-color);
+    /* Чуть темнее или светлее фона */
+    color: var(--tg-text-color);
 }
 
-/* Медиазапрос для темной темы */
-@media (prefers-color-scheme: dark) {
-    .telegram-card {
-        background-color: var(--tg-theme-bg-color-light); /* Темный фон для темной темы */
-    }
-}
 
 .telegram-card-header {
     font-size: 18px;
