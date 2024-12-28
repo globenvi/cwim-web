@@ -640,7 +640,7 @@ footer {
 
 
 .telegram-card {
-    background-color: var(--tg-secondary-color);
+    background-color: var(--tg-secondary-bg-color-rgb);
     /* Цвет фона карты из Telegram темы */
     padding: 16px;
     border-radius: 8px;
