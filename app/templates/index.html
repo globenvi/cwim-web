@@ -18,8 +18,8 @@
 
     <!-- Action Buttons -->
     <div class="buttons">
-        <button class="btn btn-success" onclick="vibrateOnClick()">Доход</button>
-        <button class="btn btn-danger" onclick="vibrateOnClick()">Расход</button>
+        <button class="btn btn-tg-theme" onclick="vibrateOnClick()">Доход</button>
+        <button class="btn btn-tg-theme" onclick="vibrateOnClick()">Расход</button>
     </div>
 
     <!-- History -->
@@ -44,21 +44,17 @@
             <a href="#">Расширенный поиск</a>
         </div>
     </div>
+    
 
     <button class="btn btn-tg-theme">Категории</button>
      <!-- Кнопка для открытия модального окна -->
      <button class="openModalBtn btn btn-tg-theme" data-modal-id="modal1">Открыть модальное окно 1</button>
 
-     <!-- Пример кнопок для отображения уведомлений -->
-    <button class="btn btn-tg-theme" onclick="showToast('success', 'Успешная операция!', 'medium')">Успех</button>
-    <button class="btn btn-tg-theme" onclick="showToast('error', 'Ошибка операции!', 'small')">Ошибка</button>
-    <button class="btn btn-tg-theme" onclick="showToast('info', 'Информационное сообщение.', 'large')">Информация</button>
+     <button class="btn btn-tg-theme ">Save</button>
 
-    <!-- Контейнер для toast уведомлений -->
-    <div id="toastContainer"></div>
 
      <!-- Модальные окна -->
-    <div id="modal1" class="modal small bounceIn">
+    <div id="modal1" class="modal fullscreen bounceIn">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="modal-title">Модальное окно 1</span>
