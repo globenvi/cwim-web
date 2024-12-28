@@ -659,6 +659,8 @@ body {
 .telegram-card-content {
     font-size: 14px;
     color: var(--tg-text-color);
+    padding: 10px;
+    background-color: rgba(var(--tg-secondary-color), 0.3);
     /* Цвет текста контента из Telegram темы */
 }
 
