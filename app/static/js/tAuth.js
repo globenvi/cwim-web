@@ -3,36 +3,6 @@ function createHash(data) {
     return btoa(JSON.stringify(data));
 }
 
-// Функция для отправки данных на сервер
-function sendAuthDataToServer(data) {
-    console.log("Отправка данных на сервер:", data); // Лог отправляемых данных
-    displayDebugLog("Отправка данных на сервер: " + JSON.stringify(data, null, 2)); // Вывод на страницу
-
-    fetch("/telegramAuth", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Server responded with status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((serverResponse) => {
-            console.log("Ответ от сервера:", serverResponse); // Лог ответа
-            displayResponse(serverResponse); // Вывод ответа на страницу
-            displayDebugLog("Ответ от сервера: " + JSON.stringify(serverResponse, null, 2)); // Лог на страницу
-        })
-        .catch((error) => {
-            console.error("Ошибка отправки данных на сервер:", error.message); // Лог ошибки
-            displayResponse({ error: error.message }); // Вывод ошибки на страницу
-            displayDebugLog("Ошибка: " + error.message); // Лог ошибки на страницу
-        });
-}
-
 // Функция для отображения ответа на странице
 function displayResponse(data) {
     const responseContainer = document.getElementById("server-response");
@@ -61,10 +31,6 @@ function fetchTelegramData() {
 
     // Извлекаем данные
     const userData = tg.initDataUnsafe.user || {};
-    const chatData = tg.initDataUnsafe.chat || {};
-    const initData = tg.initData;
-    const authDate = tg.initDataUnsafe.auth_date;
-    const hash = tg.initDataUnsafe.hash;
 
     const telegramData = {
         user: {
@@ -75,18 +41,6 @@ function fetchTelegramData() {
             language_code: userData.language_code || null,
             is_premium: userData.is_premium || false,
             photo_url: userData.photo_url || null,
-        },
-        chat: {
-            id: chatData.id || null,
-            type: chatData.type || null,
-            title: chatData.title || null,
-            username: chatData.username || null,
-            photo_url: chatData.photo_url || null,
-        },
-        auth: {
-            initData: initData,
-            authDate: authDate,
-            hash: hash,
         },
     };
 
@@ -106,7 +60,8 @@ function startPolling() {
     const telegramData = fetchTelegramData();
 
     if (telegramData) {
-        sendAuthDataToServer(telegramData);
+        // Отправляем данные на сервер, если необходимо
+        // sendAuthDataToServer(telegramData); // Эта функция теперь не используется
     }
 }
 
