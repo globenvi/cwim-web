@@ -5,7 +5,7 @@
     /* Фон страницы (белый) */
     --tg-secondary-color: #f0f0f0;
     /* Вторичный фон (светло-серый) */
-    --tg-text-color: #333333;
+    --tg-theme-text-color: #333333;
     /* Основной цвет текста (темно-серый) */
     --tg-border-color: #dddddd;
     /* Цвет границ (светло-серый) */
@@ -432,7 +432,7 @@
 
 
 * {
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
 }
 
 /* Стиль страницы */
@@ -441,7 +441,7 @@ body {
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: var(--tg-secondary-color);
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -469,7 +469,7 @@ body {
     box-sizing: border-box;
     background-color: var(--tg-secondary-color);
     /* Чуть темнее или светлее фона */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста адаптируется под тему */
 }
 
@@ -520,7 +520,7 @@ body {
     font-size: 16px;
     border: none;
     border-radius: 8px;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -544,7 +544,7 @@ body {
     padding: 8px;
     background-color: var(--tg-secondary-color);
     /* Чуть темнее или светлее фона */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста адаптируется под тему */
     font-size: 14px;
 }
@@ -575,7 +575,7 @@ body {
 .btn-secondary {
     background-color: #dddddd;
     /* Grey */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     border-radius: 8px;
     padding: 12px;
     font-size: 16px;
@@ -589,7 +589,7 @@ body {
 .btn-tg-theme {
     background-color: var(--tg-main-color);
     /* Основной цвет кнопки из Telegram темы */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Текст кнопки из Telegram темы */
     border-radius: 8px;
     padding: 12px;
@@ -613,7 +613,7 @@ body {
 .telegram-header {
     background-color: var(--tg-main-color);
     /* Основной цвет для фона заголовка */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста в заголовке */
     padding: 16px;
     text-align: center;
@@ -638,7 +638,7 @@ body {
     border-radius: 8px;
     background-color: var(--tg-background-color);
     /* Чуть темнее или светлее фона */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     max-width: 100%;
     max-height: 500px;
 }
@@ -648,14 +648,14 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста заголовка из Telegram темы */
 }
 
 .telegram-card-content {
     font-size: 14px;
     flex-direction: column;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     padding: 10px;
     background-color: rgba(var(--tg-secondary-color), 0.3);
     /* Цвет текста контента из Telegram темы */
@@ -683,7 +683,7 @@ a {
     /* Жирный шрифт */
     text-decoration: none;
     /* Без подчеркивания */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет текста как в Telegram WebApp */
     padding: 0;
     /* Без отступов */
@@ -693,7 +693,7 @@ a {
 a:hover {
     text-decoration: none;
     /* Без подчеркивания при ховере */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет остается неизменным при ховере */
 }
 
@@ -703,7 +703,7 @@ a:focus {
     /* Убираем рамку при фокусе */
     text-decoration: none;
     /* Без подчеркивания при фокусе */
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     /* Цвет остается неизменным при фокусе */
 }
 
@@ -935,12 +935,12 @@ a:focus {
 
 .telegram-card-info strong {
     font-size: 16px;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
 }
 
 .telegram-card-date {
     font-size: 12px;
-    color: rgba(var(--tg-text-color), 1);
+    color: rgba(var(--tg-theme-text-color), 1);
     font-weight: 200;
 }
 
@@ -981,10 +981,10 @@ a:focus {
     width: 100%;
     padding: 12px;
     border: 1px solid var(--tg-border-color);
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     border-radius: 4px;
     background-color: var(--tg-secondary-color);
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     font-size: 14px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -1015,7 +1015,7 @@ a:focus {
 /* Стили для текста в чекбоксе */
 .checkbox-container label span {
     font-size: 14px;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     flex-grow: 1; /* Заполняет все доступное пространство */
 }
 
@@ -1082,7 +1082,7 @@ a:focus {
     border: 1px solid var(--tg-border-color);
     border-radius: 4px;
     background-color: var(--tg-secondary-color);
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
     font-size: 14px;
     margin-bottom: 10px;
     box-sizing: border-box;
