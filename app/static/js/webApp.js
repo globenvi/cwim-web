@@ -43,34 +43,21 @@ function applyThemeParams(themeParams = {}) {
 
 // Управление кнопкой "Назад"
 function manageBackButton() {
-    // Получаем текущий путь
     const currentPath = window.location.pathname;
-
     const BackButton = Telegram.WebApp.BackButton;
 
     // Если мы не на главной странице
     if (currentPath !== '/') {
         BackButton.show();
         BackButton.onClick(function () {
-            // Перезагружаем текущую страницу
-            window.location.reload();
-            // Скрыть кнопку после клика
-            BackButton.hide();
+            // Используем history.back() для возврата на предыдущую страницу
+            window.history.back();
         });
     } else {
-        // Если мы на главной странице, скрываем кнопку "Назад"
+        // Если на главной странице скрываем кнопку "Назад"
         BackButton.hide();
     }
 }
-
-// Слушаем событие назад
-Telegram.WebApp.onEvent('backButtonClicked', function() {
-    const currentPath = window.location.pathname;
-    if (currentPath !== '/') {
-        // Если мы не на главной странице, перезагружаем
-        window.location.reload();
-    }
-});
 
 // Управление вибрацией для элементов
 function manageClickableElements() {
@@ -80,3 +67,24 @@ function manageClickableElements() {
         element.addEventListener('click', vibrateOnClick); // Добавляем новый
     });
 }
+
+// Функция вибрации
+function vibrateOnClick() {
+    Telegram.WebApp.HapticFeedback.impactOccurred('light');
+}
+
+// === Дополнительные функции ===
+
+// Добавление кнопки в интерфейс WebApp
+function addWebAppButton(text, callback) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.className = 'webapp-button'; // Можно добавить стили для этой кнопки
+    button.addEventListener('click', callback);
+    document.body.appendChild(button); // Добавляем кнопку в тело страницы
+}
+
+// Пример использования дополнительной кнопки
+addWebAppButton('Test Button', function () {
+    Telegram.WebApp.HapticFeedback.impactOccurred('light');
+});
