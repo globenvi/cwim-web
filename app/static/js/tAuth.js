@@ -52,14 +52,21 @@ function fetchTelegramData() {
 
 // Функция для отправки данных на сервер
 function sendDataToServer(data) {
-    fetch('/your-server-endpoint', {
+    displayDebugLog("Отправка данных на сервер...");
+
+    fetch('/tgAuth', {  // Замените на реальный URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Ошибка при отправке данных: ${response.statusText}`);
+        }
+        return response.json();
+    })
     .then(responseData => {
         // Отображаем ответ от сервера в логе
         const serverResponseMessage = "Ответ от сервера: " + JSON.stringify(responseData, null, 2);
@@ -67,7 +74,7 @@ function sendDataToServer(data) {
     })
     .catch(error => {
         // Если произошла ошибка при запросе
-        const errorMessage = "Ошибка при отправке данных на сервер: " + error;
+        const errorMessage = "Ошибка при отправке данных на сервер: " + error.message;
         displayDebugLog(errorMessage, true);  // Логируем ошибку
     });
 }

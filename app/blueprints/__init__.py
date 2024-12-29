@@ -11,4 +11,4 @@ def register_blueprints(app):
     app.register_blueprint(settings, url_prefix="/settings")
 
     #Регистрация маршрута "Страница Авторизации" (Маршрут для обработки POST)
-    app.register_blueprint(telegramAuth, url_prefix="/telegramAuth")
+    app.register_blueprint(telegramAuth, url_prefix="/tgAuth")
