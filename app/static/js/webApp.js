@@ -45,16 +45,16 @@ function applyThemeParams(themeParams = {}) {
 function manageBackButton() {
     const BackButton = Telegram.WebApp.BackButton;
 
-    if (window.location.search && window.location.pathname !== '/') {
+    if (window.location.pathname !== '/') {
 
-        backButton.show();
+        BackButton.show();
 
     } else {
 
-        backButton.hide();
+        BackButton.hide();
 
     }
-    backButton.onClick(() => {
+    BackButton.onClick(() => {
         history.back();
         Telegram.HapticFeedback.impactOccurred('light');
         window.location.reload()
