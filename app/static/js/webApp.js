@@ -60,6 +60,7 @@ function applyThemeParams(themeParams = {}) {
 // Управление кнопкой "Назад"
 function manageBackButton() {
     const currentPath = window.location.pathname;
+    Telegram.WebApp.HapticFeedback.impactOccurred('light');
 
     if (currentPath !== '/') {
         // Если текущий путь не "/"
@@ -73,6 +74,7 @@ function manageBackButton() {
         if (localStorage.getItem('backButtonVisible') === 'true') {
             location.reload(); // Перезагружаем страницу при возвращении на главную
             localStorage.removeItem('backButtonVisible'); // Убираем сохранённый флаг
+            Telegram.WebApp.BackButton.hide();
         }
         Telegram.WebApp.BackButton.hide();
     }
@@ -105,6 +107,5 @@ function addWebAppButton(text, callback) {
 
 // Пример использования дополнительной кнопки
 addWebAppButton('Test Button', function () {
-    console.log('Test button clicked');
-    vibrateOnClick(); // Вибрация при нажатии
+    Telegram.WebApp.HapticFeedback.impactOccurred('light');
 });
