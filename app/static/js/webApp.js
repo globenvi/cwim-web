@@ -46,20 +46,31 @@ function manageBackButton() {
     // Получаем текущий путь
     const currentPath = window.location.pathname;
 
+    const BackButton = Telegram.WebApp.BackButton;
+
     // Если мы не на главной странице
     if (currentPath !== '/') {
-        // Показываем кнопку "Назад"
-        Telegram.WebApp.BackButton.show();
-        // Слушаем нажатие кнопки "Назад"
-        Telegram.WebApp.BackButton.onClick(function () {
+        BackButton.show();
+        BackButton.onClick(function () {
             // Перезагружаем текущую страницу
             window.location.reload();
+            // Скрыть кнопку после клика
+            BackButton.hide();
         });
     } else {
         // Если мы на главной странице, скрываем кнопку "Назад"
-        Telegram.WebApp.BackButton.hide();
+        BackButton.hide();
     }
 }
+
+// Слушаем событие назад
+Telegram.WebApp.onEvent('backButtonClicked', function() {
+    const currentPath = window.location.pathname;
+    if (currentPath !== '/') {
+        // Если мы не на главной странице, перезагружаем
+        window.location.reload();
+    }
+});
 
 // Управление вибрацией для элементов
 function manageClickableElements() {
@@ -69,9 +80,3 @@ function manageClickableElements() {
         element.addEventListener('click', vibrateOnClick); // Добавляем новый
     });
 }
-
-// Функция вибрации
-function vibrateOnClick() {
-    Telegram.WebApp.vibrate();
-}
-
