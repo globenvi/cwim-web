@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
     // Добавляем класс "show" для отображения футера
     setTimeout(() => {
         footer.classList.add("show");
-    }, 300); // 1000 миллисекунд (1 секунда) задержки
+    }, 1000); // 1000 миллисекунд (1 секунда) задержки
 
     // Закрытие футера
     const closeButton = document.querySelector(".close-footer");

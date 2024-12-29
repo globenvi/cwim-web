@@ -1089,7 +1089,7 @@ a:focus {
 .form-select {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--tg-text-color);
+    border: 1px solid var(--tg-border-color);
     border-radius: 4px;
     background-color: var(--tg-secondary-color);
     color: var(--tg-text-color);
@@ -1111,7 +1111,7 @@ input {
     left: 0;
     width: 100%;
     background-color: var(--tg-secondary-color);
-    border-top: 1px solid var(--tg-text-color);
+    border-top: 1px solid var(--tg-border-color);
     border-radius: 8px 8px 0 0;
     padding: 15px;
     display: flex;
@@ -1126,6 +1126,7 @@ input {
     bottom: 0; /* Когда футер показывается, он будет внизу экрана */
 }
 
+/* Стили для контента футера */
 .floating-footer-content {
     display: flex;
     justify-content: space-between;
@@ -1133,9 +1134,20 @@ input {
     width: 100%;
 }
 
-.floating-footer p {
-    margin: 0;
-    color: var(--tg-text-color);
-    font-size: 14px;
+/* Стили для кнопки в футере */
+.floating-footer .btn {
+    width: 100%; /* Растягиваем кнопку на всю ширину */
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    background-color: var(--tg-main-color);
+    color: var(--tg-button-text-color);
+    cursor: pointer;
+}
+
+.floating-footer .btn:hover {
+    background-color: var(--tg-button-hover-color);
 }
 
