@@ -1,38 +1,32 @@
-// Функция для создания хэша данных (не используется в данном случае, так как мы убрали localStorage)
-function createHash(data) {
-    return btoa(JSON.stringify(data));
-}
-
-// Функция для отображения ответа на странице
-function displayResponse(data) {
-    const responseContainer = document.getElementById("server-response");
-    responseContainer.textContent = JSON.stringify(data, null, 2); // Красивое форматирование JSON
-}
-
 // Функция для отображения дебаг-логов на странице
 function displayDebugLog(message, isError = false) {
     const debugContainer = document.getElementById("debug-log");
 
-    // Добавляем сообщение с учетом, является ли оно ошибкой
+    // Создаем новый элемент <pre> для отображения лога
     const logEntry = document.createElement("pre");
     logEntry.textContent = message;
-    logEntry.style.color = isError ? 'red' : 'black';  // Если ошибка, то красный цвет
-    debugContainer.appendChild(logEntry); // Добавление нового сообщения
+    logEntry.style.color = isError ? 'red' : 'black';  // Красный цвет для ошибок
+
+    // Добавляем лог в контейнер
+    debugContainer.appendChild(logEntry);
+    
+    // Прокрутка контейнера вниз, чтобы новый лог был виден
+    debugContainer.scrollTop = debugContainer.scrollHeight;
 }
 
-// Функция для получения данных из Telegram WebApp API
+// Пример вызова функции для дебаг-логирования
+displayDebugLog("Пример сообщения для лога.");
+
+// Пример запроса и получения данных
 function fetchTelegramData() {
     const tg = window.Telegram.WebApp;
 
-    // Проверяем, доступен ли объект Telegram
     if (!tg.initData || !tg.initDataUnsafe) {
         const errorMessage = "Telegram WebApp data is not available.";
-        console.error(errorMessage);
-        displayDebugLog(errorMessage, true); // Лог ошибки
+        displayDebugLog(errorMessage, true);  // Ошибка в логе
         return null;
     }
 
-    // Извлекаем данные
     const userData = tg.initDataUnsafe.user || {};
 
     const telegramData = {
@@ -47,23 +41,11 @@ function fetchTelegramData() {
         },
     };
 
-    console.log("Полученные данные из Telegram API:", telegramData); // Лог данных
-    displayDebugLog("Полученные данные из Telegram API: " + JSON.stringify(telegramData, null, 2)); // Лог на страницу
-
-    // Отображаем полученные данные на странице
-    displayResponse(telegramData);
+    const successMessage = "Получены данные из Telegram WebApp: " + JSON.stringify(telegramData, null, 2);
+    displayDebugLog(successMessage);  // Успех в логе
 
     return telegramData;
 }
 
-// Функция для постоянного опроса данных из Telegram WebApp API
-function startPolling() {
-    const telegramData = fetchTelegramData();
-
-    if (telegramData) {
-        // Можно добавить логику для отправки данных на сервер, если необходимо
-    }
-}
-
-// Запускаем процесс опроса при загрузке страницы
-document.addEventListener("DOMContentLoaded", startPolling);
+// Запуск функции получения данных
+document.addEventListener("DOMContentLoaded", fetchTelegramData);

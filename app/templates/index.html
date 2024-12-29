@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
 
+
 {% block body %}
+<style>
+    #debug-log {
+        white-space: pre-wrap; /* Для сохранения форматирования */
+        font-family: monospace; /* Шрифт для кода */
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 30px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+</style>
 <!-- Header -->
 <div class="header">
     <div class="username">@{{ user.username}}</div>
     <a href="/settings"><button class="settings-button"></button></a>
 </div>
 
-<div id="server-response" style="white-space: pre-wrap; background-color: #f0f0f0; padding: 10px; margin-top: 10px;">
-    <strong>Ответ от сервера:</strong>
-</div>
-<div id="debug-log" style="white-space: pre-wrap; background-color: #e0e0e0; padding: 10px; margin-top: 10px;">
-    <strong>Дебаг-логи:</strong>
-</div>
+<div id="debug-log"></div> <!-- Место для логов -->
 
 
 <!-- Content -->
