@@ -5,13 +5,18 @@ function displayDebugLog(message, isError = false) {
     // Создаем новый элемент <pre> для отображения лога
     const logEntry = document.createElement("pre");
     logEntry.textContent = message;
-    logEntry.style.color = isError ? 'red' : 'black';  // Красный цвет для ошибок
+    logEntry.style.color = isError ? 'red' : 'black'; // Красный цвет для ошибок
 
     // Добавляем лог в контейнер
     debugContainer.appendChild(logEntry);
-    
+
     // Прокрутка контейнера вниз, чтобы новый лог был виден
     debugContainer.scrollTop = debugContainer.scrollHeight;
+}
+
+// Функция для вычисления хэша объекта (быстрая реализация)
+function calculateHash(object) {
+    return btoa(JSON.stringify(object));
 }
 
 // Пример вызова функции для дебаг-логирования
@@ -23,7 +28,7 @@ function fetchTelegramData() {
 
     if (!tg.initData || !tg.initDataUnsafe) {
         const errorMessage = "Telegram WebApp data is not available.";
-        displayDebugLog(errorMessage, true);  // Ошибка в логе
+        displayDebugLog(errorMessage, true); // Ошибка в логе
         return null;
     }
 
@@ -41,9 +46,19 @@ function fetchTelegramData() {
         },
     };
 
-    const successMessage = "Получены данные из Telegram WebApp: " + JSON.stringify(telegramData, null, 2);
-    displayDebugLog(successMessage);  // Успех в логе
+    const newHash = calculateHash(telegramData);
 
+    // Проверяем хэш в localStorage
+    const storedHash = localStorage.getItem("telegramDataHash");
+    if (storedHash === newHash) {
+        displayDebugLog("Данные не изменились. Запрос к серверу не требуется.");
+        return telegramData;
+    }
+
+    // Сохраняем новый хэш
+    localStorage.setItem("telegramDataHash", newHash);
+    displayDebugLog("Данные изменились. Отправка данных на сервер...");
+    
     // Отправка данных на сервер
     sendDataToServer(telegramData);
 
@@ -54,32 +69,31 @@ function fetchTelegramData() {
 function sendDataToServer(data) {
     displayDebugLog("Отправка данных на сервер...");
 
-    fetch('/tgAuth/tgAuth', {  // Замените на реальный URL
+    fetch('/tgAuth/tgAuth', { // Замените на реальный URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Ошибка при отправке данных: ${response.statusText}`);
-        } else {
-            window.location.reload()
-            return
-        }
-        return response.json();
-    })
-    .then(responseData => {
-        // Отображаем ответ от сервера в логе
-        const serverResponseMessage = "Ответ от сервера: " + JSON.stringify(responseData, null, 2);
-        displayDebugLog(serverResponseMessage);  // Логируем ответ от сервера
-    })
-    .catch(error => {
-        // Если произошла ошибка при запросе
-        const errorMessage = "Ошибка при отправке данных на сервер: " + error.message;
-        displayDebugLog(errorMessage, true);  // Логируем ошибку
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ошибка при отправке данных: ${response.statusText}`);
+            }
+            displayDebugLog("Данные успешно отправлены. Обновление страницы...");
+            window.location.reload();
+            return response.json();
+        })
+        .then(responseData => {
+            // Отображаем ответ от сервера в логе
+            const serverResponseMessage = "Ответ от сервера: " + JSON.stringify(responseData, null, 2);
+            displayDebugLog(serverResponseMessage); // Логируем ответ от сервера
+        })
+        .catch(error => {
+            // Если произошла ошибка при запросе
+            const errorMessage = "Ошибка при отправке данных на сервер: " + error.message;
+            displayDebugLog(errorMessage, true); // Логируем ошибку
+        });
 }
 
 // Запуск функции получения данных при загрузке страницы
