@@ -632,11 +632,10 @@ body {
 
 .telegram-card {
     /* Фон карты будет изменяться в зависимости от темы */
-    background-color: var(--tg-b); /* По умолчанию для светлой темы */
+    background-color: var(--tg-background-color); /* По умолчанию для светлой темы */
     flex-direction: column;
     padding: 16px;
     border-radius: 8px;
-    background-color: var(--tg-background-color);
     /* Чуть темнее или светлее фона */
     color: var(--tg-theme-text-color);
     max-width: 100%;
@@ -657,7 +656,7 @@ body {
     flex-direction: column;
     color: var(--tg-theme-text-color);
     padding: 10px;
-    background-color: rgba(var(--tg-secondary-color), 0.3);
+    /* background-color: rgba(var(--tg-secondary-color), 0.3); */
     /* Цвет текста контента из Telegram темы */
 }
 
@@ -665,9 +664,10 @@ body {
     text-align: center;
     padding: 8px;
     /* Цвет фона футера из Telegram темы */
-    color: var(--tg-button-text-color);
+    color: var(--tg-background-color);
     /* Цвет текста футера из Telegram темы */
     font-size: 14px;
+    box-shadow: var(--tg-secondary-color);
 }
 
 a,
