@@ -14,7 +14,5 @@ telegramAuth = Blueprint("telegramAuth", __name__)
 def telegramAuth_method():
     if request.method == "POST":
         data = request.get_json()
-        # app.logger.debug("Полученные данные: %s", data)
-        
-        # Например, вернуть данные, которые были получены
-        return jsonify({"status": "success", "received": data}), 200
+        user = data.user['id']
+        return jsonify({"user": user})
