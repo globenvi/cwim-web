@@ -45,19 +45,22 @@ function applyThemeParams(themeParams = {}) {
 function manageBackButton() {
     const BackButton = Telegram.WebApp.BackButton;
 
-    if (window.location.pathname !== '/') {
-        BackButton.show();
-    } else {
-        BackButton.hide();
-    }
+    if (window.location.search && window.location.pathname !== '/') {
 
-    BackButton.onClick(() => {
-        Telegram.WebApp.HapticFeedback.impactOccurred('light');
-        // При нажатии на кнопку "Назад" возвращаемся на предыдущую страницу
+        backButton.show();
+
+    } else {
+
+        backButton.hide();
+
+    }
+    backButton.onClick(() => {
         history.back();
+        Telegram.HapticFeedback.impactOccurred('light');
         window.location.reload()
-        BackButton.hide()
+        BackButton.hide();
     });
+
 }
 
 // Управление вибрацией для элементов
