@@ -107,7 +107,7 @@ function startPolling() {
         if (telegramData) {
             sendAuthDataToServer(telegramData);
         }
-    }, 5000); // Интервал опроса данных 5 секунд
+    }, 10000); // Интервал опроса данных 5 секунд
 }
 
 // Запускаем процесс опроса при загрузке страницы
