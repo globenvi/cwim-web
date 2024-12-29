@@ -3,6 +3,33 @@
 {% block body %}
 
 <div class="content my-5">
+
+    <div id="user-info">
+        <h2>Данные пользователя</h2>
+        <p id="user-data"></p>
+    </div>
+    <script>
+        // Инициализация WebApp
+        const tg = window.Telegram.WebApp;
+        tg.init();
+
+        // Получение данных пользователя
+        const user = tg.initDataUnsafe.user;
+
+        // Отображение данных на странице
+        if (user) {
+            const userDataElement = document.getElementById('user-data');
+            userDataElement.innerText = `
+                ID: ${user.id}
+                Имя: ${user.first_name || ''}
+                Фамилия: ${user.last_name || ''}
+                Никнейм: ${user.username || ''}
+                Аватар: ${user.photo_url || 'Нет'}
+            `;
+        } else {
+            console.error('Данные пользователя недоступны');
+        }
+    </script>
     <!-- Balance -->
     <div class="telegram-card">
         <div class="telegram-card-header">
