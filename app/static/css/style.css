@@ -671,7 +671,9 @@ body {
 }
 
 a,
-button {
+button,
+span,
+form-select {
     pointer-events: auto;
     text-decoration: none;
     color: var(--tg-theme-text-color);
