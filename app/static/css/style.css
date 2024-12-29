@@ -51,7 +51,10 @@
 
 }
 
-
+/* Общие стили для контейнеров */
+* {
+    box-sizing: border-box; /* Учитываем padding и border в расчетах ширины */
+}
 
 /* Padding */
 .p-0 {
@@ -985,7 +988,7 @@ a:focus {
 /* Стили для инпутов и select, которые занимают всю ширину */
 .form-input, .form-select {
     width: 100%;
-    padding: 8px;
+    padding: 12px;
     border: 1px solid var(--tg-input-border-color);
     border-radius: 4px;
     background-color: var(--tg-input-background-color);
@@ -1002,12 +1005,32 @@ a:focus {
     outline: none;
 }
 
+/* Стили для контейнера чекбокса */
+.checkbox-container {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение элементов по горизонтали */
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 12px;
+    border: 1px solid var(--tg-input-border-color);
+    border-radius: 4px;
+    background-color: var(--tg-input-background-color);
+}
+
+/* Стили для текста в чекбоксе */
+.checkbox-container label span {
+    font-size: 14px;
+    color: var(--tg-text-color);
+    flex-grow: 1; /* Заполняет все доступное пространство */
+}
+
 /* Стили для чекбоксов-тумблеров */
 .toggle-checkbox {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 30px;
+    margin-left: auto; /* Прикрепляет чекбокс к правому краю */
 }
 
 /* Стилизованный переключатель */

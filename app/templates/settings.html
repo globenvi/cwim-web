@@ -2,8 +2,6 @@
 
 {% block body %}
 
-<!-- Content -->
-<!-- Content -->
 <div class="content mt-5">
     <!-- Balance -->
     <div class="telegram-card">
@@ -13,25 +11,35 @@
 
         <div class="telegram-card-content">
             <form>
-                <!-- Имя и Фамилия (с полным занятием ширины) -->
+                <!-- Имя, Фамилия и Username -->
                 <input type="text" class="form-input" placeholder="Имя">
                 <input type="text" class="form-input" placeholder="Фамилия">
+                <input type="text" class="form-input" placeholder="Username">
 
-                <!-- Выпадающий список (select) -->
+                <!-- Выпадающий список Язык -->
                 <select class="form-select">
-                    <option value="option1">Опция 1</option>
-                    <option value="option2">Опция 2</option>
-                    <option value="option3">Опция 3</option>
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
                 </select>
 
-                <!-- Свайп-туглер (чекбокс) -->
-                <label>
-                    <div class="toggle-checkbox">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </div>
-                    Включить уведомления
-                </label>
+                <!-- Выпадающий список Валюта -->
+                <select class="form-select">
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                    <option value="rub">RUB</option>
+                </select>
+
+                <!-- Свайп-туглер с текстом -->
+                <div class="checkbox-container">
+                    <label>
+                        <span>Включить уведомления</span>
+                        <div class="toggle-checkbox">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </div>
+                    </label>
+                </div>
             </form>
         </div>
 
@@ -40,5 +48,7 @@
         </div>
     </div>
 </div>
+
+
 
 {% endblock body %}
