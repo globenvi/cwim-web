@@ -62,20 +62,21 @@ function manageBackButton() {
     const currentPath = window.location.pathname;
     Telegram.WebApp.HapticFeedback.impactOccurred('light');
 
-    // Сохраняем текущий путь перед переходом на другую страницу
+    // Если на странице не главная
     if (currentPath !== '/') {
-        localStorage.setItem('previousUrl', currentPath); // Сохраняем предыдущий URL
+        localStorage.setItem('previousUrl', currentPath); // Сохраняем текущий путь
         Telegram.WebApp.BackButton.show();
         Telegram.WebApp.BackButton.onClick(function () {
-            const previousUrl = localStorage.getItem('previousUrl'); // Извлекаем сохранённый URL
+            const previousUrl = localStorage.getItem('previousUrl'); // Извлекаем предыдущий URL
             if (previousUrl) {
-                window.location.href = previousUrl; // Редирект на предыдущий URL
+                window.location.href = previousUrl; // Перенаправление на сохранённый URL
             } else {
-                window.history.back(); // Если URL не найден, просто возвращаем назад
+                // Если не найден URL, просто возвращаемся в историю
+                window.history.back();
             }
         });
     } else {
-        // На главной странице скрываем кнопку "Назад"
+        // На главной странице кнопка "Назад" не отображается
         Telegram.WebApp.BackButton.hide();
     }
 }
