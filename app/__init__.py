@@ -21,7 +21,7 @@ def create_app(config_class="config.Config"):
         db.create_all()
 
     #Настройка login_manager
-    login_manager.login_view = 'telegramAuth.telegramAuth_method'
+    login_manager.login_view = 'index'
 
     @login_manager.user_loader
     def load_user(user_id):
