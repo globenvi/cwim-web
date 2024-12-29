@@ -43,32 +43,16 @@ function applyThemeParams(themeParams = {}) {
 
 // Управление кнопкой "Назад"
 function manageBackButton() {
-    const currentPath = window.location.pathname;
     const BackButton = Telegram.WebApp.BackButton;
+    BackButton.hide()
 
-
-// BackButton.show();
-// BackButton.onClick(function() {
-//     WebApp.showAlert("BackButton clicked");
-//     BackButton.hide();
-// });
-// WebApp.onEvent('backButtonClicked', function() {
-//     ...
-// });
-
-    // Если мы не на главной странице
-    if (currentPath !== '/') {
-        BackButton.show();
+    if (window.location.pathname != "/") {
+        BackButton.show()
         BackButton.onClick(function () {
-            // Используем history.back() для возврата на предыдущую страницу
             window.history.back();
+            BackButton.hide()
         });
-    } else {
-        // Если на главной странице скрываем кнопку "Назад"
-        BackButton.hide();
-        window.location.reload()
     }
-}
 
 // Управление вибрацией для элементов
 function manageClickableElements() {
