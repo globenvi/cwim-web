@@ -674,7 +674,7 @@ a,
 button {
     pointer-events: auto;
     text-decoration: none;
-    color: var(--tg-secondary-color);
+    color: var(--tg-text-color);
 }
 
 /* Стиль для ссылок, как для обычного текста */
