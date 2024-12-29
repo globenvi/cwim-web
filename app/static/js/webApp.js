@@ -44,42 +44,47 @@ function applyThemeParams(themeParams = {}) {
 // Управление кнопкой "Назад"
 function manageBackButton() {
     const BackButton = Telegram.WebApp.BackButton;
-    BackButton.hide()
 
-    if (window.location.pathname != "/") {
-        BackButton.show()
-        BackButton.onClick(function () {
-            window.history.back();
-            BackButton.hide()
-        });
+    if (window.location.pathname !== '/') {
+
+        backButton.show();
+
+    } else {
+
+        backButton.hide();
+
     }
-
-// Управление вибрацией для элементов
-function manageClickableElements() {
-    const clickableElements = document.querySelectorAll('button, a'); // Все кнопки и ссылки
-    clickableElements.forEach(element => {
-        element.removeEventListener('click', vibrateOnClick); // Убираем предыдущий слушатель
-        element.addEventListener('click', vibrateOnClick); // Добавляем новый
+    backButton.onClick(() => {
+        history.back();
     });
 }
 
-// Функция вибрации
-function vibrateOnClick() {
-    Telegram.WebApp.HapticFeedback.impactOccurred('light');
-}
+    // Управление вибрацией для элементов
+    function manageClickableElements() {
+        const clickableElements = document.querySelectorAll('button, a'); // Все кнопки и ссылки
+        clickableElements.forEach(element => {
+            element.removeEventListener('click', vibrateOnClick); // Убираем предыдущий слушатель
+            element.addEventListener('click', vibrateOnClick); // Добавляем новый
+        });
+    }
 
-// === Дополнительные функции ===
+    // Функция вибрации
+    function vibrateOnClick() {
+        Telegram.WebApp.HapticFeedback.impactOccurred('light');
+    }
 
-// Добавление кнопки в интерфейс WebApp
-function addWebAppButton(text, callback) {
-    const button = document.createElement('button');
-    button.textContent = text;
-    button.className = 'webapp-button'; // Можно добавить стили для этой кнопки
-    button.addEventListener('click', callback);
-    document.body.appendChild(button); // Добавляем кнопку в тело страницы
-}
+    // === Дополнительные функции ===
 
-// Пример использования дополнительной кнопки
-addWebAppButton('Test Button', function () {
-    Telegram.WebApp.HapticFeedback.impactOccurred('light');
-});
+    // Добавление кнопки в интерфейс WebApp
+    function addWebAppButton(text, callback) {
+        const button = document.createElement('button');
+        button.textContent = text;
+        button.className = 'webapp-button'; // Можно добавить стили для этой кнопки
+        button.addEventListener('click', callback);
+        document.body.appendChild(button); // Добавляем кнопку в тело страницы
+    }
+
+    // Пример использования дополнительной кнопки
+    addWebAppButton('Test Button', function () {
+        Telegram.WebApp.HapticFeedback.impactOccurred('light');
+    });
