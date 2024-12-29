@@ -52,11 +52,11 @@ function manageBackButton() {
         Telegram.WebApp.BackButton.show();
         // Слушаем нажатие кнопки "Назад"
         Telegram.WebApp.BackButton.onClick(function () {
-            // Перезагружаем страницу
-            window.history.back();
+            // Перезагружаем текущую страницу
+            window.location.reload();
         });
     } else {
-        // Если мы на главной, скрываем кнопку "Назад"
+        // Если мы на главной странице, скрываем кнопку "Назад"
         Telegram.WebApp.BackButton.hide();
     }
 }
@@ -72,5 +72,6 @@ function manageClickableElements() {
 
 // Функция вибрации
 function vibrateOnClick() {
-    Telegram.WebApp.HapticFeedBack.notificationOccurred(type)
+    Telegram.WebApp.vibrate();
 }
+
