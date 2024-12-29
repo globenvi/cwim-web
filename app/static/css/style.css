@@ -650,6 +650,7 @@ body {
     /* Чуть темнее или светлее фона */
     color: var(--tg-text-color);
     max-width: 100%;
+    max-height: 500px;
 }
 
 
