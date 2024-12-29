@@ -1,4 +1,4 @@
-// Функция для создания хэша данных
+// Функция для создания хэша данных (не используется в данном случае, так как мы убрали localStorage)
 function createHash(data) {
     return btoa(JSON.stringify(data));
 }
@@ -100,35 +100,15 @@ function fetchTelegramData() {
     return telegramData;
 }
 
-// Главная функция обработки данных
-function handleAuthFlow() {
-    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const storedHash = localStorage.getItem(LOCAL_STORAGE_HASH_KEY);
-
-    if (storedData && storedHash) {
-        const parsedData = JSON.parse(storedData);
-        const currentHash = createHash(parsedData);
-
-        if (currentHash !== storedHash) {
-            console.log("Данные изменились, отправка на сервер...");
-            displayDebugLog("Данные изменились, отправка на сервер...");
-            sendAuthDataToServer(parsedData);
-            localStorage.setItem(LOCAL_STORAGE_HASH_KEY, currentHash);
-        } else {
-            console.log("Данные актуальны, обновление не требуется.");
-            displayDebugLog("Данные актуальны, обновление не требуется.");
-        }
-    } else {
+// Функция для постоянного опроса данных из Telegram WebApp API
+function startPolling() {
+    setInterval(() => {
         const telegramData = fetchTelegramData();
-
         if (telegramData) {
-            const hash = createHash(telegramData);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(telegramData));
-            localStorage.setItem(LOCAL_STORAGE_HASH_KEY, hash);
             sendAuthDataToServer(telegramData);
         }
-    }
+    }, 5000); // Интервал опроса данных 5 секунд
 }
 
-// Запускаем процесс авторизации при загрузке страницы
-document.addEventListener("DOMContentLoaded", handleAuthFlow);
+// Запускаем процесс опроса при загрузке страницы
+document.addEventListener("DOMContentLoaded", startPolling);
