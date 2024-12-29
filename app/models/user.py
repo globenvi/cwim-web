@@ -1,7 +1,9 @@
 # Модель пользователя для базы данных
 from app.extensions import db
 
-class User(db.Model):
+from flask_login import UserMixin
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     telegram_id = db.Column(db.Integer, unique=True)
     first_name = db.Column(db.String(50), nullable=True)
