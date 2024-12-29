@@ -47,14 +47,14 @@ function manageBackButton() {
 
     if (window.location.pathname !== '/') {
 
-        backButton.show();
+        BackButton.show();
 
     } else {
 
-        backButton.hide();
+        BackButton.hide();
 
     }
-    backButton.onClick(() => {
+    BackButton.onClick(() => {
         history.back();
     });
 }
