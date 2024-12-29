@@ -997,6 +997,8 @@ a:focus {
     margin-bottom: 10px;
     max-width: 100%; /* Максимальная ширина */
     box-sizing: border-box; /* Учитываем padding в ширине */
+    display: block; /* Добавлено для лучшего отображения */
+    appearance: none; /* Отключаем стандартное оформление */
 }
 
 /* Фокус на поле ввода */
@@ -1031,7 +1033,6 @@ a:focus {
     width: 43px;
     height: 23px;
     margin-left: auto; /* Прикрепляет чекбокс к правому краю */
-    margin-right: auto;
 }
 
 /* Стилизованный переключатель */
@@ -1073,4 +1074,29 @@ a:focus {
 /* Переключатель ползунок сдвинут вправо */
 .toggle-checkbox input:checked + .slider:before {
     transform: translateX(20px);
+}
+
+/* Стили для select в обертке */
+.select-wrapper {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.form-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--tg-input-border-color);
+    border-radius: 4px;
+    background-color: var(--tg-input-background-color);
+    color: var(--tg-text-color);
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    appearance: none; /* Убираем стандартное оформление */
+}
+/* Убираем увеличение картинки при фокусе в input */
+input {
+    -webkit-appearance: none; /* Отключаем стандартное поведение на мобильных устройствах */
+    appearance: none; /* Общий способ отключения стандартного оформления */
 }
