@@ -1,20 +1,25 @@
-function simulateDataLoading() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve("Загрузка завершена");
-        }, 3000); // Задержка 3 секунды
-    });
-}
+document.addEventListener("DOMContentLoaded", async () => {
+    const endpoints = ["/tgAuth/tgAuth"];
+    const responses = [];
 
-document.addEventListener("DOMContentLoaded", async function() {
-    // Имитируем задержку в 3 секунды для загрузки данных
-    await simulateDataLoading();
-    
-    // Скрываем прелоадер
-    const preloader = document.getElementById('preloader');
-    preloader.style.display = 'none';
-    
-    // Отображаем основной контент
-    const content = document.getElementById('content');
-    content.style.display = 'block';
+    try {
+        // Отправляем запросы ко всем эндпоинтам
+        for (const endpoint of endpoints) {
+            const response = await fetch(endpoint);
+            if (response.ok) {
+                responses.push(await response.json());
+            } else {
+                throw new Error(`Ошибка при загрузке ${endpoint}: ${response.status}`);
+            }
+        }
+
+        // Если все запросы завершились успешно, скрываем прелоадер и показываем контент
+        if (responses.length === endpoints.length) {
+            document.getElementById("preloader").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+    } catch (error) {
+        console.error("Ошибка загрузки данных:", error);
+        // Здесь можно показать сообщение об ошибке или повторить запросы
+    }
 });
