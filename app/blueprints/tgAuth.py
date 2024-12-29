@@ -9,7 +9,7 @@ from app.models.user import User
 
 telegramAuth = Blueprint("telegramAuth", __name__)
 
-@telegramAuth.route("/telegramAuth", methods=["GET", "POST"])
+@telegramAuth.route("/", methods=["GET", "POST"])
 def telegramAuth_method():
     if request.method == "POST":
         auth_data = request.get_json()
