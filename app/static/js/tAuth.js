@@ -17,7 +17,7 @@ function displayDebugLog(message, isError = false) {
 // Пример вызова функции для дебаг-логирования
 displayDebugLog("Пример сообщения для лога.");
 
-// Пример запроса и получения данных
+// Пример запроса и получения данных из Telegram WebApp
 function fetchTelegramData() {
     const tg = window.Telegram.WebApp;
 
@@ -44,8 +44,33 @@ function fetchTelegramData() {
     const successMessage = "Получены данные из Telegram WebApp: " + JSON.stringify(telegramData, null, 2);
     displayDebugLog(successMessage);  // Успех в логе
 
+    // Отправка данных на сервер
+    sendDataToServer(telegramData);
+
     return telegramData;
 }
 
-// Запуск функции получения данных
+// Функция для отправки данных на сервер
+function sendDataToServer(data) {
+    fetch('/your-server-endpoint', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        // Отображаем ответ от сервера в логе
+        const serverResponseMessage = "Ответ от сервера: " + JSON.stringify(responseData, null, 2);
+        displayDebugLog(serverResponseMessage);  // Логируем ответ от сервера
+    })
+    .catch(error => {
+        // Если произошла ошибка при запросе
+        const errorMessage = "Ошибка при отправке данных на сервер: " + error;
+        displayDebugLog(errorMessage, true);  // Логируем ошибку
+    });
+}
+
+// Запуск функции получения данных при загрузке страницы
 document.addEventListener("DOMContentLoaded", fetchTelegramData);
