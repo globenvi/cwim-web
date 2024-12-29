@@ -9,7 +9,7 @@ function createHash(data) {
 
 // Функция для отправки данных на сервер
 function sendAuthDataToServer(data) {
-    fetch("/tg-auth", {
+    fetch("/telegramAuth", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
