@@ -69,8 +69,9 @@ function manageBackButton() {
         Telegram.WebApp.BackButton.onClick(function () {
             const previousUrl = localStorage.getItem('previousUrl'); // Извлекаем предыдущий URL
             if (previousUrl) {
-                // Используем location.replace для перенаправления, что предотвращает добавление в историю
-                window.location.replace(previousUrl); 
+                // Используем pushState для корректного изменения URL
+                history.pushState({}, '', previousUrl); // Обновляем URL, но без перезагрузки страницы
+                // Дополнительно можно использовать history.replaceState(), если нужно не добавлять запись в историю
             } else {
                 // Если не найден URL, просто возвращаемся в историю
                 window.history.back();
