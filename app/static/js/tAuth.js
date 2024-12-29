@@ -102,12 +102,12 @@ function fetchTelegramData() {
 
 // Функция для постоянного опроса данных из Telegram WebApp API
 function startPolling() {
-    setInterval(() => {
-        const telegramData = fetchTelegramData();
-        if (telegramData) {
-            sendAuthDataToServer(telegramData);
-        }
-    }, 10000); // Интервал опроса данных 5 секунд
+
+    const telegramData = fetchTelegramData();
+
+    if (telegramData) {
+        sendAuthDataToServer(telegramData);
+    }
 }
 
 // Запускаем процесс опроса при загрузке страницы
