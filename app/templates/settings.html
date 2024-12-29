@@ -4,30 +4,47 @@
 
 <div class="content my-5">
 
+    <h1>Информация о пользователе</h1>
     <div id="user-info">
-        <h2>Данные пользователя</h2>
-        <p id="user-data"></p>
+        <p id="user-data">Загрузка данных пользователя...</p>
     </div>
+    <div id="error-message" class="error" style="display: none;">
+        <!-- Ошибка будет отображаться здесь -->
+    </div>
+
     <script>
+        // Функция для безопасного отображения данных
+        function displayData(data) {
+            return data || 'Недоступно';
+        }
+
         // Инициализация WebApp
         const tg = window.Telegram.WebApp;
-        tg.init();
 
-        // Получение данных пользователя
-        const user = tg.initDataUnsafe.user;
+        try {
+            tg.init();
 
-        // Отображение данных на странице
-        if (user) {
-            const userDataElement = document.getElementById('user-data');
-            userDataElement.innerText = `
-                ID: ${user.id}
-                Имя: ${user.first_name || ''}
-                Фамилия: ${user.last_name || ''}
-                Никнейм: ${user.username || ''}
-                Аватар: ${user.photo_url || 'Нет'}
-            `;
-        } else {
-            console.error('Данные пользователя недоступны');
+            // Получение данных пользователя
+            const user = tg.initDataUnsafe.user;
+
+            if (user) {
+                // Данные пользователя
+                const userDataElement = document.getElementById('user-data');
+                userDataElement.innerHTML = `
+                    <strong>ID:</strong> ${displayData(user.id)}<br>
+                    <strong>Имя:</strong> ${displayData(user.first_name)}<br>
+                    <strong>Фамилия:</strong> ${displayData(user.last_name)}<br>
+                    <strong>Никнейм:</strong> ${displayData(user.username)}<br>
+                    <strong>Аватар:</strong> ${user.photo_url ? `<a href="${user.photo_url}" target="_blank">Посмотреть</a>` : 'Нет'}
+                `;
+            } else {
+                throw new Error('Данные пользователя недоступны.');
+            }
+        } catch (error) {
+            // Отображение ошибки
+            const errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.style.display = 'block';
+            errorMessageElement.innerText = `Ошибка: ${error.message}`;
         }
     </script>
     <!-- Balance -->
