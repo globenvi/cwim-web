@@ -608,10 +608,7 @@ body {
     /* Темный оттенок основного цвета для hover */
 }
 
-.btn-tg-theme:active {
-    background-color: var(--tg-main-color-darker);
-    /* Еще более темный оттенок для активного состояния */
-}
+
 
 .btn-tg-theme:focus {
     outline: none;
