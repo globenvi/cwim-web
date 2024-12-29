@@ -4,7 +4,7 @@
 
 <div class="content my-5">
 
-    h1>Telegram WebApp Data</h1>
+    <h1>Telegram WebApp Data</h1>
     <div class="data-container">
         <h2>User Information</h2>
         <pre id="user-data">Loading user data...</pre>
@@ -28,9 +28,6 @@
 
         try {
             const tg = window.Telegram.WebApp;
-
-            // Initialize Telegram WebApp
-            tg.init();
 
             // Retrieve initDataUnsafe object
             const data = tg.initDataUnsafe;
