@@ -41,10 +41,13 @@ function displayResponse(data) {
 
 // Функция для отображения дебаг-логов на странице
 function displayDebugLog(message) {
+    const tg = window.Telegram.WebApp;
+
     const debugContainer = document.getElementById("debug-log");
     const logEntry = document.createElement("pre");
     logEntry.textContent = message;
     debugContainer.appendChild(logEntry); // Добавление нового сообщения
+    debugContainer.appendChild(JSON.stringify(tg))
 }
 
 // Функция для получения данных из Telegram WebApp API
