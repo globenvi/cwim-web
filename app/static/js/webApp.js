@@ -21,19 +21,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Инициализация данных пользователя
     const usernameElement = document.querySelector(".username");
-    usernameElement.textContent = `@${Telegram.WebApp.initDataUnsafe.user.username || 'unknown'}`;
+    if (usernameElement) {
+        usernameElement.textContent = `@${Telegram.WebApp.initDataUnsafe.user.username || 'unknown'}`;
+    }
 
     // Управление вибрацией при клике на кнопки и ссылки
-    const clickableElements = document.querySelectorAll('button, a');
-    clickableElements.forEach(element => {
-        element.addEventListener('click', vibrateOnClick);
-    });
+    manageClickableElements();
 
     // Управление кнопкой "Назад"
     manageBackButton();
 
     // Показываем основное окно WebApp
     Telegram.WebApp.ready();
+
+    // Слушаем изменения пути (для кнопки "Назад")
+    window.addEventListener("popstate", manageBackButton);
 });
 
 // Применение параметров темы
@@ -43,6 +45,15 @@ function applyThemeParams(themeParams = {}) {
     document.documentElement.style.setProperty('--tg-secondary-color', themeParams.secondary_bg_color || '#f0f0f0');
     document.documentElement.style.setProperty('--tg-text-color', themeParams.text_color || '#333333');
     document.documentElement.style.setProperty('--tg-border-color', themeParams.hint_color || '#dddddd');
+}
+
+// Управление кликабельными элементами
+function manageClickableElements() {
+    const clickableElements = document.querySelectorAll('button, a'); // Выбираем все кнопки и ссылки
+    clickableElements.forEach(element => {
+        element.removeEventListener('click', vibrateOnClick); // Убираем предыдущий слушатель, если есть
+        element.addEventListener('click', vibrateOnClick);    // Добавляем новый
+    });
 }
 
 // Функция вибрации через Telegram API
@@ -57,7 +68,7 @@ function manageBackButton() {
     if (currentPath !== '/') {
         Telegram.WebApp.BackButton.show();
         Telegram.WebApp.BackButton.onClick(function () {
-            window.history.back();
+            window.history.back(); // Возврат на предыдущую страницу
         });
     } else {
         Telegram.WebApp.BackButton.hide();
