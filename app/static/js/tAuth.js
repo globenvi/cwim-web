@@ -66,6 +66,7 @@ function sendDataToServer(data) {
             throw new Error(`Ошибка при отправке данных: ${response.statusText}`);
         } else {
             window.location.reload()
+            return
         }
         return response.json();
     })
