@@ -990,7 +990,7 @@ a:focus {
 .form-input, .form-select {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--tg-text-color);
+    border: 1px solid var(--tg-border-color);
     color: var(--tg-text-color);
     border-radius: 4px;
     background-color: var(--tg-secondary-color);
@@ -1017,7 +1017,7 @@ a:focus {
     align-items: center;
     margin-bottom: 10px;
     padding: 12px;
-    border: 1px solid var(--tg-text-color);
+    border: 1px solid var(--tg-border-color);
     border-radius: 4px;
     background-color: var(--tg-secondary-color);
 }
@@ -1142,12 +1142,6 @@ input {
     text-align: center;
     border-radius: 4px;
     border: none;
-    background-color: var(--tg-main-color);
-    color: var(--tg-button-text-color);
     cursor: pointer;
-}
-
-.floating-footer .btn:hover {
-    background-color: var(--tg-button-hover-color);
 }
 
