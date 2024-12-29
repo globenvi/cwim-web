@@ -41,13 +41,10 @@ function displayResponse(data) {
 
 // Функция для отображения дебаг-логов на странице
 function displayDebugLog(message) {
-    const tg = window.Telegram.WebApp;
-
     const debugContainer = document.getElementById("debug-log");
     const logEntry = document.createElement("pre");
     logEntry.textContent = message;
     debugContainer.appendChild(logEntry); // Добавление нового сообщения
-    debugContainer.appendChild(JSON.stringify(tg))
 }
 
 // Функция для получения данных из Telegram WebApp API
@@ -95,6 +92,10 @@ function fetchTelegramData() {
 
     console.log("Полученные данные из Telegram API:", telegramData); // Лог данных
     displayDebugLog("Полученные данные из Telegram API: " + JSON.stringify(telegramData, null, 2)); // Лог на страницу
+
+    // Отображаем полученные данные на странице
+    const telegramDataContainer = document.getElementById("telegram-data");
+    telegramDataContainer.textContent = JSON.stringify(telegramData, null, 2);
 
     return telegramData;
 }
