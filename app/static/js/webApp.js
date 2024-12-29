@@ -3,7 +3,6 @@
 // Смена темы WebApp при изменении в Telegram
 Telegram.WebApp.onEvent("themeChanged", function () {
     const themeParams = Telegram.WebApp.themeParams;
-    saveThemeParams(themeParams); // Сохраняем тему
     applyThemeParams(themeParams); // Применяем новую тему
 });
 
@@ -16,13 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Инициализация WebApp
 function initializeWebApp() {
-    // Загрузка сохранённой темы или установка дефолтной
-    const savedThemeParams = getSavedThemeParams();
-    if (savedThemeParams) {
-        applyThemeParams(savedThemeParams);
-    } else {
-        applyThemeParams(); // Используем дефолтные значения
-    }
+    // Применяем тему
+    const themeParams = Telegram.WebApp.themeParams;
+    applyThemeParams(themeParams);
 
     // Управление кнопкой "Назад"
     manageBackButton();
@@ -37,17 +32,6 @@ function initializeWebApp() {
     window.addEventListener("popstate", manageBackButton);
 }
 
-// Сохранение параметров темы в localStorage
-function saveThemeParams(themeParams) {
-    localStorage.setItem('themeParams', JSON.stringify(themeParams));
-}
-
-// Загрузка сохранённых параметров темы
-function getSavedThemeParams() {
-    const themeParams = localStorage.getItem('themeParams');
-    return themeParams ? JSON.parse(themeParams) : null;
-}
-
 // Применение параметров темы
 function applyThemeParams(themeParams = {}) {
     document.documentElement.style.setProperty('--tg-main-color', themeParams.button_color || '#0088cc');
@@ -59,19 +43,20 @@ function applyThemeParams(themeParams = {}) {
 
 // Управление кнопкой "Назад"
 function manageBackButton() {
+    // Получаем текущий путь
     const currentPath = window.location.pathname;
-    Telegram.WebApp.HapticFeedback.impactOccurred('light');
 
-    // Если на странице не главная
+    // Если мы не на главной странице
     if (currentPath !== '/') {
-        localStorage.setItem('previousUrl', currentPath); // Сохраняем текущий путь
+        // Показываем кнопку "Назад"
         Telegram.WebApp.BackButton.show();
+        // Слушаем нажатие кнопки "Назад"
         Telegram.WebApp.BackButton.onClick(function () {
-            // Загружаем страницу заново
-            window.location.reload(); // Перезагружаем страницу для возврата на предыдущий URL
+            // Перезагружаем страницу
+            window.history.back();
         });
     } else {
-        // На главной странице кнопка "Назад" не отображается
+        // Если мы на главной, скрываем кнопку "Назад"
         Telegram.WebApp.BackButton.hide();
     }
 }
