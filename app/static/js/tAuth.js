@@ -1,7 +1,3 @@
-// Храним ключи localStorage
-const LOCAL_STORAGE_KEY = "tgAuthData";
-const LOCAL_STORAGE_HASH_KEY = "tgAuthDataHash";
-
 // Функция для создания хэша данных
 function createHash(data) {
     return btoa(JSON.stringify(data));
@@ -9,6 +5,9 @@ function createHash(data) {
 
 // Функция для отправки данных на сервер
 function sendAuthDataToServer(data) {
+    console.log("Отправка данных на сервер:", data); // Лог отправляемых данных
+    displayDebugLog("Отправка данных на сервер: " + JSON.stringify(data, null, 2)); // Вывод на страницу
+
     fetch("/telegramAuth", {
         method: "POST",
         headers: {
@@ -23,11 +22,29 @@ function sendAuthDataToServer(data) {
             return response.json();
         })
         .then((serverResponse) => {
-            console.log("Server response:", serverResponse);
+            console.log("Ответ от сервера:", serverResponse); // Лог ответа
+            displayResponse(serverResponse); // Вывод ответа на страницу
+            displayDebugLog("Ответ от сервера: " + JSON.stringify(serverResponse, null, 2)); // Лог на страницу
         })
         .catch((error) => {
-            console.error("Error sending data to server:", error.message);
+            console.error("Ошибка отправки данных на сервер:", error.message); // Лог ошибки
+            displayResponse({ error: error.message }); // Вывод ошибки на страницу
+            displayDebugLog("Ошибка: " + error.message); // Лог ошибки на страницу
         });
+}
+
+// Функция для отображения ответа на странице
+function displayResponse(data) {
+    const responseContainer = document.getElementById("server-response");
+    responseContainer.textContent = JSON.stringify(data, null, 2); // Красивое форматирование JSON
+}
+
+// Функция для отображения дебаг-логов на странице
+function displayDebugLog(message) {
+    const debugContainer = document.getElementById("debug-log");
+    const logEntry = document.createElement("pre");
+    logEntry.textContent = message;
+    debugContainer.appendChild(logEntry); // Добавление нового сообщения
 }
 
 // Функция для получения данных из Telegram WebApp API
@@ -36,7 +53,9 @@ function fetchTelegramData() {
 
     // Проверяем, доступен ли объект Telegram
     if (!tg.initData || !tg.initDataUnsafe) {
-        console.error("Telegram WebApp data is not available.");
+        const errorMessage = "Telegram WebApp data is not available.";
+        console.error(errorMessage);
+        displayDebugLog(errorMessage); // Лог ошибки
         return null;
     }
 
@@ -47,7 +66,7 @@ function fetchTelegramData() {
     const authDate = tg.initDataUnsafe.auth_date;
     const hash = tg.initDataUnsafe.hash;
 
-    return {
+    const telegramData = {
         user: {
             id: userData.id || null,
             first_name: userData.first_name || null,
@@ -70,38 +89,38 @@ function fetchTelegramData() {
             hash: hash,
         },
     };
+
+    console.log("Полученные данные из Telegram API:", telegramData); // Лог данных
+    displayDebugLog("Полученные данные из Telegram API: " + JSON.stringify(telegramData, null, 2)); // Лог на страницу
+
+    return telegramData;
 }
 
 // Главная функция обработки данных
 function handleAuthFlow() {
-    // Проверяем, есть ли данные в localStorage
     const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     const storedHash = localStorage.getItem(LOCAL_STORAGE_HASH_KEY);
 
     if (storedData && storedHash) {
-        // Данные есть, отправляем их на сервер
         const parsedData = JSON.parse(storedData);
         const currentHash = createHash(parsedData);
 
-        // Проверяем изменения
         if (currentHash !== storedHash) {
-            console.log("Data has changed, updating server...");
+            console.log("Данные изменились, отправка на сервер...");
+            displayDebugLog("Данные изменились, отправка на сервер...");
             sendAuthDataToServer(parsedData);
             localStorage.setItem(LOCAL_STORAGE_HASH_KEY, currentHash);
         } else {
-            console.log("Data is up-to-date, skipping update.");
+            console.log("Данные актуальны, обновление не требуется.");
+            displayDebugLog("Данные актуальны, обновление не требуется.");
         }
     } else {
-        // Данных нет, опрашиваем Telegram API
         const telegramData = fetchTelegramData();
 
         if (telegramData) {
-            // Сохраняем данные в localStorage
             const hash = createHash(telegramData);
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(telegramData));
             localStorage.setItem(LOCAL_STORAGE_HASH_KEY, hash);
-
-            // Отправляем данные на сервер
             sendAuthDataToServer(telegramData);
         }
     }
