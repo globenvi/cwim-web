@@ -54,7 +54,7 @@ function fetchTelegramData() {
 function sendDataToServer(data) {
     displayDebugLog("Отправка данных на сервер...");
 
-    fetch('/tgAuth', {  // Замените на реальный URL
+    fetch('/', {  // Замените на реальный URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
