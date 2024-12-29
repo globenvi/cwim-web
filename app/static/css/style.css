@@ -668,7 +668,7 @@ body {
     text-align: center;
     padding: 8px;
     /* Цвет фона футера из Telegram темы */
-    color: var(--tg-text-color);
+    color: var(--tg-button-text-color);
     /* Цвет текста футера из Telegram темы */
     font-size: 14px;
 }
@@ -677,7 +677,7 @@ a,
 button {
     pointer-events: auto;
     text-decoration: none;
-    color: var(--tg-text-color);
+    color: var(--tg-secondary-color);
 }
 
 /* Стиль для ссылок, как для обычного текста */
@@ -959,7 +959,7 @@ a:focus {
     height: 16px;
     border: 2px solid transparent;
     border-radius: 50%;
-    border-top: 2px solid var(--tg-text-color);
+    border-top: 2px solid var(--tg-secondary-color);
     animation: spin 0.8s linear infinite;
     display: inline-block;
     vertical-align: middle;
