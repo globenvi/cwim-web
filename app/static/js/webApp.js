@@ -57,7 +57,6 @@ function manageBackButton() {
     BackButton.onClick(() => {
         history.back();
         BackButton.hide();
-        window.location.reload()
         Telegram.WebApp.HapticFeedback.impactOccurred('light')
     });
 
