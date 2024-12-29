@@ -52,8 +52,10 @@ function manageBackButton() {
     }
 
     BackButton.onClick(() => {
+        Telegram.WebApp.HapticFeedback.impactOccurred('light');
         // При нажатии на кнопку "Назад" возвращаемся на предыдущую страницу
         history.back();
+        window.location.reload()
         BackButton.hide()
     });
 }
