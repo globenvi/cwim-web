@@ -22,9 +22,10 @@
         const tg = window.Telegram.WebApp;
 
         try {
-            
+            tg.init();
+
             // Получение данных пользователя
-            const user = tg.initDataUnsafe.WebAppInitData.WebAppUser;
+            const user = tg.initDataUnsafe.user;
 
             if (user) {
                 // Данные пользователя
