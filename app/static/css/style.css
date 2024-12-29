@@ -826,192 +826,6 @@ a:focus {
     justify-content: flex-end;
     padding-top: 10px;
 }
-
-.modal-footer button {
-    padding: 8px 16px;
-    background-color: var(--tg-theme-button-color);
-    /* Основной цвет кнопки */
-    border: none;
-    border-radius: 4px;
-    color: var(--tg-theme-button-text-color);
-    /* Текст на кнопке */
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.modal-footer button:hover {
-    background-color: var(--tg-theme-button-color-hover);
-    /* Цвет кнопки при наведении */
-}
-
-
-/* Основной стиль кнопки */
-.btn-submit {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    background-color: var(--tg-main-color);
-    /* Цвет кнопки из Telegram WebApp API */
-    color: var(--tg-text-color);
-    /* Цвет текста */
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.2s ease;
-    /* Анимация только для эффекта нажатия */
-}
-
-/* Убираем эффекты при наведении */
-.btn-submit:hover {
-    transform: translateY(-2px);
-    /* Легкий эффект поднятия */
-}
-
-/* Изначальное состояние текста */
-.btn-submit::before {
-    content: attr(data-text);
-    display: inline-block;
-    transition: opacity 0.3s;
-}
-
-/* Спиннер (круглый) */
-.btn-submit .spinner {
-    display: none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 3px solid rgba(var(--tg-theme-bg-color-rgb), 0.3);
-    /* Полупрозрачный фон */
-    border-top: 3px solid var(--tg-text-color);
-    /* Основной цвет спиннера */
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 0.8s linear infinite;
-    /* Простая бесконечная анимация вращения */
-}
-
-/* Анимация вращения */
-@keyframes spin {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-
-/* Убираем тень при фокусе */
-.btn-submit:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-
-/* Состояние loading */
-.btn-submit.loading {
-    color: transparent;
-    /* Скрываем текст */
-}
-
-/* Активное состояние кнопки (показывает спиннер) */
-.btn-submit.loading::before {
-    opacity: 0;
-    /* Скрыть текст */
-}
-
-.btn-submit.loading .spinner {
-    display: inline-block;
-    /* Показать спиннер */
-}
-
-
-/* Галочка (check) */
-.btn-submit .checkmark {
-    display: none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    /* Размер галочки */
-    color: var(--tg-text-color);
-    /* Цвет галочки */
-}
-
-/* Анимация спиннера */
-@keyframes spin {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* Классы для изменений состояния */
-
-/* Скрыть текст и показать спиннер */
-.btn-submit.loading::before {
-    opacity: 0;
-    /* Скрываем текст */
-}
-
-.btn-submit.loading .spinner {
-    display: inline-block;
-    /* Показать спиннер */
-}
-
-/* Состояние success */
-.btn-submit.success .spinner {
-    display: none;
-    /* Скрыть спиннер */
-}
-
-.btn-submit.success .checkmark {
-    display: inline-block;
-    /* Показать галочку */
-    font-size: 18px;
-    color: var(--tg-text-color);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Стили для анимации галочки */
-.btn-submit.success .checkmark {
-    animation: bounce 1s ease-in-out forwards;
-}
-
-/* Стили для нажатия */
-.btn-submit:active {
-    transform: scale(0.98);
-    /* Легкий эффект нажатия */
-}
-
-/* Анимация bounce для галочки */
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
 /* КАСТОМНЫЕ ЦВЕТА */
 
 /* Текстовые классы */
@@ -1137,4 +951,30 @@ a:focus {
 .telegram-card-amount {
     font-size: 16px;
     font-weight: bold;
+}
+
+/* Стили для спинера */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top: 2px solid var(--tg-text-color);
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Для текста спинера */
+.spinner-text {
+    margin-left: 8px;
 }

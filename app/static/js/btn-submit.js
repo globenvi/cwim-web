@@ -1,35 +1,26 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.btn-submit');
+ // Найти все кнопки с классом 'btn-submit'
+ document.querySelectorAll('.btn-submit').forEach(button => {
+    button.addEventListener('click', async function () {
+        // Сохранить текущий текст кнопки
+        const originalText = button.textContent;
 
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            handleSubmit(button);
-        });
+        // Заменить текст кнопки на спиннер
+        button.innerHTML = `
+            <span class="spinner"></span>
+        `;
+
+        // Заблокировать кнопку
+        button.disabled = true;
+
+        try {
+            // Эмулируем задержку (например, ожидание ответа от сервера)
+            await new Promise(resolve => setTimeout(resolve, 3000));
+        } catch (error) {
+            console.error('Ошибка:', error);
+        } finally {
+            // Вернуть исходный текст кнопки
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }
     });
-
-    function handleSubmit(button) {
-        const originalText = button.innerHTML;
-
-        button.classList.add('loading');
-        button.innerHTML = '';
-
-        const spinner = document.createElement('span');
-        spinner.classList.add('spinner');
-        button.appendChild(spinner);
-
-        setTimeout(function() {
-            button.classList.remove('loading');
-            button.classList.add('success');
-            
-            const checkmark = document.createElement('span');
-            checkmark.classList.add('checkmark', 'fas', 'fa-check');
-            button.innerHTML = '';
-            button.appendChild(checkmark);
-
-            setTimeout(function() {
-                button.classList.remove('success');
-                button.innerHTML = originalText;
-            }, 1000);
-        }, 2000);
-    }
 });
