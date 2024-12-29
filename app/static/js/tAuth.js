@@ -10,10 +10,13 @@ function displayResponse(data) {
 }
 
 // Функция для отображения дебаг-логов на странице
-function displayDebugLog(message) {
+function displayDebugLog(message, isError = false) {
     const debugContainer = document.getElementById("debug-log");
+
+    // Добавляем сообщение с учетом, является ли оно ошибкой
     const logEntry = document.createElement("pre");
     logEntry.textContent = message;
+    logEntry.style.color = isError ? 'red' : 'black';  // Если ошибка, то красный цвет
     debugContainer.appendChild(logEntry); // Добавление нового сообщения
 }
 
@@ -25,7 +28,7 @@ function fetchTelegramData() {
     if (!tg.initData || !tg.initDataUnsafe) {
         const errorMessage = "Telegram WebApp data is not available.";
         console.error(errorMessage);
-        displayDebugLog(errorMessage); // Лог ошибки
+        displayDebugLog(errorMessage, true); // Лог ошибки
         return null;
     }
 
@@ -48,20 +51,17 @@ function fetchTelegramData() {
     displayDebugLog("Полученные данные из Telegram API: " + JSON.stringify(telegramData, null, 2)); // Лог на страницу
 
     // Отображаем полученные данные на странице
-    const telegramDataContainer = document.getElementById("telegram-data");
-    telegramDataContainer.textContent = JSON.stringify(telegramData, null, 2);
+    displayResponse(telegramData);
 
     return telegramData;
 }
 
 // Функция для постоянного опроса данных из Telegram WebApp API
 function startPolling() {
-
     const telegramData = fetchTelegramData();
 
     if (telegramData) {
-        // Отправляем данные на сервер, если необходимо
-        // sendAuthDataToServer(telegramData); // Эта функция теперь не используется
+        // Можно добавить логику для отправки данных на сервер, если необходимо
     }
 }
 
