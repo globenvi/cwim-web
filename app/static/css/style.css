@@ -990,9 +990,10 @@ a:focus {
 .form-input, .form-select {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--tg-input-border-color);
+    border: 1px solid var(--tg-text-color);
+    color: var(--tg-text-color);
     border-radius: 4px;
-    background-color: var(--tg-input-background-color);
+    background-color: var(--tg-secondary-color);
     color: var(--tg-text-color);
     font-size: 14px;
     margin-top: 5px;
