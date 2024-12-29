@@ -65,12 +65,11 @@ function manageBackButton() {
         Telegram.WebApp.BackButton.show();
         Telegram.WebApp.BackButton.onClick(function () {
             window.history.back(); // Возврат на предыдущую страницу
-            setTimeout(() => {
-                location.reload(); // Перезагрузка страницы после возврата
-            }, 100); // Небольшая задержка для завершения перехода
+            location.reload()
         });
     } else {
         Telegram.WebApp.BackButton.hide();
+        location.reload()
     }
 }
 
