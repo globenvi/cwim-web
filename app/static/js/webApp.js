@@ -46,6 +46,16 @@ function manageBackButton() {
     const currentPath = window.location.pathname;
     const BackButton = Telegram.WebApp.BackButton;
 
+
+// BackButton.show();
+// BackButton.onClick(function() {
+//     WebApp.showAlert("BackButton clicked");
+//     BackButton.hide();
+// });
+// WebApp.onEvent('backButtonClicked', function() {
+//     ...
+// });
+
     // Если мы не на главной странице
     if (currentPath !== '/') {
         BackButton.show();
@@ -56,6 +66,7 @@ function manageBackButton() {
     } else {
         // Если на главной странице скрываем кнопку "Назад"
         BackButton.hide();
+        window.location.reload()
     }
 }
 
