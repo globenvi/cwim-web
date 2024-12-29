@@ -994,7 +994,8 @@ a:focus {
     background-color: var(--tg-input-background-color);
     color: var(--tg-text-color);
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     max-width: 100%; /* Максимальная ширина */
     box-sizing: border-box; /* Учитываем padding в ширине */
     display: block; /* Добавлено для лучшего отображения */

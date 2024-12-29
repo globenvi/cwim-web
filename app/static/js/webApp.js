@@ -45,7 +45,7 @@ function applyThemeParams(themeParams = {}) {
 function manageBackButton() {
     const BackButton = Telegram.WebApp.BackButton;
 
-    if (window.location.pathname !== '/' || window.location.pathname !== '/index') {
+    if (window.location.pathname !== '/') {
 
         BackButton.show();
 
