@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Если все запросы завершились успешно, скрываем прелоадер и показываем контент
         if (responses.length === endpoints.length) {
+            window.location.reload()
             document.getElementById("preloader").style.display = "none";
             document.getElementById("content").style.display = "block";
         }
