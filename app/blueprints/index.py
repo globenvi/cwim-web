@@ -1,9 +1,8 @@
 # Маршрут тестового Blueprint
 from flask import Blueprint, render_template
 
-test = Blueprint("index", __name__)
+index = Blueprint("index", __name__)
 
-@test.route("/")
-def index():
-    # Тестовый маршрут возвращает строку "Hello, Flask!"
+@index.route("/")
+def index_page():
     return render_template('index.html')
