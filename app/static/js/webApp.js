@@ -62,14 +62,19 @@ function manageBackButton() {
     const currentPath = window.location.pathname;
 
     if (currentPath !== '/') {
+        // Если текущий путь не "/"
         Telegram.WebApp.BackButton.show();
+        localStorage.setItem('backButtonVisible', 'true'); // Запоминаем, что кнопка "Назад" видна
         Telegram.WebApp.BackButton.onClick(function () {
             window.history.back(); // Возврат на предыдущую страницу
-            location.reload()
         });
     } else {
+        // Если на главной странице "/"
+        if (localStorage.getItem('backButtonVisible') === 'true') {
+            location.reload(); // Перезагружаем страницу при возвращении на главную
+            localStorage.removeItem('backButtonVisible'); // Убираем сохранённый флаг
+        }
         Telegram.WebApp.BackButton.hide();
-        location.reload()
     }
 }
 
