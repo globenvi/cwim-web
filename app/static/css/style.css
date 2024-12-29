@@ -674,7 +674,7 @@ a,
 button {
     pointer-events: auto;
     text-decoration: none;
-    color: var(--tg-text-color);
+    color: var(--tg-theme-text-color);
 }
 
 /* Стиль для ссылок, как для обычного текста */
@@ -876,7 +876,7 @@ a:focus {
     background-color: #4CAF50;
     /* Зеленый для успешных действий */
     border: none;
-    color: #fff;
+    color: var(--tg-theme-text-color);
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
@@ -956,7 +956,7 @@ a:focus {
     height: 16px;
     border: 2px solid transparent;
     border-radius: 50%;
-    border-top: 2px solid var(--tg-secondary-color);
+    border-top: 2px solid var(--tg-theme-text-color);
     animation: spin 0.8s linear infinite;
     display: inline-block;
     vertical-align: middle;
