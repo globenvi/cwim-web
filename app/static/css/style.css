@@ -1028,9 +1028,10 @@ a:focus {
 .toggle-checkbox {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 30px;
+    width: 43px;
+    height: 23px;
     margin-left: auto; /* Прикрепляет чекбокс к правому краю */
+    margin-right: auto;
 }
 
 /* Стилизованный переключатель */
@@ -1055,8 +1056,8 @@ a:focus {
 .toggle-checkbox .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
+    height: 15px;
+    width: 15px;
     border-radius: 50px;
     left: 4px;
     bottom: 4px;
