@@ -603,13 +603,6 @@ body {
     /* Плавное изменение фона */
 }
 
-.btn-tg-theme:hover {
-    background-color: var(--tg-main-color-dark);
-    /* Темный оттенок основного цвета для hover */
-}
-
-
-
 .btn-tg-theme:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 139, 204, 0.5);
