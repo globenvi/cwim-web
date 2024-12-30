@@ -17,7 +17,6 @@
 <!-- Header -->
 <div class="header">
     <div class="username">@{{ user.username }}</div>
-    <input type="text" class="form-input mx-5" placeholder="Поиск по ремонту..." id="searchInput" onkeyup="filterItems()" />
     <a href="/settings"><button class="settings-button"></button></a>
 </div>
 
@@ -27,10 +26,14 @@
 
 <section class="my-2 p-2">
     
-    <div class="section-title p-4">
-        <h1>Прайс-лист</h1>
-        <a href="#" class="section-button"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <div class="section-title px-4">
+        <h1 id="sectionTitle">Прайс-лист</h1>
+        <div id="searchWrapper" class="search-wrapper">
+            <input type="text" class="form-input mx-4 px-5" placeholder="Поиск по ремонту..." id="searchInput" onkeyup="filterItems()" />
+        </div>
+        <span class="section-button" onclick="toggleSearch(event)"><i class="fa-solid fa-magnifying-glass"></i></span>
     </div>
+    
     <!-- Content -->
 <div class="content">
 
@@ -123,6 +126,33 @@
     </div>
 </section>
 
+
+    <!-- search btn in section -->
+    <script>
+        function toggleSearch(event) {
+            event.preventDefault(); // Предотвращаем переход по ссылке
+        
+            const title = document.getElementById('sectionTitle');
+            const searchWrapper = document.getElementById('searchWrapper');
+            const searchInput = document.getElementById('searchInput');
+        
+            if (searchWrapper.classList.contains('active')) {
+                // Возвращаем в исходное состояние
+                searchWrapper.classList.remove('active');
+                searchInput.classList.remove('active');
+                title.classList.remove('hidden');
+            } else {
+                // Убираем заголовок, затем выезжает поле ввода
+                title.classList.add('hidden');
+                setTimeout(() => {
+                    searchWrapper.classList.add('active');
+                    searchInput.classList.add('active');
+                }, 300); // Даем время исчезнуть заголовку
+            }
+        }
+        
+        
+    </script>
 
 
 

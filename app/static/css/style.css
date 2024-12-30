@@ -1208,26 +1208,53 @@ section {
 .section-title {
     display: flex;
     justify-content: space-between;
-    /* Распределяем элементы */
     align-items: center;
-    /* Выравниваем по вертикали */
-    width: 100%;
-    /* Растягиваем блок на всю ширину */
+    position: relative;
+    overflow: hidden;
 }
 
-.section-title h1 {
-    margin: 0;
-    /* Убираем отступы */
+#sectionTitle {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.section-title a {
-    text-decoration: none;
-    /* Убираем подчеркивание */
-    color: var(--tg-theme-text-color);
-    /* Цвет текста адаптируется под тему */
-    font-size: 16px;
-    /* Размер шрифта для ссылки */
+.search-wrapper {
+    flex-grow: 1;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    overflow: hidden;
+    transition: width 0.5s ease;
 }
+
+#searchInput {
+    width:75%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0.5s; /* Задержка для синхронизации с выездом */
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.search-wrapper.active {
+    width: 100%; /* Поле ввода занимает всю ширину */
+}
+
+#searchInput.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.5s; /* Задержка перед показом поля */
+}
+
 
 
 .section-button {
