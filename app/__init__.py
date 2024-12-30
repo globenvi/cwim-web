@@ -35,12 +35,12 @@ def create_app(config_class="config.Config"):
         def load_user(user_id):
             return Users.query.get(int(user_id))
         
-        return redirect(url_for('install.install'))
+        
     else:
         # Если .env не настроен, перенаправляем на /install
         @app.before_request
         def redirect_to_install():
-            if not is_env_configured():
+            if not is_env_configured() and not request.endpoint.startswith('install.install'):
                 return redirect(url_for('install.install'))
 
     # Регистрация маршрутов (blueprints)
