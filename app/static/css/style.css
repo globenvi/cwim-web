@@ -10,8 +10,10 @@
     --tg-border-color: #dddddd;
     /* Цвет границ (светло-серый) */
 
-    --tg-theme-bg-color-light: 255, 255, 255; /* Белый для светлой темы */
-    --tg-theme-bg-color-dark: 30, 30, 30; /* Темный для темной темы */
+    --tg-theme-bg-color-light: 255, 255, 255;
+    /* Белый для светлой темы */
+    --tg-theme-bg-color-dark: 30, 30, 30;
+    /* Темный для темной темы */
 
 
     --tg-header-color: #000000;
@@ -53,7 +55,8 @@
 
 /* Общие стили для контейнеров */
 * {
-    box-sizing: border-box; /* Учитываем padding и border в расчетах ширины */
+    box-sizing: border-box;
+    /* Учитываем padding и border в расчетах ширины */
 }
 
 /* Padding */
@@ -468,7 +471,8 @@ body {
     /* Запрещаем перенос строк */
     box-sizing: border-box;
     background-color: var(--tg-background-color);
-    border-radius: 0 0 15px 15px; /* Скругляем только нижние углы */
+    border-radius: 0 0 15px 15px;
+    /* Скругляем только нижние углы */
     /* Чуть темнее или светлее фона */
     color: var(--tg-theme-text-color);
     /* Цвет текста адаптируется под тему */
@@ -634,7 +638,8 @@ body {
 
 .telegram-card {
     /* Фон карты будет изменяться в зависимости от темы */
-    background-color: var(--tg-background-color); /* По умолчанию для светлой темы */
+    background-color: var(--tg-secondary-color);
+    /* По умолчанию для светлой темы */
     flex-direction: column;
     padding: 16px;
     border-radius: 8px;
@@ -827,6 +832,7 @@ a:focus {
     justify-content: flex-end;
     padding-top: 10px;
 }
+
 /* КАСТОМНЫЕ ЦВЕТА */
 
 /* Текстовые классы */
@@ -970,6 +976,7 @@ a:focus {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -981,7 +988,8 @@ a:focus {
 }
 
 /* Стили для инпутов и select, которые занимают всю ширину */
-.form-input, .form-select {
+.form-input,
+.form-select {
     width: 100%;
     padding: 12px;
     border: 1px solid var(--tg-border-color);
@@ -992,14 +1000,19 @@ a:focus {
     font-size: 14px;
     margin-top: 5px;
     margin-bottom: 5px;
-    max-width: 100%; /* Максимальная ширина */
-    box-sizing: border-box; /* Учитываем padding в ширине */
-    display: block; /* Добавлено для лучшего отображения */
-    appearance: none; /* Отключаем стандартное оформление */
+    max-width: 100%;
+    /* Максимальная ширина */
+    box-sizing: border-box;
+    /* Учитываем padding в ширине */
+    display: block;
+    /* Добавлено для лучшего отображения */
+    appearance: none;
+    /* Отключаем стандартное оформление */
 }
 
 /* Фокус на поле ввода */
-.form-input:focus, .form-select:focus {
+.form-input:focus,
+.form-select:focus {
     border-color: var(--tg-main-color);
     outline: none;
 }
@@ -1007,7 +1020,8 @@ a:focus {
 /* Стили для контейнера чекбокса */
 .checkbox-container {
     display: flex;
-    justify-content: space-between; /* Равномерное распределение элементов по горизонтали */
+    justify-content: space-between;
+    /* Равномерное распределение элементов по горизонтали */
     align-items: center;
     margin-bottom: 10px;
     padding: 12px;
@@ -1020,7 +1034,8 @@ a:focus {
 .checkbox-container label span {
     font-size: 14px;
     color: var(--tg-theme-text-color);
-    flex-grow: 1; /* Заполняет все доступное пространство */
+    flex-grow: 1;
+    /* Заполняет все доступное пространство */
 }
 
 /* Стили для чекбоксов-тумблеров */
@@ -1029,7 +1044,8 @@ a:focus {
     display: inline-block;
     width: 43px;
     height: 23px;
-    margin-left: auto; /* Прикрепляет чекбокс к правому краю */
+    margin-left: auto;
+    /* Прикрепляет чекбокс к правому краю */
 }
 
 /* Стилизованный переключатель */
@@ -1064,12 +1080,12 @@ a:focus {
 }
 
 /* Переключатель включен */
-.toggle-checkbox input:checked + .slider {
+.toggle-checkbox input:checked+.slider {
     background-color: var(--tg-main-color);
 }
 
 /* Переключатель ползунок сдвинут вправо */
-.toggle-checkbox input:checked + .slider:before {
+.toggle-checkbox input:checked+.slider:before {
     transform: translateX(20px);
 }
 
@@ -1090,18 +1106,23 @@ a:focus {
     font-size: 14px;
     margin-bottom: 10px;
     box-sizing: border-box;
-    appearance: none; /* Убираем стандартное оформление */
+    appearance: none;
+    /* Убираем стандартное оформление */
 }
+
 /* Убираем увеличение картинки при фокусе в input */
 input {
-    -webkit-appearance: none; /* Отключаем стандартное поведение на мобильных устройствах */
-    appearance: none; /* Общий способ отключения стандартного оформления */
+    -webkit-appearance: none;
+    /* Отключаем стандартное поведение на мобильных устройствах */
+    appearance: none;
+    /* Общий способ отключения стандартного оформления */
 }
 
 /* Стили для всплывающего футера */
 .floating-footer {
     position: fixed;
-    bottom: -100px; /* Изначально футер скрыт ниже экрана */
+    bottom: -100px;
+    /* Изначально футер скрыт ниже экрана */
     left: 0;
     width: 100%;
     background-color: var(--tg-secondary-color);
@@ -1112,12 +1133,15 @@ input {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: bottom 0.5s ease; /* Анимация для плавного появления */
-    overflow: hidden; /* Не даем содержимому футера выходить за пределы */
+    transition: bottom 0.5s ease;
+    /* Анимация для плавного появления */
+    overflow: hidden;
+    /* Не даем содержимому футера выходить за пределы */
 }
 
 .floating-footer.show {
-    bottom: 0; /* Когда футер показывается, он будет внизу экрана */
+    bottom: 0;
+    /* Когда футер показывается, он будет внизу экрана */
 }
 
 /* Стили для контента футера */
@@ -1130,7 +1154,8 @@ input {
 
 /* Стили для кнопки в футере */
 .floating-footer .btn {
-    width: 100%; /* Растягиваем кнопку на всю ширину */
+    width: 100%;
+    /* Растягиваем кнопку на всю ширину */
     padding: 10px;
     font-size: 16px;
     text-align: center;
@@ -1138,6 +1163,7 @@ input {
     border: none;
     cursor: pointer;
 }
+
 .spinner {
     border: 5px solid #f3f3f3;
     border-top: 5px solid #3498db;
@@ -1151,6 +1177,7 @@ input {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -1158,14 +1185,56 @@ input {
 
 
 #preloader {
-    position: fixed; /* Прелоадер занимает весь экран */
+    position: fixed;
+    /* Прелоадер занимает весь экран */
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    background: var(--tg-background-color); /* Ваш цвет фона */
-    z-index: 9999; /* Обеспечивает отображение поверх всего контента */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tg-background-color);
+    /* Ваш цвет фона */
+    z-index: 9999;
+    /* Обеспечивает отображение поверх всего контента */
+}
+
+section {
+    background: var(--tg-background-color);
+    border-radius: 15px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    /* Распределяем элементы */
+    align-items: center;
+    /* Выравниваем по вертикали */
+    width: 100%;
+    /* Растягиваем блок на всю ширину */
+}
+
+.section-title h1 {
+    margin: 0;
+    /* Убираем отступы */
+}
+
+.section-title a {
+    text-decoration: none;
+    /* Убираем подчеркивание */
+    color: var(--tg-theme-text-color);
+    /* Цвет текста адаптируется под тему */
+    font-size: 16px;
+    /* Размер шрифта для ссылки */
+}
+
+
+.section-button {
+    background: var(--tg-secondary-color);
+    padding: 5px;
+    border: none;
+    font-size: 20px;
+    color: var(--tg-main-color);
+    border-radius: 10px;
 }
