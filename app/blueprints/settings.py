@@ -6,5 +6,8 @@ settings = Blueprint("settings", __name__)
 
 @settings.route("/")
 def settings_page():
+    if request.method == 'POST':
+        # Обработка данных формы
+        pass
     # Тестовый маршрут возвращает строку "Hello, Flask!"
     return render_template('settings.html', user=current_user)
