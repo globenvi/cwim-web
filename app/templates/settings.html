@@ -13,34 +13,18 @@
             <form>
                 <!-- Имя, Фамилия и Username -->
                 <label class="text-muted">ОБЯЗАТЕЛЬНО</label>
-                <input type="text" class="form-input" placeholder="Имя">
+                <input type="text" class="form-input" placeholder="Имя" value="{{ user.first_name }}">
                     <div class="telecram-card-content mb-2 p-1">
                         Имя не может быть пустым!
                     </div>
                 <label class="text-muted">НЕ ОБЯЗАТЕЛЬНО</label>
                 <input type="text" class="form-input" placeholder="Фамилия">
                 <label class="text-muted">КОРОТКОЕ ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
-                <input type="text" class="form-input" placeholder="@username">
+                <input type="text" class="form-input" placeholder="@username" value="{{ user.username }}">
                 <div class="telecram-card-content mb-2 p-1">
                     Если короткое имя не показывается, значит оно не установлено у вас в телеграм!
                     Для корректной работы приложения, либо укажите его в телеграм, либо тут, заполнив поле. (Без @)
                 </div>
-
-               <div class="telegram-card-header">
-                Язык и регион
-               </div>
-                <!-- Выпадающий список Язык -->
-                <select class="form-select">
-                    <option value="ru">Русский</option>
-                    <option value="en">English</option>
-                    <option value="de">Deutsch</option>
-                </select>
-                <!-- Выпадающий список Валюта -->
-                <select class="form-select">
-                    <option value="usd">USD</option>
-                    <option value="eur">EUR</option>
-                    <option value="rub">RUB</option>
-                </select>
 
             </form>
         </div>
@@ -50,22 +34,6 @@
         </div>
     </div>
 
-    <div class="telegram-card">
-        <div class="telegram-card-header">
-            Уведомления
-           </div>
-
-        <!-- Свайп-туглер с текстом -->
-        <div class="checkbox-container">
-            <span>Включить уведомления</span>
-            <label>
-                <div class="toggle-checkbox">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </div>
-            </label>
-        </div>
-    </div>
     <!-- Всплывающий футер -->
 <div class="floating-footer">
     <button class="btn btn-tg-theme btn-submit">Save</button>
