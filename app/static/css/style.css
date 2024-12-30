@@ -467,11 +467,13 @@ body {
     white-space: nowrap;
     /* Запрещаем перенос строк */
     box-sizing: border-box;
-    background-color: var(--tg-secondary-color);
+    background-color: var(--tg-background-color);
+    border-radius: 0 0 15px 15px; /* Скругляем только нижние углы */
     /* Чуть темнее или светлее фона */
     color: var(--tg-theme-text-color);
     /* Цвет текста адаптируется под тему */
 }
+
 
 
 /* Стили для имени пользователя */
