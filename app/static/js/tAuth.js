@@ -1,21 +1,21 @@
-// Функция для отображения дебаг-логов на странице
-function displayDebugLog(message, isError = false) {
-    const debugContainer = document.getElementById("debug-log");
+// // Функция для отображения дебаг-логов на странице
+// function displayDebugLog(message, isError = false) {
+//     // const debugContainer = document.getElementById("debug-log");
 
-    // Создаем новый элемент <pre> для отображения лога
-    const logEntry = document.createElement("pre");
-    logEntry.textContent = message;
-    logEntry.style.color = isError ? 'red' : 'black';  // Красный цвет для ошибок
+//     // Создаем новый элемент <pre> для отображения лога
+//     const logEntry = document.createElement("pre");
+//     logEntry.textContent = message;
+//     logEntry.style.color = isError ? 'red' : 'black';  // Красный цвет для ошибок
 
-    // Добавляем лог в контейнер
-    debugContainer.appendChild(logEntry);
+//     // Добавляем лог в контейнер
+//     debugContainer.appendChild(logEntry);
     
-    // Прокрутка контейнера вниз, чтобы новый лог был виден
-    debugContainer.scrollTop = debugContainer.scrollHeight;
-}
+//     // Прокрутка контейнера вниз, чтобы новый лог был виден
+//     debugContainer.scrollTop = debugContainer.scrollHeight;
+// }
 
 // Пример вызова функции для дебаг-логирования
-displayDebugLog("Пример сообщения для лога.");
+// displayDebugLog("Пример сообщения для лога.");
 
 // Пример запроса и получения данных из Telegram WebApp
 function fetchTelegramData() {
@@ -23,7 +23,7 @@ function fetchTelegramData() {
 
     if (!tg.initData || !tg.initDataUnsafe) {
         const errorMessage = "Telegram WebApp data is not available.";
-        displayDebugLog(errorMessage, true);  // Ошибка в логе
+        // displayDebugLog(errorMessage, true);  // Ошибка в логе
         return null;
     }
 
@@ -42,7 +42,7 @@ function fetchTelegramData() {
     };
 
     const successMessage = "Получены данные из Telegram WebApp: " + JSON.stringify(telegramData, null, 2);
-    displayDebugLog(successMessage);  // Успех в логе
+    // displayDebugLog(successMessage);  // Успех в логе
 
     // Отправка данных на сервер
     sendDataToServer(telegramData);
@@ -52,7 +52,7 @@ function fetchTelegramData() {
 
 // Функция для отправки данных на сервер
 function sendDataToServer(data) {
-    displayDebugLog("Отправка данных на сервер...");
+    // displayDebugLog("Отправка данных на сервер...");
 
     fetch('/tgAuth/tgAuth', {  // Замените на реальный URL
         method: 'POST',
@@ -63,7 +63,7 @@ function sendDataToServer(data) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error(`Ошибка при отправке данных: ${response.statusText}`);
+            // throw new Error(`Ошибка при отправке данных: ${response.statusText}`);
         }
         
         return response.json();
@@ -71,12 +71,12 @@ function sendDataToServer(data) {
     .then(responseData => {
         // Отображаем ответ от сервера в логе
         const serverResponseMessage = "Ответ от сервера: " + JSON.stringify(responseData, null, 2);
-        displayDebugLog(serverResponseMessage);  // Логируем ответ от сервера
+        // displayDebugLog(serverResponseMessage);  // Логируем ответ от сервера
     })
     .catch(error => {
         // Если произошла ошибка при запросе
         const errorMessage = "Ошибка при отправке данных на сервер: " + error.message;
-        displayDebugLog(errorMessage, true);  // Логируем ошибку
+        // displayDebugLog(errorMessage, true);  // Логируем ошибку
     });
 }
 
