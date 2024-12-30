@@ -17,15 +17,17 @@ def install():
             database_url = 'sqlite:///app.db'
         else:
             db_host = request.form.get('db_host')
-            db_port = request.form.get('db_port')
+            db_port = request.form.get('db_port', 3306)  # Значение по умолчанию для порта - 3306
             db_name = request.form.get('db_name')
             db_user = request.form.get('db_user')
             db_password = request.form.get('db_password')
 
-            database_url = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-
             # Проверка подключения к базе данных через AJAX
             try:
+                # Формируем URL для подключения к базе данных
+                database_url = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+                
+                # Попытка установить подключение к базе данных
                 engine = sqlalchemy.create_engine(database_url)
                 connection = engine.connect()
                 connection.close()
@@ -46,7 +48,6 @@ def install():
             env_file.write(f"ADMIN_ID={admin_id}\n")
             env_file.write(f"DATABASE_URL={database_url}\n")
 
-        return redirect(url_for('index'))
+        return redirect(url_for('index.index_page'))
 
     return render_template('install.html')
-

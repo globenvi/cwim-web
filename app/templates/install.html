@@ -21,7 +21,7 @@
                     <!-- Telegram Bot Token -->
                     <div class="mb-3">
                         <label for="bot_token" class="form-label">Telegram Bot Token</label>
-                        <input type="text" id="bot_token" name="bot_token" class="form-control" placeholder="Введите токен вашего бота" required>
+                        <input type="password" id="bot_token" name="bot_token" class="form-control" placeholder="Введите токен вашего бота" required>
                     </div>
 
                     <!-- Admin Telegram ID -->
@@ -44,6 +44,11 @@
                         <div class="mb-3">
                             <label for="db_host" class="form-label">Хост базы данных</label>
                             <input type="text" id="db_host" name="db_host" class="form-control" placeholder="Введите хост (например, localhost)">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="db_port" class="form-label">Порт базы данных</label>
+                            <input type="text" id="db_port" name="db_port" class="form-control" placeholder="Введите порт базы данных (по умолчанию 3306)">
                         </div>
 
                         <div class="mb-3">
@@ -89,7 +94,7 @@
         checkConnectionButton.addEventListener('click', () => {
             const formData = new FormData(document.getElementById('install-form'));
             
-            fetch('/install/', {
+            fetch('/install/istall', {
                 method: 'POST',
                 body: formData
             })
