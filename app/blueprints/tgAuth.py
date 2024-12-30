@@ -3,7 +3,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, curren
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint
 from app.extensions import db
-from app.models.user import User
+from app.models.users import User
 import logging
 
 telegramAuth = Blueprint("telegramAuth", __name__)

@@ -4,7 +4,7 @@ from app.extensions import db, migrate
 from app.blueprints import register_blueprints
 from app.extensions import login_manager
 
-from app.models.user import User
+from app.models.users import User
 
 def create_app(config_class="config.Config"):
     app = Flask(__name__)
