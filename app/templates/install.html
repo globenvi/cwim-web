@@ -94,7 +94,7 @@
         checkConnectionButton.addEventListener('click', () => {
             const formData = new FormData(document.getElementById('install-form'));
             
-            fetch('/install/istall', {
+            fetch('/install/istall/', {
                 method: 'POST',
                 body: formData
             })
