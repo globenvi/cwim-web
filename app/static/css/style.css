@@ -642,7 +642,7 @@ body {
     /* По умолчанию для светлой темы */
     flex-direction: column;
     padding: 16px;
-    border-radius: 8px;
+    border-radius: 15px;
     /* Чуть темнее или светлее фона */
     color: var(--tg-theme-text-color);
     max-width: 100%;
