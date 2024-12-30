@@ -5,3 +5,4 @@ Flask-Migrate
 pytest
 Flask-Login
 Werkzeug
+PyMysql

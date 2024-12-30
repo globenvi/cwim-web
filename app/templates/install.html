@@ -6,6 +6,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Настройка приложения</title>
 </head>
 <body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
@@ -15,7 +17,7 @@
         <div class="telegram-card card shadow border-0 mx-auto" style="max-width: 480px;">
             <div class="card-body">
                 <h2 class="telegram-card-header text-center text-primary mb-4">Установка</h2>
-                <form method="POST">
+                <form id="install-form" method="POST">
                     <!-- Telegram Bot Token -->
                     <div class="mb-3">
                         <label for="bot_token" class="form-label">Telegram Bot Token</label>
@@ -33,7 +35,7 @@
                         <label for="db_type" class="form-label">Тип базы данных</label>
                         <select id="db_type" name="db_type" class="form-select" required>
                             <option value="local" selected>Локальная (SQLite)</option>
-                            <option value="remote">Удалённая (PostgreSQL, MySQL и т.д.)</option>
+                            <option value="remote">Удалённая (MySQL/PostgreSQL и т.д.)</option>
                         </select>
                     </div>
 
@@ -63,6 +65,7 @@
                     <!-- Кнопка отправки -->
                     <button type="submit" class="btn btn-primary w-100">Сохранить настройки</button>
                 </form>
+                <button id="check-connection" class="btn btn-info w-100 mt-3">Проверить подключение</button>
             </div>
         </div>
     </div>
@@ -78,6 +81,40 @@
             } else {
                 remoteDbFields.style.display = 'none';
             }
+        });
+
+        // Проверка подключения к базе данных через AJAX
+        const checkConnectionButton = document.getElementById('check-connection');
+        
+        checkConnectionButton.addEventListener('click', () => {
+            const formData = new FormData(document.getElementById('install-form'));
+            
+            fetch('/install/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                Toastify({
+                    text: data.message,
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: data.status === 'success' ? "green" : "red",
+                    gravity: "top",
+                    position: "right"
+                }).showToast();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Toastify({
+                    text: "Произошла ошибка при подключении!",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "red",
+                    gravity: "top",
+                    position: "right"
+                }).showToast();
+            });
         });
     </script>
 </body>
