@@ -38,7 +38,6 @@ def create_app(config_class="config.Config"):
         
     else:
         # Если .env не настроен, перенаправляем на /install
-        @app.before_request
         def redirect_to_install():
             if not is_env_configured() and not request.endpoint.startswith('install.install'):
                 return redirect(url_for('install.install'))
