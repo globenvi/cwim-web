@@ -3,7 +3,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, curren
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint
 from app.extensions import db
-from app.models.users import User
+from app.models.users import Users
 import logging
 
 telegramAuth = Blueprint("telegramAuth", __name__)
@@ -33,7 +33,7 @@ def telegramAuth_method():
         photo_url = user.get("photo_url")
 
         # Проверка наличия пользователя в базе данных
-        existing_user = User.query.filter_by(telegram_id=telegram_id).first()
+        existing_user = Users.query.filter_by(telegram_id=telegram_id).first()
         if existing_user:
             # Обновление данных пользователя
             existing_user.first_name = first_name
@@ -58,7 +58,7 @@ def telegramAuth_method():
             }), 200
         else:
             # Создание нового пользователя
-            new_user = User(
+            new_user = Users(
                 telegram_id=telegram_id,
                 first_name=first_name,
                 username=username,
