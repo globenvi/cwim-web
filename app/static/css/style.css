@@ -1169,7 +1169,7 @@ input {
 }
 
 .spinner {
-    border: 5px solid var(--tg-secondary-color);
+    border: 5px solid var(--tg-text-color);
     border-top: 5px solid var(--tg-background-color);
     border-radius: 50%;
     width: 25px;
