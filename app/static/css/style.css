@@ -964,7 +964,7 @@ a:focus {
     font-weight: bold;
 }
 
-/* Стили для спинера */
+Стили для спинера
 .spinner {
     width: 16px;
     height: 16px;
@@ -1169,11 +1169,11 @@ input {
 }
 
 .spinner {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
+    border: 5px solid var(--tg-secondary-color);
+    border-top: 5px solid var(--tg-background-color);
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     animation: spin 1s linear infinite;
 }
 
@@ -1185,23 +1185,6 @@ input {
     100% {
         transform: rotate(360deg);
     }
-}
-
-
-#preloader {
-    position: fixed;
-    /* Прелоадер занимает весь экран */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--tg-background-color);
-    /* Ваш цвет фона */
-    z-index: 9999;
-    /* Обеспечивает отображение поверх всего контента */
 }
 
 section {
