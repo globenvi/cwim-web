@@ -1231,10 +1231,7 @@ section {
 
 
 .section-button {
-    background: var(--tg-secondary-color);
-    padding: 5px;
     border: none;
     font-size: 20px;
     color: var(--tg-main-color);
-    border-radius: 10px;
 }
