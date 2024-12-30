@@ -24,135 +24,108 @@
 
 
 <!-- Content -->
-<div class="content mt-5">
-    <!-- Balance -->
-    <div class="balance">
-        <h5>Остаток</h5>
-        <h1>12,345.67 ₽</h1>
-    </div>
+<div class="content my-5">
 
-    <!-- Action Buttons -->
-    <div class="buttons">
-        <button class="btn btn-tg-theme" onclick="vibrateOnClick()">Доход</button>
-        <button class="btn btn-tg-theme" onclick="vibrateOnClick()">Расход</button>
-    </div>
 
-    <div class="telegram-card">
+
+    <div class="telegram-card mt-5">
         <div class="telegram-card-header">
-            Операции за месяц
+            Прайс-лист по ремонту iPhone
+            
+        </div>
+        <div class="telegram-card-header">
+            <input type="text" class="form-control" placeholder="Поиск по ремонту..." id="searchInput" onkeyup="filterItems()" />
         </div>
         <div class="telegram-card-content">
-            <!-- Пример записи -->
+            
+            <!-- Пример записи для Модульного ремонта -->
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Покупка продуктов</strong>
-                    <div class="telegram-card-date ">01 декабря - пятница</div>
+                    <strong>Замена дисплея</strong>
+                    <div class="telegram-card-date">Модульный ремонт / Apple iPhone 13</div>
                 </a>
-                <div class="telegram-card-amount text-danger">-1,200.00 ₽</div>
+                <div class="telegram-card-amount">8,000.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Зарплата</strong>
-                    <div class="telegram-card-date ">02 декабря - суббота</div>
+                    <strong>Замена экрана</strong>
+                    <div class="telegram-card-date">Модульный ремонт / Apple iPhone 12</div>
                 </a>
-                <div class="telegram-card-amount text-success">+50,000.00 ₽</div>
+                <div class="telegram-card-amount">7,500.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Оплата интернета</strong>
-                    <div class="telegram-card-date ">03 декабря - воскресенье</div>
+                    <strong>Замена корпуса</strong>
+                    <div class="telegram-card-date">Модульный ремонт / Apple iPhone 11 Pro</div>
                 </a>
-                <div class="telegram-card-amount text-danger">-900.00 ₽</div>
+                <div class="telegram-card-amount">5,000.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Продажа товаров</strong>
-                    <div class="telegram-card-date ">04 декабря - понедельник</div>
+                    <strong>Замена дисплея</strong>
+                    <div class="telegram-card-date">Модульный ремонт / Apple iPhone 13 Pro</div>
                 </a>
-                <div class="telegram-card-amount text-success">+15,000.00 ₽</div>
+                <div class="telegram-card-amount">8,500.00 ₽</div>
+            </div>
+            
+            <!-- Пример записи для Компонентного ремонта -->
+            <div class="telegram-card-row">
+                <a class="telegram-card-info">
+                    <strong>Ремонт аккумулятора</strong>
+                    <div class="telegram-card-date">Компонентный ремонт / Apple iPhone 12</div>
+                </a>
+                <div class="telegram-card-amount">4,500.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Кафе с друзьями</strong>
-                    <div class="telegram-card-date ">05 декабря - вторник</div>
+                    <strong>Замена камеры</strong>
+                    <div class="telegram-card-date">Компонентный ремонт / Apple iPhone 11</div>
                 </a>
-                <div class="telegram-card-amount text-danger">-2,300.00 ₽</div>
+                <div class="telegram-card-amount">6,000.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Оплата ЖКХ</strong>
-                    <div class="telegram-card-date ">06 декабря - среда</div>
+                    <strong>Ремонт зарядного порта</strong>
+                    <div class="telegram-card-date">Компонентный ремонт / Apple iPhone 7</div>
                 </a>
-                <div class="telegram-card-amount text-danger">-7,500.00 ₽</div>
+                <div class="telegram-card-amount">4,000.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Возврат долга</strong>
-                    <div class="telegram-card-date ">07 декабря - четверг</div>
+                    <strong>Ремонт звука</strong>
+                    <div class="telegram-card-date">Компонентный ремонт / Apple iPhone 8</div>
                 </a>
-                <div class="telegram-card-amount text-success">+3,000.00 ₽</div>
+                <div class="telegram-card-amount">2,500.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Покупка одежды</strong>
-                    <div class="telegram-card-date ">08 декабря - пятница</div>
+                    <strong>Замена микрофона</strong>
+                    <div class="telegram-card-date">Компонентный ремонт / Apple iPhone XR</div>
                 </a>
-                <div class="telegram-card-amount text-danger">-5,800.00 ₽</div>
+                <div class="telegram-card-amount">4,200.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Бонус от компании</strong>
-                    <div class="telegram-card-date ">09 декабря - суббота</div>
+                    <strong>Ремонт Face ID</strong>
+                    <div class="telegram-card-date">Компонентный ремонт / Apple iPhone X</div>
                 </a>
-                <div class="telegram-card-amount text-success">+20,000.00 ₽</div>
+                <div class="telegram-card-amount">8,500.00 ₽</div>
             </div>
             <div class="telegram-card-row">
                 <a class="telegram-card-info">
-                    <strong>Оплата кредита</strong>
-                    <div class="telegram-card-date ">10 декабря - воскресенье</div>
+                    <strong>Ремонт iOS (перепрошивка)</strong>
+                    <div class="telegram-card-date">Компонентный ремонт / Apple iPhone 6</div>
                 </a>
-                <div class="telegram-card-amount text-danger">-15,000.00 ₽</div>
-            </div>
-            <div class="telegram-card-row">
-                <a class="telegram-card-info">
-                    <strong>Подарок на день рождения</strong>
-                    <div class="telegram-card-date ">11 декабря - понедельник</div>
-                </a>
-                <div class="telegram-card-amount text-danger">-4,000.00 ₽</div>
-            </div>
-            <div class="telegram-card-row">
-                <a class="telegram-card-info">
-                    <strong>Выигрыш в лотерею</strong>
-                    <div class="telegram-card-date ">12 декабря - вторник</div>
-                </a>
-                <div class="telegram-card-amount text-success">+10,000.00 ₽</div>
-            </div>
-            <div class="telegram-card-row">
-                <a class="telegram-card-info">
-                    <strong>Покупка техники</strong>
-                    <div class="telegram-card-date ">13 декабря - среда</div>
-                </a>
-                <div class="telegram-card-amount text-danger">-25,000.00 ₽</div>
-            </div>
-            <div class="telegram-card-row">
-                <a class="telegram-card-info">
-                    <strong>Аренда квартиры</strong>
-                    <div class="telegram-card-date text-secondary">14 декабря - четверг</div>
-                </a>
-                <div class="telegram-card-amount text-danger">-30,000.00 ₽</div>
-            </div>
-            <div class="telegram-card-row">
-                <a class="telegram-card-info">
-                    <strong>Возврат переплаты</strong>
-                    <div class="telegram-card-date ">15 декабря - пятница</div>
-                </a>
-                <div class="telegram-card-amount text-success">+2,500.00 ₽</div>
+                <div class="telegram-card-amount">2,000.00 ₽</div>
             </div>
         </div>
         <div class="telegram-footer">
             <a href="#" class="text-primary">Расширенный поиск</a>
         </div>
     </div>
+    
+    
+    
 
     <div class="telegram-card">
 
@@ -219,7 +192,24 @@
 
 
 
-
+    <script>
+        // Функция для фильтрации записей по введенному запросу
+        function filterItems() {
+            var input, filter, rows, row, textContent;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            rows = document.querySelectorAll('.telegram-card-row');
+            
+            rows.forEach(function(row) {
+                textContent = row.textContent || row.innerText;
+                if (textContent.toUpperCase().indexOf(filter) > -1) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
 
 
     <script>
