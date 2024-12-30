@@ -841,6 +841,10 @@ a:focus {
     /* Основной цвет текста */
 }
 
+.text-warning {
+    color: #ff9800;
+}
+
 .text-secondary {
     color: var(--tg-secondary-color);
     /* Вторичный цвет текста */
