@@ -34,6 +34,8 @@ def create_app(config_class="config.Config"):
         @login_manager.user_loader
         def load_user(user_id):
             return Users.query.get(int(user_id))
+        
+        return redirect(url_for('install.install'))
     else:
         # Если .env не настроен, перенаправляем на /install
         @app.before_request
