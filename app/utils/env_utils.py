@@ -1,7 +1,7 @@
 import os
 
 def is_env_configured():
-    required_keys = ["SECRET_KEY", "BOT_TOKEN", "ADMIN_ID", "DATABASE_URL"]
+    required_keys = ["BOT_TOKEN", "ADMIN_ID", "DATABASE_URL"]
     if not os.path.exists(".env"):
         return False
 
