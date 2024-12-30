@@ -35,6 +35,7 @@ def create_app(config_class="config.Config"):
         def load_user(user_id):
             return Users.query.get(int(user_id))
         
+        return redirect(url_for('index.index_page'))
         
     else:
         # Если .env не настроен, перенаправляем на /install
