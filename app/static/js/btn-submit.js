@@ -1,26 +1,28 @@
- // Найти все кнопки с классом 'btn-submit'
- document.querySelectorAll('.btn-submit').forEach(button => {
-    button.addEventListener('click', async function () {
-        // Сохранить текущий текст кнопки
-        const originalText = button.textContent;
+// Найти все кнопки с классом 'btn-submit'
+document.querySelectorAll('.btn-submit').forEach((button) => {
+  button.addEventListener('click', async function () {
+    // Сохранить текущий текст кнопки
+    const originalText = button.textContent;
 
-        // Заменить текст кнопки на спиннер
-        button.innerHTML = `
-            <span class="spinner"></span>
+    // Заменить текст кнопки на спиннер
+    button.innerHTML = `
+            <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+  <span class="visually-hidden" role="status">Loading...</span>
+</button>
         `;
 
-        // Заблокировать кнопку
-        button.disabled = true;
+    // Заблокировать кнопку
+    button.disabled = true;
 
-        try {
-            // Эмулируем задержку (например, ожидание ответа от сервера)
-            await new Promise(resolve => setTimeout(resolve, 3000));
-        } catch (error) {
-            console.error('Ошибка:', error);
-        } finally {
-            // Вернуть исходный текст кнопки
-            button.innerHTML = originalText;
-            button.disabled = false;
-        }
-    });
+    try {
+      // Эмулируем задержку (например, ожидание ответа от сервера)
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+    } catch (error) {
+      console.error('Ошибка:', error);
+    } finally {
+      // Вернуть исходный текст кнопки
+      button.innerHTML = originalText;
+      button.disabled = false;
+    }
+  });
 });

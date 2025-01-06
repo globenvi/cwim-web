@@ -628,14 +628,6 @@ body {
     box-shadow: var(--tg-secondary-color);
 }
 
-a,
-button,
-span,
-form-select {
-    pointer-events: auto;
-    text-decoration: none;
-    color: var(--tg-theme-text-color);
-}
 
 /* Стиль для ссылок, как для обычного текста */
 a {
@@ -784,92 +776,6 @@ a:focus {
     padding-top: 10px;
 }
 
-/* КАСТОМНЫЕ ЦВЕТА */
-
-/* Текстовые классы */
-.text-primary {
-    color: var(--tg-main-color);
-    /* Основной цвет текста */
-}
-
-.text-warning {
-    color: #ff9800;
-}
-
-.text-secondary {
-    color: var(--tg-secondary-color);
-    /* Вторичный цвет текста */
-}
-
-.text-success {
-    color: #4CAF50;
-    /* Успешный зеленый цвет */
-}
-
-.text-danger {
-    color: #F44336;
-    /* Красный цвет для ошибок */
-}
-
-.text-muted {
-    color: #B0B0B0;
-    /* Серый цвет для менее важного текста */
-}
-
-/* Классы для кнопок */
-.btn-primary {
-    background-color: var(--tg-main-color);
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.btn-secondary {
-    background-color: var(--tg-secondary-color);
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.btn-success {
-    background-color: #4CAF50;
-    /* Зеленый для успешных действий */
-    border: none;
-    color: var(--tg-theme-text-color);
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.btn-danger {
-    background-color: #F44336;
-    /* Красный для ошибок */
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.btn-muted {
-    background-color: #B0B0B0;
-    /* Серый для менее важных действий */
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: not-allowed;
-}
-
 .telegram-card-header {
     font-size: 18px;
     font-weight: bold;
@@ -913,33 +819,6 @@ a:focus {
 .telegram-card-amount {
     font-size: 16px;
     font-weight: bold;
-}
-
-Стили для спинера
-.spinner {
-    width: 16px;
-    height: 16px;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    border-top: 2px solid var(--tg-theme-text-color);
-    animation: spin 0.8s linear infinite;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Для текста спинера */
-.spinner-text {
-    margin-left: 8px;
 }
 
 /* Стили для инпутов и select, которые занимают всю ширину */
