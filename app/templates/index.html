@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-    {% include "components/header.html" %}
 {% block body %}
 <style>
     #debug-log {
@@ -15,9 +14,12 @@
     }
 </style>
 
+<div class="container-fluid m-0 p-0">
+{% include "components/header.html" %}
+</div>
+
 <!-- <div id="debug-log"></div> -->
 
 
 </div>
 {% endblock body %}
-{% include "components/footer.html" %}
