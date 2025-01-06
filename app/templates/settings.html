@@ -1,45 +1,98 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block body %}
+<div class="row">
+  <div class="col mx-3 my-2 p-3 container bg-white shadow ">
+    <h3 class="m-1">Настройки</h3>
 
-{% block body %}
-
-<section>
-
-    <div class="section-title px-4">
-        <h1 id="sectionTitle">Настройки</h1>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">@</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Username"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
     </div>
-    
-    <div class="content">
 
-        <div class="telegram-card">
-            <div class="telegram-card-content">
-                <form>
-                    <!-- Имя, Фамилия и Username -->
-                    <label class="text-muted">ОБЯЗАТЕЛЬНО</label>
-                    <input type="text" class="form-input" placeholder="Имя" value="{{ user.first_name }}">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Recipient's username"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
+      />
+      <span class="input-group-text" id="basic-addon2">@example.com</span>
+    </div>
 
-                    <label class="text-muted">НЕ ОБЯЗАТЕЛЬНО</label>
-                    <input type="text" class="form-input" placeholder="Фамилия">
-                    <label class="text-muted">КОРОТКОЕ ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
-                    <input type="text" class="form-input" placeholder="@username" value="{{ user.username }}">
-                    <div class="telecram-card mb-2 p-1">
-                        <section class="p-1">
-                            <i class="fa-solid fa-circle-exclamation mr-2 text-warning"></i>
-                            <span>
-                                Если короткое имя не показывается, значит оно не установлено у вас в телеграм!
-                            Для корректной работы приложения, либо укажите его в телеграм, либо тут, заполнив поле. (Без @)
-                            </span>
-                        </section>
-                    </div>
-    
-                </form>
-            </div>
-    
-            <div class="telegram-card-footer">
-                <!-- Можно добавить действия в футер -->
-            </div>
-        </div>
-</section>
+    <div class="mb-3">
+      <label for="basic-url" class="form-label">Your vanity URL</label>
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon3">
+          https://example.com/users/
+        </span>
+        <input
+          type="text"
+          class="form-control"
+          id="basic-url"
+          aria-describedby="basic-addon3 basic-addon4"
+        />
+      </div>
+      <div class="form-text" id="basic-addon4">
+        Example help text goes outside the input group.
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Amount (to the nearest dollar)"
+      />
+      <span class="input-group-text">.00</span>
+    </div>
+
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Username"
+        aria-label="Username"
+      />
+      <span class="input-group-text">@</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Server"
+        aria-label="Server"
+      />
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-text">With textarea</span>
+      <textarea class="form-control" aria-label="With textarea"></textarea>
+    </div>
+  </div>
+  <div class="col mx-3 my-2 p-3 container bg-white shadow ">
+      <h3 class="m-1">Телеграм</h3>
+
+      <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Telegram ID</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="786321867"
+        aria-label="Telegram ID"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+
+<div class="form-check form-switch form-check-reverse">
+  <input class="form-check-input form-control-lg" type="checkbox" id="flexSwitchCheckReverse">
+  <label class="form-check-label h5" for="flexSwitchCheckReverse">Reverse switch checkbox input</label>
 </div>
-{% endblock body %}
 
-{% include "components/floating_save_btn.html" %}
+  </div>
+</div>
+{% endblock body %} {% include "components/floating_save_btn.html" %}
