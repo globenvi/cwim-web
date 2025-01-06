@@ -945,25 +945,7 @@ input {
 }
 
 /* Стили для всплывающего футера */
-.floating-footer {
-    position: fixed;
-    bottom: -100px;
-    /* Изначально футер скрыт ниже экрана */
-    left: 0;
-    width: 100%;
-    background-color: var(--tg-secondary-color);
-    border-top: 1px solid var(--tg-border-color);
-    border-radius: 8px 8px 0 0;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    transition: bottom 0.5s ease;
-    /* Анимация для плавного появления */
-    overflow: hidden;
-    /* Не даем содержимому футера выходить за пределы */
-}
+
 
 .floating-footer.show {
     bottom: 0;
