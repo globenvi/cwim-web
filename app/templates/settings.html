@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block body %}
 <div class="row">
-  <div class="col mx-3 my-2 p-3 container bg-white shadow ">
+  <div class="col-auto my-2 p-3 container bg-white shadow">
     <h3 class="m-1">Настройки</h3>
 
     <div class="input-group mb-3">
@@ -16,21 +16,17 @@
 
     <div class="input-group mb-3">
       <input
-        type="text"
+        type="email"
         class="form-control"
-        placeholder="Recipient's username"
-        aria-label="Recipient's username"
+        placeholder="Почта"
+        aria-label="почта"
         aria-describedby="basic-addon2"
       />
-      <span class="input-group-text" id="basic-addon2">@example.com</span>
     </div>
 
     <div class="mb-3">
-      <label for="basic-url" class="form-label">Your vanity URL</label>
       <div class="input-group">
-        <span class="input-group-text" id="basic-addon3">
-          https://example.com/users/
-        </span>
+        <span class="input-group-text" id="basic-addon3">ФИО Полностью</span>
         <input
           type="text"
           class="form-control"
@@ -39,60 +35,38 @@
         />
       </div>
       <div class="form-text" id="basic-addon4">
-        Example help text goes outside the input group.
+        Необходимо для оформления заказов
       </div>
     </div>
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">$</span>
-      <input
-        type="text"
-        class="form-control"
-        aria-label="Amount (to the nearest dollar)"
-      />
-      <span class="input-group-text">.00</span>
-    </div>
-
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Username"
-        aria-label="Username"
-      />
-      <span class="input-group-text">@</span>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Server"
-        aria-label="Server"
-      />
-    </div>
-
     <div class="input-group">
-      <span class="input-group-text">With textarea</span>
+      <span class="input-group-text">О себе</span>
       <textarea class="form-control" aria-label="With textarea"></textarea>
     </div>
   </div>
-  <div class="col mx-3 my-2 p-3 container bg-white shadow ">
-      <h3 class="m-1">Телеграм</h3>
+  <div class="col-auto my-2 p-3 container bg-white shadow">
+    <h3 class="m-1">Уведомления в телеграм</h3>
 
-      <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">Telegram ID</span>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="786321867"
-        aria-label="Telegram ID"
-        aria-describedby="basic-addon1"
-      />
-    </div>
-
-<div class="form-check form-switch form-check-reverse">
-  <input class="form-check-input form-control-lg" type="checkbox" id="flexSwitchCheckReverse">
-  <label class="form-check-label h5" for="flexSwitchCheckReverse">Reverse switch checkbox input</label>
-</div>
-
+    <form class="">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Телеграм ID"
+          aria-label="Recipient's username with two button addons"
+        />
+        <button class="btn btn-outline-danger btn-lg" type="button">
+          Выкл
+        </button>
+        <button class="btn btn-outline-success btn-lg" type="button">
+          Вкл
+        </button>
+      </div>
+      <div class="form-text" id="basic-addon4">
+        <i class="bi bi-check-circle text-success h5 mr-2"></i>
+        <span class="h5">Уведомления включены!</span>
+      </div>
+    </form>
   </div>
 </div>
 {% endblock body %} {% include "components/floating_save_btn.html" %}
