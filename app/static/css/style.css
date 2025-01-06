@@ -578,55 +578,6 @@ body {
     font-weight: 900;
 }
 
-.btn-secondary {
-    background-color: #dddddd;
-    /* Grey */
-    color: var(--tg-theme-text-color);
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-.btn-tg-theme {
-    background-color: var(--tg-main-color);
-    /* Основной цвет кнопки из Telegram темы */
-    color: var(--tg-theme-text-color);
-    /* Текст кнопки из Telegram темы */
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: background-color 0.3s ease;
-    /* Плавное изменение фона */
-}
-
-.btn-tg-theme:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 139, 204, 0.5);
-    /* Тень при фокусе */
-}
-
-/* Заголовок с темой Telegram */
-.telegram-header {
-    background-color: var(--tg-main-color);
-    /* Основной цвет для фона заголовка */
-    color: var(--tg-theme-text-color);
-    /* Цвет текста в заголовке */
-    padding: 16px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
 /* Стиль для темных вариантов кнопок */
 :root {
     --tg-main-color-dark: #007bb5;
