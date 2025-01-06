@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% block body %}
-<div class="row p-3 mb-5 pb-5">
-  <div class="col-auto my-2 p-3 container bg-white shadow">
+
+<h1 class="m-1 text-center mt-4">Настройки</h3>
+
+<div class="container-fluid my-5 pb-5">
+<div class="container my-2 p-3 bg-white shadow">
     <h3 class="m-1 mb-3">Пользователь</h3>
 
     <div class="input-group mb-3">
@@ -22,6 +25,7 @@
         placeholder="Почта"
         aria-label="почта"
         aria-describedby="basic-addon2"
+        value="{{ user.email }}"
       />
     </div>
 
@@ -33,6 +37,7 @@
           class="form-control"
           id="basic-url"
           aria-describedby="basic-addon3 basic-addon4"
+          value="{{ user.first_name}} {{ user.last_name }}"
         />
       </div>
       <div class="form-text" id="basic-addon4">
@@ -45,7 +50,8 @@
       <textarea class="form-control" aria-label="With textarea"></textarea>
     </div>
   </div>
-  <div class="col-auto my-2 p-3 container bg-white shadow">
+
+<div class="container my-2 p-3 bg-white shadow">
     <h3 class="m-1 mb-3">Уведомления в телеграм</h3>
 
     <form class="">
@@ -55,11 +61,12 @@
           class="form-control"
           placeholder="Телеграм ID"
           aria-label="Recipient's username with two button addons"
+          value="{{ user.telegram_id }}"
         />
-        <button class="btn btn-outline-danger btn-lg" type="button">
+        <button class="btn btn-outline-danger btn-lg btn-submit" type="button">
           Выкл
         </button>
-        <button class="btn btn-outline-success btn-lg" type="button">
+        <button class="btn btn-outline-success btn-lg btn-submit" type="button">
           Вкл
         </button>
       </div>
@@ -87,5 +94,8 @@
       </div>
     </form>
   </div>
+  
 </div>
+
+<div class="my-2" id="air"></div>
 {% endblock body %} {% include "components/floating_save_btn.html" %}
