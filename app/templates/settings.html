@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block body %}
-<div class="row p-3">
+<div class="row p-3 mb-5 pb-5">
   <div class="col-auto my-2 p-3 container bg-white shadow">
-    <h3 class="m-1">Настройки</h3>
+    <h3 class="m-1 mb-3">Пользователь</h3>
 
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1">@</span>
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div class="col-auto my-2 p-3 container bg-white shadow">
-    <h3 class="m-1">Уведомления в телеграм</h3>
+    <h3 class="m-1 mb-3">Уведомления в телеграм</h3>
 
     <form class="">
       <div class="input-group">
@@ -63,9 +63,27 @@
           Вкл
         </button>
       </div>
-      <div class="form-text" id="basic-addon4">
-        <i class="bi bi-check-circle text-success h5 mr-2"></i>
+      <div class="form-text mt-4" id="basic-addon4">
+        <div class="row">
+            <div class="col-auto my-1">
+            <i class="bi bi-check-circle text-success h5 mr-2"></i>
+        <span class="h5">Телеграм привязан!</span>
+        </div>
+        <div class="col-auto my-1">
+            <i class="bi bi-check-circle text-success h5 mr-2"></i>
         <span class="h5">Уведомления включены!</span>
+        </div>
+    
+        <div class="col-auto my-1">
+            <i class="bi bi-x-circle text-danger h5 mr-2"></i>
+        <span class="h5">Телеграм не привязан!</span>
+        </div>
+
+        <div class="col-auto my-1">
+            <i class="bi bi-x-circle text-danger h5 mr-2"></i>
+        <span class="h5">Уведомления не включены!</span>
+        </div>
+        </div>
       </div>
     </form>
   </div>
