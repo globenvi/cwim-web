@@ -6,9 +6,8 @@ document.querySelectorAll('.btn-submit').forEach((button) => {
 
     // Заменить текст кнопки на спиннер
     button.innerHTML = `
-            <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
   <span class="visually-hidden" role="status">Loading...</span>
-</button>
         `;
 
     // Заблокировать кнопку

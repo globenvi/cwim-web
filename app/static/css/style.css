@@ -444,10 +444,13 @@ body {
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: var(--tg-secondary-color);
-    color: var(--tg-theme-text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.container {
+    border-radius: 1rem;
 }
 
 /* Стиль шапки, закрепленной в верхней части */
@@ -542,17 +545,6 @@ body {
 .buttons .expense {
     background-color: var(--tg-main-color);
     /* Цвет кнопки зависит от темы */
-}
-
-
-.footer {
-    text-align: center;
-    padding: 8px;
-    background-color: var(--tg-secondary-color);
-    /* Чуть темнее или светлее фона */
-    color: var(--tg-theme-text-color);
-    /* Цвет текста адаптируется под тему */
-    font-size: 14px;
 }
 
 /* Font Awesome Icons */
@@ -993,7 +985,7 @@ input {
     padding: 10px;
     font-size: 16px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
 }
