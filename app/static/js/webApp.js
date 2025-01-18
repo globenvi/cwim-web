@@ -76,19 +76,3 @@ function vibrateOnClick() {
     // Используем Telegram API для вибрации
     Telegram.WebApp.HapticFeedback.impactOccurred('light');
 }
-
-// === Дополнительные функции ===
-
-// Добавление кнопки в интерфейс WebApp
-function addWebAppButton(text, callback) {
-    const button = document.createElement('button');
-    button.textContent = text;
-    button.className = 'webapp-button'; // Можно добавить стили для этой кнопки
-    button.addEventListener('click', callback);
-    document.body.appendChild(button); // Добавляем кнопку в тело страницы
-}
-
-// Пример использования дополнительной кнопки
-addWebAppButton('Test Button', function () {
-    Telegram.WebApp.HapticFeedback.impactOccurred('light');
-});

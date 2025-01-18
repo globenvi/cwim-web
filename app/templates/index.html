@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block body %}
 <style>
     #debug-log {
@@ -14,43 +13,21 @@
         overflow-y: auto;
     }
 </style>
- {% include "widgets/header.html" %}
 
-<!-- <div id="debug-log"></div> Место для логов -->
+<div class="container-fluid m-0 p-0">
+{% include "components/header.html" %}
+</div>
+
+<!-- <div id="debug-log"></div> -->
+
+<div class="mt-2"></div>
+
+<div class="container-fluid">
+<div class="container p-3 bg-white shadow-5">
+    {% include "components/sale_advert.html" %}
+</div>
+</div>
 
 
-<!-- Content -->
-<div class="content my-5">
-
-
-    
-    
-    
-
-    
-    
-    <!-- <button class="btn btn-tg-theme">Категории</button> -->
-    <!-- Кнопка для открытия модального окна -->
-    <!-- <button class="openModalBtn btn btn-tg-theme" data-modal-id="modal1">Открыть модальное окно 1</button> -->
-
-    <button class="btn btn-tg-theme btn-submit">Save</button>
-
-    
-
-    <!-- Модальные окна -->
-    <!-- <div id="modal1" class="modal small bounceIn">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-title">Модальное окно 1</span>
-                <button class="close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Это первое модальное окно. Вы можете разместить любой контент здесь.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="close">Закрыть</button>
-            </div>
-        </div>
-    </div> -->
 </div>
 {% endblock body %}
