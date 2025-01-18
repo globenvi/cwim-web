@@ -1167,3 +1167,15 @@ input {
     background: var(--tg-background-color); /* Ваш цвет фона */
     z-index: 9999; /* Обеспечивает отображение поверх всего контента */
 }
+
+.wrapper {
+    position: relative;
+    display: flex; /* Включение flexbox */
+    flex-direction: column; /* Расположение элементов в колонку */
+    justify-content: center; /* Центровка по вертикали */
+    height: 100%;
+    min-height: 100vh;
+    max-width: 350px; /* Задаем высоту контейнера равную высоте окна браузера */
+    margin: 0 auto; /* Для центрирования контейнера при фиксированной ширине */
+}
+
